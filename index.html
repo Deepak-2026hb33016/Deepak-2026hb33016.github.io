@@ -6,16 +6,16 @@
     <title>Deepak Kondappa | Senior Web Producer & MarTech Architect</title>
     <style>
         :root {
-            --bg-dark: #0a0b0e;
-            --panel-bg: rgba(22, 25, 32, 0.85);
+            --bg-dark: #07080a;
+            --panel-bg: rgba(18, 21, 28, 0.7);
             --panel-border: rgba(255, 255, 255, 0.08);
             --text-title: #ffffff;
             --text-body: #d1d5db;
             --text-muted: #9ca3af;
             --amber: #e5a93c;
-            --amber-glow: rgba(229, 169, 60, 0.15);
+            --amber-glow: rgba(229, 169, 60, 0.25);
             --sage: #7c9082;
-            --slate-card: #14171f;
+            --slate-card: rgba(20, 24, 33, 0.85);
         }
 
         * {
@@ -27,13 +27,21 @@
 
         body {
             background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(124, 144, 130, 0.04) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.04) 0%, transparent 50%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
             color: var(--text-body);
             line-height: 1.6;
+            overflow-x: hidden;
             scroll-behavior: smooth;
+        }
+
+        /* Hero Fluid Background Canvas */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Container & Navigation */
@@ -41,6 +49,8 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 1;
         }
 
         nav {
@@ -49,6 +59,10 @@
             align-items: center;
             padding: 30px 0;
             border-bottom: 1px solid var(--panel-border);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav-brand {
@@ -91,17 +105,19 @@
             font-size: 0.85rem;
             font-weight: 600;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-cta:hover {
             background: var(--amber);
             color: var(--bg-dark);
-            box-shadow: 0 0 15px var(--amber-glow);
+            box-shadow: 0 0 20px var(--amber-glow);
         }
 
-        /* Full-Bleed Hero Section */
+        /* Full-Bleed Editorial Hero */
         .hero-section {
-            padding: 90px 0 70px;
+            padding: 100px 0 80px;
             border-bottom: 1px solid var(--panel-border);
         }
 
@@ -116,7 +132,7 @@
             background: rgba(124, 144, 130, 0.12);
             color: var(--sage);
             border: 1px solid rgba(124, 144, 130, 0.25);
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 700;
@@ -131,32 +147,53 @@
         }
 
         .hero-headline {
-            font-size: 3rem;
+            font-size: 3.2rem;
             color: var(--text-title);
             font-weight: 800;
-            line-height: 1.18;
-            letter-spacing: -1px;
+            line-height: 1.15;
+            letter-spacing: -1.2px;
             margin-bottom: 25px;
-            max-width: 950px;
+            max-width: 980px;
+        }
+
+        /* Dynamic Carousel Text */
+        .role-carousel {
+            color: var(--amber);
+            display: inline-block;
+            border-bottom: 2px solid var(--amber);
+            padding-bottom: 2px;
+            transition: opacity 0.3s ease;
         }
 
         .hero-lead {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 820px;
+            max-width: 850px;
             margin-bottom: 40px;
             line-height: 1.7;
         }
 
         .hero-actions {
             display: flex;
-            gap: 15px;
+            gap: 18px;
             flex-wrap: wrap;
+        }
+
+        /* Scroll Animation Target */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Editorial Section Styling */
         .section-block {
-            padding: 80px 0;
+            padding: 90px 0;
             border-bottom: 1px solid var(--panel-border);
         }
 
@@ -174,13 +211,13 @@
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--text-title);
             font-weight: 700;
             letter-spacing: -0.5px;
         }
 
-        /* Role-Based Expertise Pillars */
+        /* Spotlight & 3D Tilt Cards */
         .pillar-stack {
             display: flex;
             flex-direction: column;
@@ -190,15 +227,38 @@
         .pillar-card {
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
-            border-radius: 12px;
-            padding: 35px;
-            backdrop-filter: blur(10px);
-            transition: border-color 0.3s;
+            border-radius: 14px;
+            padding: 38px;
+            backdrop-filter: blur(15px);
+            transition: border-color 0.3s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
             cursor: pointer;
+            transform-style: preserve-3d;
+        }
+
+        /* Spotlight Glow Effect */
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, -100px);
+            left: var(--mouse-x, -100px);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(229, 169, 60, 0.12) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .pillar-card:hover::before {
+            opacity: 1;
         }
 
         .pillar-card:hover {
             border-color: rgba(229, 169, 60, 0.4);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
         }
 
         .pillar-meta {
@@ -219,14 +279,14 @@
         }
 
         .pillar-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--text-title);
             font-weight: 700;
             margin-bottom: 12px;
         }
 
         .pillar-summary {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             color: var(--text-body);
             margin-bottom: 20px;
         }
@@ -271,13 +331,13 @@
             color: var(--text-title);
         }
 
-        /* Interactive Architecture Visualizer */
+        /* Interactive Multi-State Visualizer */
         .canvas-container {
             background: var(--slate-card);
             border: 1px solid var(--panel-border);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 30px;
-            margin-top: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .canvas-toolbar {
@@ -314,15 +374,15 @@
             color: var(--amber);
         }
 
-        canvas {
+        #architectureCanvas {
             width: 100%;
-            height: 240px;
-            background: #08090c;
+            height: 260px;
+            background: #050608;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Thought Leadership Editorial Feed */
+        /* Thought Leadership Feed */
         .insights-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -331,20 +391,21 @@
 
         @media (max-width: 600px) {
             .insights-grid { grid-template-columns: 1fr; }
-            .hero-headline { font-size: 2.2rem; }
+            .hero-headline { font-size: 2.3rem; }
         }
 
         .insight-card {
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
             border-left: 4px solid var(--amber);
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 30px;
+            backdrop-filter: blur(10px);
         }
 
         .insight-card h3 {
             color: var(--text-title);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 12px;
         }
 
@@ -354,7 +415,7 @@
             line-height: 1.6;
         }
 
-        /* Executive Contact Terminal */
+        /* Contact Terminal */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -406,8 +467,11 @@
 </head>
 <body>
 
+    <!-- Ambient 60fps Particle Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
     <div class="wrapper">
-        <!-- Navigation Bar -->
+        <!-- Navigation -->
         <nav>
             <div>
                 <div class="nav-brand">DEEPAK KONDAPPA</div>
@@ -421,32 +485,33 @@
             </div>
         </nav>
 
-        <!-- Editorial Hero Section -->
-        <section class="hero-section">
+        <!-- Hero Section with Dynamic Carousel -->
+        <section class="hero-section reveal">
             <div class="hero-badge-group">
                 <span class="badge">AEM & Content Systems Lead</span>
                 <span class="badge">Workflow Automation</span>
                 <span class="badge mba">BITS Pilani MBA Candidate</span>
             </div>
-            <h1 class="hero-headline">Architecting scalable web experiences, automating content supply chains, and driving enterprise MarTech efficiency.</h1>
+            <h1 class="hero-headline">
+                Architecting <span class="role-carousel" id="carouselText">MarTech Systems</span>, automating content supply chains, and driving enterprise efficiency.
+            </h1>
             <p class="hero-lead">
                 Bridging front-line execution with structural business logic. Leading enterprise digital production across Adobe Experience Manager (AEM) ecosystems, custom publishing scripts, and content supply chain governance.
             </p>
             <div class="hero-actions">
-                <a href="#architecture" class="btn-cta">Inspect Architecture Canvas ↓</a>
+                <a href="#architecture" class="btn-cta">Inspect Live Architecture Engine ↓</a>
                 <a href="https://www.linkedin.com" target="_blank" class="nav-link" style="padding-top: 8px;">LinkedIn Profile ↗</a>
             </div>
         </section>
 
-        <!-- Core Expertise Pillars -->
-        <section id="expertise" class="section-block">
+        <!-- Expertise Pillars with Spotlight & 3D Tilt -->
+        <section id="expertise" class="section-block reveal">
             <div class="section-header">
                 <div class="section-tag">Core Pillars</div>
                 <h2 class="section-title">Enterprise Capability Pillars</h2>
             </div>
 
             <div class="pillar-stack">
-                <!-- Pillar 1 -->
                 <div class="pillar-card" onclick="togglePillar(this)">
                     <div class="pillar-meta">
                         <span class="pillar-category">Systems & Component Architecture</span>
@@ -462,7 +527,6 @@
                     </div>
                 </div>
 
-                <!-- Pillar 2 -->
                 <div class="pillar-card" onclick="togglePillar(this)">
                     <div class="pillar-meta">
                         <span class="pillar-category">Process Automation & Engineering</span>
@@ -478,7 +542,6 @@
                     </div>
                 </div>
 
-                <!-- Pillar 3 -->
                 <div class="pillar-card" onclick="togglePillar(this)">
                     <div class="pillar-meta">
                         <span class="pillar-category">Strategy & Management</span>
@@ -495,16 +558,16 @@
             </div>
         </section>
 
-        <!-- Interactive Architecture Section -->
-        <section id="architecture" class="section-block">
+        <!-- Interactive Real-Time Node Canvas -->
+        <section id="architecture" class="section-block reveal">
             <div class="section-header">
-                <div class="section-tag">Live Demonstration</div>
+                <div class="section-tag">Live Engine</div>
                 <h2 class="section-title">AS-IS Bottleneck vs. TO-BE Automated Flow</h2>
             </div>
 
             <div class="canvas-container">
                 <div class="canvas-toolbar">
-                    <span style="color: var(--text-title); font-weight: 600; font-size: 0.95rem;">Interactive System State Visualizer</span>
+                    <span style="color: var(--text-title); font-weight: 600; font-size: 0.95rem;" id="visStateLabel">Current State: AS-IS Bottleneck Pipeline</span>
                     <div class="toggle-group">
                         <button class="toggle-btn active" onclick="setVisState('asis')">AS-IS Pipeline</button>
                         <button class="toggle-btn" onclick="setVisState('tobe')">TO-BE Automated Flow</button>
@@ -515,7 +578,7 @@
         </section>
 
         <!-- Thought Leadership Feed -->
-        <section id="insights" class="section-block">
+        <section id="insights" class="section-block reveal">
             <div class="section-header">
                 <div class="section-tag">The Frontline Voice</div>
                 <h2 class="section-title">Thought Leadership & System Strategy</h2>
@@ -533,8 +596,8 @@
             </div>
         </section>
 
-        <!-- Executive Contact Form -->
-        <section id="contact" class="section-block">
+        <!-- Contact Form -->
+        <section id="contact" class="section-block reveal">
             <div class="section-header">
                 <div class="section-tag">Direct Inquiry</div>
                 <h2 class="section-title">Initiate Strategy & Project Discussions</h2>
@@ -563,7 +626,87 @@
     </div>
 
     <script>
-        // Pillar Expand / Collapse Accordion
+        // 1. Ambient Background Particles
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let particles = [];
+
+        function initBgCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 35; i++) {
+                particles.push({
+                    x: Math.random() * bgCanvas.width,
+                    y: Math.random() * bgCanvas.height,
+                    radius: Math.random() * 2 + 1,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    alpha: Math.random() * 0.3 + 0.1
+                });
+            }
+        }
+
+        function animateBg() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = bgCanvas.width;
+                if (p.x > bgCanvas.width) p.x = 0;
+                if (p.y < 0) p.y = bgCanvas.height;
+                if (p.y > bgCanvas.height) p.y = 0;
+
+                bgCtx.beginPath();
+                bgCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                bgCtx.fillStyle = `rgba(229, 169, 60, ${p.alpha})`;
+                bgCtx.fill();
+            });
+            requestAnimationFrame(animateBg);
+        }
+
+        window.addEventListener('resize', initBgCanvas);
+        initBgCanvas();
+        animateBg();
+
+        // 2. Dynamic Text Carousel
+        const roles = ["MarTech Systems", "AEM Component Architectures", "Content Supply Chains", "BITS Pilani MBA Strategies"];
+        let roleIdx = 0;
+        const carouselEl = document.getElementById('carouselText');
+
+        setInterval(() => {
+            carouselEl.style.opacity = '0';
+            setTimeout(() => {
+                roleIdx = (roleIdx + 1) % roles.length;
+                carouselEl.textContent = roles[roleIdx];
+                carouselEl.style.opacity = '1';
+            }, 300);
+        }, 3200);
+
+        // 3. Spotlight & 3D Tilt for Cards
+        document.querySelectorAll('.pillar-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 25;
+                const rotateY = (centerX - x) / 25;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+
+        // 4. Accordion Toggle
         function togglePillar(card) {
             const isExpanded = card.classList.contains('expanded');
             document.querySelectorAll('.pillar-card').forEach(c => c.classList.remove('expanded'));
@@ -572,22 +715,26 @@
             }
         }
 
-        // Canvas Architecture Simulator
+        // 5. Real-Time Node Packet Canvas Animation
         const canvas = document.getElementById('architectureCanvas');
         const ctx = canvas.getContext('2d');
         let visState = 'asis';
+        let packetPos = 0;
 
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
-            drawVisualizer();
         }
 
         function setVisState(state) {
             visState = state;
             document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            drawVisualizer();
+
+            const label = document.getElementById('visStateLabel');
+            label.textContent = state === 'asis' 
+                ? 'Current State: AS-IS Bottleneck Pipeline (Manual Delays)' 
+                : 'Current State: TO-BE Automated Flow (Sub-Second Deployment)';
         }
 
         function drawVisualizer() {
@@ -595,26 +742,40 @@
             const w = canvas.width;
             const h = canvas.height;
 
+            packetPos = (packetPos + 0.008) % 1;
+
             if (visState === 'asis') {
-                // AS-IS Bottleneck state
-                drawNode(w * 0.2, h * 0.5, "Asset Creation", "#7c9082");
-                drawNode(w * 0.5, h * 0.3, "Manual Audit (Friction)", "#e53c3c");
-                drawNode(w * 0.5, h * 0.7, "Email Sign-off Delay", "#e53c3c");
-                drawNode(w * 0.8, h * 0.5, "Delayed Launch", "#9ca3af");
+                const n1 = { x: w * 0.2, y: h * 0.5 };
+                const n2 = { x: w * 0.5, y: h * 0.3 };
+                const n3 = { x: w * 0.5, y: h * 0.7 };
+                const n4 = { x: w * 0.8, y: h * 0.5 };
 
-                drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.3, true);
-                drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.7, true);
-                drawConnection(w * 0.5, h * 0.3, w * 0.8, h * 0.5, true);
-                drawConnection(w * 0.5, h * 0.7, w * 0.8, h * 0.5, true);
+                drawConnection(n1, n2, true);
+                drawConnection(n1, n3, true);
+                drawConnection(n2, n4, true);
+                drawConnection(n3, n4, true);
+
+                drawNode(n1.x, n1.y, "Asset Creation", "#7c9082");
+                drawNode(n2.x, n2.y, "Manual Audit (Friction)", "#e53c3c");
+                drawNode(n3.x, n3.y, "Email Sign-off Delay", "#e53c3c");
+                drawNode(n4.x, n4.y, "Delayed Launch", "#9ca3af");
             } else {
-                // TO-BE Automated state
-                drawNode(w * 0.2, h * 0.5, "AEM Authoring", "#7c9082");
-                drawNode(w * 0.5, h * 0.5, "Automated Script Validation", "#e5a93c");
-                drawNode(w * 0.8, h * 0.5, "Instant Global Deployment", "#7c9082");
+                const n1 = { x: w * 0.2, y: h * 0.5 };
+                const n2 = { x: w * 0.5, y: h * 0.5 };
+                const n3 = { x: w * 0.8, y: h * 0.5 };
 
-                drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.5, false);
-                drawConnection(w * 0.5, h * 0.5, w * 0.8, h * 0.5, false);
+                drawConnection(n1, n2, false);
+                drawConnection(n2, n3, false);
+
+                drawPacket(n1, n2, packetPos);
+                drawPacket(n2, n3, packetPos);
+
+                drawNode(n1.x, n1.y, "AEM Authoring", "#7c9082");
+                drawNode(n2.x, n2.y, "Automated Script Validation", "#e5a93c");
+                drawNode(n3.x, n3.y, "Instant Global Deployment", "#7c9082");
             }
+
+            requestAnimationFrame(drawVisualizer);
         }
 
         function drawNode(x, y, label, color) {
@@ -629,19 +790,44 @@
             ctx.fillText(label, x, y + 26);
         }
 
-        function drawConnection(x1, y1, x2, y2, isDashed) {
+        function drawConnection(n1, n2, isDashed) {
             ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.strokeStyle = isDashed ? "rgba(229, 60, 60, 0.4)" : "rgba(229, 169, 60, 0.6)";
+            ctx.moveTo(n1.x, n1.y);
+            ctx.lineTo(n2.x, n2.y);
+            ctx.strokeStyle = isDashed ? "rgba(229, 60, 60, 0.35)" : "rgba(229, 169, 60, 0.5)";
             ctx.lineWidth = 2;
             if (isDashed) ctx.setLineDash([4, 4]);
             else ctx.setLineDash([]);
             ctx.stroke();
         }
 
+        function drawPacket(n1, n2, progress) {
+            const px = n1.x + (n2.x - n1.x) * progress;
+            const py = n1.y + (n2.y - n1.y) * progress;
+
+            ctx.beginPath();
+            ctx.arc(px, py, 4, 0, Math.PI * 2);
+            ctx.fillStyle = "#e5a93c";
+            ctx.shadowColor = "#e5a93c";
+            ctx.shadowBlur = 10;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
         window.addEventListener('resize', resizeCanvas);
-        setTimeout(resizeCanvas, 100);
+        resizeCanvas();
+        drawVisualizer();
+
+        // 6. Scroll Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
