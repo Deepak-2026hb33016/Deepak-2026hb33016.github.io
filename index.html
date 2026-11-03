@@ -1,643 +1,525 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepak Kondappa | Systems Architecture & Enterprise Transformation</title>
-    
-    <!-- Meta & Open Graph Tags -->
-    <meta name="title" content="Deepak Kondappa | Systems Architecture & Enterprise Transformation">
-    <meta name="description" content="Tactile, high-impact digital portfolio of Deepak Kondappa. BITS Pilani MBA | Enterprise Systems Architecture & Low-Code Transformation at Novo Nordisk.">
-    <meta name="author" content="Deepak Kondappa">
-    <link rel="canonical" href="https://deepakkondappa.codes/">
-
-    <!-- Tailwind CSS v3 -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        velvet: '#070709',
-                        charcoal: '#0d0e12',
-                        glass: 'rgba(18, 20, 26, 0.65)',
-                        glassHover: 'rgba(28, 32, 42, 0.85)',
-                        appleBlue: '#2997ff',
-                        appleCyan: '#64ccc5',
-                        appleEmerald: '#30d158',
-                        appleGold: '#ffd60a'
-                    },
-                    fontFamily: {
-                        sans: ['SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- FontAwesome & Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Deepak Kondappa",
-      "url": "https://deepakkondappa.codes",
-      "jobTitle": "Digital Transformation Specialist",
-      "worksFor": { "@type": "Organization", "name": "Novo Nordisk" },
-      "alumniOf": { "@type": "EducationalOrganization", "name": "BITS Pilani" }
-    }
-    </script>
-
+    <title>Deepak Kondappa | Senior Web Producer & MarTech Architect</title>
     <style>
-        /* Apple-Inspired Custom Tactile Styles */
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: rgba(26, 29, 36, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #d1d5db;
+            --text-title: #ffffff;
+            --text-muted: #9ca3af;
+            --amber: #e5a93c;
+            --amber-glow: rgba(229, 169, 60, 0.15);
+            --sage: #7c9082;
+            --slate: #1e232d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
         body {
-            background-color: #070709;
-            color: #e2e8f0;
-            font-family: 'Inter', -apple-system, sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(124, 144, 130, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(229, 169, 60, 0.04) 0%, transparent 45%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
         }
 
-        /* Organic Grain Overlay */
-        .grain-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.035;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 60px 0 100px;
         }
 
-        /* Custom Interactive Cursor Glow */
-        #cursor-glow {
-            position: fixed;
-            width: 450px;
-            height: 450px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(41, 151, 255, 0.12) 0%, rgba(99, 102, 241, 0.05) 40%, rgba(0,0,0,0) 70%);
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
-            z-index: 0;
+        /* Nav & Brand */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 50px;
         }
 
-        /* Tactile Apple Glass Cards */
-        .apple-card {
-            background: rgba(18, 20, 26, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform-style: preserve-3d;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.15s ease-out;
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-title);
+            letter-spacing: -0.5px;
         }
 
-        .apple-card:hover {
-            border-color: rgba(41, 151, 255, 0.35);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(41, 151, 255, 0.15);
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: var(--sage);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Typography Gradients */
-        .headline-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 60%, #64748b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .cta-btn {
+            background: transparent;
+            color: var(--amber);
+            border: 1px solid var(--amber);
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        .apple-gradient {
-            background: linear-gradient(135deg, #2997ff 0%, #64ccc5 50%, #30d158 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .cta-btn:hover {
+            background: var(--amber);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--amber-glow);
         }
 
-        /* SVG Beam Animation */
-        .laser-beam {
-            stroke-dasharray: 8, 8;
-            animation: dash 1.5s linear infinite;
+        /* Hero Header */
+        .hero {
+            margin-bottom: 60px;
         }
 
-        @keyframes dash {
-            to { stroke-dashoffset: -16; }
+        .badge-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        /* Custom Range Input */
-        input[type=range] {
-            -webkit-appearance: none;
-            background: rgba(255,255,255,0.1);
-            height: 6px;
+        .badge {
+            background: rgba(124, 144, 130, 0.12);
+            color: var(--sage);
+            border: 1px solid rgba(124, 144, 130, 0.2);
+            padding: 4px 12px;
             border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 22px;
-            width: 22px;
-            border-radius: 50%;
-            background: #2997ff;
+
+        .badge.mba {
+            background: rgba(229, 169, 60, 0.1);
+            color: var(--amber);
+            border-color: rgba(229, 169, 60, 0.2);
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            color: var(--text-title);
+            font-weight: 700;
+            letter-spacing: -0.8px;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            max-width: 900px;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 820px;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* Interactive Canvas Visualizer Section */
+        .visualizer-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 60px;
+        }
+
+        .vis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .vis-title {
+            color: var(--text-title);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .toggle-group {
+            display: flex;
+            background: var(--bg-color);
+            padding: 4px;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(41, 151, 255, 0.8);
-            transition: transform 0.1s ease;
+            transition: all 0.2s;
         }
-        input[type=range]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
+
+        .toggle-btn.active {
+            background: var(--slate);
+            color: var(--amber);
+        }
+
+        canvas {
+            width: 100%;
+            height: 220px;
+            background: #08090c;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Grid & Cards Section */
+        .section-heading {
+            font-size: 1.4rem;
+            color: var(--text-title);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-heading::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--card-border);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 25px;
+            margin-bottom: 70px;
+        }
+
+        @media (max-width: 600px) {
+            .work-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: rgba(229, 169, 60, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: var(--text-title);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .card-teaser {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .click-hint {
+            color: var(--sage);
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+            border-top: 1px dashed var(--card-border);
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .card.expanded .card-details {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .detail-item {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .detail-item strong {
+            color: var(--text-title);
+        }
+
+        /* Thought Leadership Carousel/Feed */
+        .insights-section {
+            margin-bottom: 70px;
+        }
+
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-left: 3px solid var(--amber);
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 15px;
+        }
+
+        .insight-title {
+            color: var(--text-title);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .insight-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding-top: 30px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
     </style>
 </head>
-<body class="relative selection:bg-appleBlue selection:text-white">
+<body>
 
-    <!-- Tactile Noise Overlay -->
-    <div class="grain-bg"></div>
-
-    <!-- Mouse Tracking Aura Glow -->
-    <div id="cursor-glow"></div>
-
-    <!-- Header Navigation -->
-    <nav class="sticky top-0 z-50 backdrop-blur-xl bg-velvet/70 border-b border-white/10 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="#hero" class="flex items-center gap-3 group">
-                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-appleBlue via-indigo-500 to-appleCyan p-[1px] transition-transform group-hover:scale-105">
-                    <div class="w-full h-full bg-velvet rounded-full flex items-center justify-center font-bold text-white text-xs">
-                        DK
-                    </div>
-                </div>
-                <div class="leading-none">
-                    <span class="text-white font-semibold tracking-tight text-sm block">Deepak Kondappa</span>
-                    <span class="text-[11px] text-gray-400 font-mono">deepakkondappa.codes</span>
-                </div>
-            </a>
-
-            <!-- Nav Links -->
-            <div class="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide text-gray-300">
-                <a href="#blueprint" class="hover:text-appleBlue transition-colors">Interactive Architecture</a>
-                <a href="#bento" class="hover:text-appleBlue transition-colors">Tactile Bento Showcase</a>
-                <a href="#calculator" class="hover:text-appleBlue transition-colors">Impact Dial</a>
-            </div>
-
-            <!-- CTA -->
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white text-white hover:text-velvet text-xs font-semibold tracking-wider transition-all duration-300 backdrop-blur-md border border-white/15">
-                LinkedIn ↗
-            </a>
-        </div>
-    </nav>
-
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24 space-y-32 relative z-10">
-
-        <!-- 1. HERO SECTION: Cinematic Visuals & Dynamic Counters -->
-        <section id="hero" class="text-center space-y-8 pt-8">
-            <!-- Floating Pill -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 shadow-inner">
-                <span class="w-2 h-2 rounded-full bg-appleEmerald animate-pulse"></span>
-                <span>Novo Nordisk Specialist &nbsp;•&nbsp; BITS Pilani MBA Scholar</span>
-            </div>
-
-            <!-- Main Title -->
-            <h1 class="text-4xl sm:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-[1.08]">
-                Enterprise Systems, <br/>
-                <span class="apple-gradient">Stripped of Complexity.</span>
-            </h1>
-
-            <p class="text-gray-400 text-base sm:text-xl font-normal max-w-2xl mx-auto leading-relaxed">
-                Refactoring organizational friction into silent, low-code automation and high-throughput architecture.
-            </p>
-
-            <!-- Dynamic Tactile Stats Counter Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8">
-                <div class="apple-card p-6 rounded-2xl text-center space-y-1">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-white font-mono" id="counter1">0%</span>
-                    <span class="text-xs text-gray-400 font-medium uppercase tracking-wider block">Cycle Time Cut</span>
-                </div>
-                <div class="apple-card p-6 rounded-2xl text-center space-y-1">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-appleBlue font-mono" id="counter2">0+</span>
-                    <span class="text-xs text-gray-400 font-medium uppercase tracking-wider block">Workflows Streamlined</span>
-                </div>
-                <div class="apple-card p-6 rounded-2xl text-center space-y-1">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-appleCyan font-mono" id="counter3">$0K</span>
-                    <span class="text-xs text-gray-400 font-medium uppercase tracking-wider block">Est. Value Unlocked</span>
-                </div>
-                <div class="apple-card p-6 rounded-2xl text-center space-y-1">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-appleEmerald font-mono" id="counter4">0.0s</span>
-                    <span class="text-xs text-gray-400 font-medium uppercase tracking-wider block">API Latency Standard</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. INTERACTIVE BLUEPRINT CANVAS: AS-IS vs. TO-BE (Visual Laser Connectivity) -->
-        <section id="blueprint" class="space-y-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <span class="text-appleBlue text-xs font-bold uppercase tracking-widest block mb-1">Live Architectural Simulator</span>
-                    <h2 class="text-3xl font-bold text-white tracking-tight">Enterprise Pipeline Refactoring</h2>
-                </div>
-                <!-- Interactive Pill Controls -->
-                <div class="inline-flex bg-white/5 p-1 rounded-full border border-white/10 backdrop-blur-md">
-                    <button id="modeAsIsBtn" onclick="toggleArchitecture('asis')" class="px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 bg-red-500/20 text-red-400 border border-red-500/30">
-                        Legacy AS-IS Bottleneck
-                    </button>
-                    <button id="modeToBeBtn" onclick="toggleArchitecture('tobe')" class="px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 text-gray-400 hover:text-white">
-                        Target TO-BE State (Automated)
-                    </button>
-                </div>
-            </div>
-
-            <!-- Canvas Container -->
-            <div class="apple-card rounded-3xl p-6 sm:p-10 relative overflow-hidden space-y-8">
-                <!-- SVG Beam Layer -->
-                <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" id="svgCanvas">
-                    <!-- Connections drawn dynamically -->
-                </svg>
-
-                <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-6 text-center" id="nodeContainer">
-                    <!-- Dynamic Architecture Nodes -->
-                </div>
-
-                <!-- Live Diagnostics Console -->
-                <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-white/10 text-center font-mono text-xs">
-                    <div class="p-4 rounded-xl bg-charcoal/80 border border-white/5">
-                        <span class="text-gray-500 uppercase block mb-1">Process Lead Time</span>
-                        <span id="diagLeadTime" class="text-lg font-bold text-red-400">14 Days</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-charcoal/80 border border-white/5">
-                        <span class="text-gray-500 uppercase block mb-1">Friction Points</span>
-                        <span id="diagFriction" class="text-lg font-bold text-red-400">9 Bottlenecks</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-charcoal/80 border border-white/5">
-                        <span class="text-gray-500 uppercase block mb-1">Audit Traceability</span>
-                        <span id="diagAudit" class="text-lg font-bold text-amber-400">Unindexed Email</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-charcoal/80 border border-white/5">
-                        <span class="text-gray-500 uppercase block mb-1">Target Throughput</span>
-                        <span id="diagThroughput" class="text-lg font-bold text-gray-400">12% Capacity</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. TACTILE BENTO GRID (Apple Launch Page Aesthetic with 3D Tilt) -->
-        <section id="bento" class="space-y-6">
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
             <div>
-                <span class="text-appleCyan text-xs font-bold uppercase tracking-widest block mb-1">Curated Work & Case Studies</span>
-                <h2 class="text-3xl font-bold text-white tracking-tight">Tactile Engineering Bento</h2>
+                <div class="brand-title">DEEPAK KONDAPPA</div>
+                <div class="brand-subtitle">Senior Web Producer & Workflow Architect</div>
             </div>
+            <a href="https://www.linkedin.com" target="_blank" class="cta-btn">LinkedIn Profile ↗</a>
+        </nav>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                
-                <!-- Bento 1: Large Featured (8 cols) -->
-                <div class="md:col-span-8 apple-card p-8 rounded-3xl space-y-6 flex flex-col justify-between group cursor-pointer tilt-card" onclick="openDrawer('bento1')">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full bg-appleBlue/10 border border-appleBlue/30 text-appleBlue text-xs font-semibold">
-                                Low-Code Governance
-                            </span>
-                            <span class="text-xs text-gray-500 font-mono">01 / Enterprise</span>
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white group-hover:text-appleBlue transition-colors">
-                            Automated Vendor Governance & Intake Portal
-                        </h3>
-                        <p class="text-gray-400 text-sm leading-relaxed max-w-xl">
-                            Eliminated redundant manual sign-offs across cross-departmental teams using a unified Mendix / Power Platform low-code interface backed by schema-validated Dataverse endpoints.
-                        </p>
-                    </div>
-
-                    <!-- Visual Mini-Preview Mockup -->
-                    <div class="p-4 rounded-2xl bg-velvet/80 border border-white/10 space-y-3 font-mono text-xs">
-                        <div class="flex items-center justify-between border-b border-white/10 pb-2">
-                            <span class="text-appleEmerald">● Live API Stream</span>
-                            <span class="text-gray-500">POST /v1/governance/intake</span>
-                        </div>
-                        <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
-                            <div class="p-2 rounded bg-white/5"><span class="text-gray-400 block">Status</span>200 OK</div>
-                            <div class="p-2 rounded bg-white/5"><span class="text-gray-400 block">Latency</span>42ms</div>
-                            <div class="p-2 rounded bg-white/5"><span class="text-gray-400 block">Validation</span>Strict Schema</div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs font-medium text-gray-400 group-hover:text-white transition-colors">
-                        <span>Tap to inspect system architecture</span>
-                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </div>
-
-                <!-- Bento 2: Square Tile (4 cols) -->
-                <div class="md:col-span-4 apple-card p-8 rounded-3xl space-y-6 flex flex-col justify-between group cursor-pointer tilt-card" onclick="openDrawer('bento2')">
-                    <div class="space-y-4">
-                        <span class="px-3 py-1 rounded-full bg-appleCyan/10 border border-appleCyan/30 text-appleCyan text-xs font-semibold">
-                            Process Mapping
-                        </span>
-                        <h3 class="text-xl font-bold text-white group-hover:text-appleCyan transition-colors">
-                            AS-IS vs. TO-BE Re-engineering
-                        </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed">
-                            First-principles process mapping to remove structural friction before introducing automation software.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
-                        <span class="font-mono text-appleCyan">-40% Cycle Time</span>
-                        <i class="fas fa-plus group-hover:rotate-90 transition-transform"></i>
-                    </div>
-                </div>
-
-                <!-- Bento 3: Square Tile (4 cols) -->
-                <div class="md:col-span-4 apple-card p-8 rounded-3xl space-y-6 flex flex-col justify-between group cursor-pointer tilt-card" onclick="openDrawer('bento3')">
-                    <div class="space-y-4">
-                        <span class="px-3 py-1 rounded-full bg-appleEmerald/10 border border-appleEmerald/30 text-appleEmerald text-xs font-semibold">
-                            Analytics & BI
-                        </span>
-                        <h3 class="text-xl font-bold text-white group-hover:text-appleEmerald transition-colors">
-                            Executive Risk Dashboard
-                        </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed">
-                            High-contrast Tableau analytics translating fragmented inventory metrics into executive action signals.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
-                        <span class="font-mono text-appleEmerald">Real-Time Risk Scoring</span>
-                        <i class="fas fa-plus group-hover:rotate-90 transition-transform"></i>
-                    </div>
-                </div>
-
-                <!-- Bento 4: Wide Card (8 cols) -->
-                <div class="md:col-span-8 apple-card p-8 rounded-3xl space-y-6 flex flex-col justify-between group cursor-pointer tilt-card" onclick="openDrawer('bento4')">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
-                                Cloud Architecture
-                            </span>
-                            <span class="text-xs text-gray-500 font-mono">04 / Cloud Strategy</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white group-hover:text-indigo-300 transition-colors">
-                            Legacy Monolith to Microservices Strategy
-                        </h3>
-                        <p class="text-gray-400 text-sm leading-relaxed max-w-xl">
-                            Formulated a phased migration blueprint utilizing containerized Docker instances, zero-downtime database replication, and Strangler Fig refactoring patterns.
-                        </p>
-                    </div>
-                    <div class="flex items-center justify-between text-xs font-medium text-gray-400 group-hover:text-white transition-colors pt-4 border-t border-white/10">
-                        <span>Read Cloud Blueprint</span>
-                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </div>
-
+        <!-- Hero Header -->
+        <header class="hero">
+            <div class="badge-bar">
+                <span class="badge">AEM & Content Operations Lead</span>
+                <span class="badge">MarTech Architecture</span>
+                <span class="badge mba">BITS Pilani MBA Candidate</span>
             </div>
+            <h1>Architecting scalable web experiences, automating content supply chains, and driving enterprise MarTech efficiency.</h1>
+            <p class="hero-lead">
+                Specializing in enterprise component design, workflow automation, and asset lifecycle management within Adobe Experience Manager (AEM) environments. Combining hands-on web production expertise with structural MBA strategy.
+            </p>
+        </header>
+
+        <!-- Interactive Architecture Visualizer -->
+        <section class="visualizer-section">
+            <div class="vis-header">
+                <div class="vis-title">System Architecture: Manual Bottleneck vs. Automated Component Flow</div>
+                <div class="toggle-group">
+                    <button class="toggle-btn active" onclick="setVisState('asis')">AS-IS Pipeline</button>
+                    <button class="toggle-btn" onclick="setVisState('tobe')">TO-BE Automated Flow</button>
+                </div>
+            </div>
+            <canvas id="architectureCanvas"></canvas>
         </section>
 
-        <!-- 4. VISUAL IMPACT CALCULATOR (Interactive Tactile Dial) -->
-        <section id="calculator" class="apple-card rounded-3xl p-8 sm:p-12 space-y-8 relative overflow-hidden">
-            <div class="max-w-xl space-y-2">
-                <span class="text-appleGold text-xs font-bold uppercase tracking-widest block">Psychological Impact Tool</span>
-                <h2 class="text-3xl font-bold text-white tracking-tight">Automation ROI Dial</h2>
-                <p class="text-gray-400 text-sm">Drag the visual controls to see how process refactoring directly impacts financial and operational bandwidth.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <!-- Sliders -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-xs font-mono">
-                            <span class="text-gray-300">Team Headcount</span>
-                            <span id="sliderHeadcountVal" class="text-appleBlue font-bold">30 People</span>
-                        </div>
-                        <input type="range" id="sliderHeadcount" min="5" max="150" value="30" class="w-full" oninput="updateImpactCalc()">
-                    </div>
-
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-xs font-mono">
-                            <span class="text-gray-300">Manual Hours spent / week per member</span>
-                            <span id="sliderHoursVal" class="text-appleBlue font-bold">10 Hours</span>
-                        </div>
-                        <input type="range" id="sliderHours" min="2" max="25" value="10" class="w-full" oninput="updateImpactCalc()">
-                    </div>
-                </div>
-
-                <!-- Visual Bar Chart Output -->
-                <div class="lg:col-span-5 p-6 rounded-2xl bg-velvet/90 border border-white/10 space-y-6 text-center">
-                    <div>
-                        <span class="text-gray-400 text-xs uppercase font-mono block mb-1">Estimated Reclaimed Annual Value</span>
-                        <span id="calcSavingsOutput" class="text-4xl font-extrabold apple-gradient font-mono">$526,500</span>
-                    </div>
-
-                    <!-- Animated Bars -->
-                    <div class="space-y-3 pt-4 border-t border-white/10 text-xs font-mono text-left">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-400">Legacy Friction Drag</span>
-                                <span class="text-red-400">100%</span>
-                            </div>
-                            <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-                                <div class="h-full bg-red-400 w-full rounded-full"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-400">Post-Refactoring Drag</span>
-                                <span class="text-appleEmerald" id="percentReducedText">25%</span>
-                            </div>
-                            <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-                                <div id="barOptimized" class="h-full bg-appleEmerald rounded-full transition-all duration-300" style="width: 25%;"></div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Production Work (75% Focus) -->
+        <h2 class="section-heading">Core Enterprise Engineering & MarTech Work</h2>
+        
+        <div class="work-grid">
+            <!-- Project 1 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-tag">AEM & Component Architecture</div>
+                <h3>Enterprise AEM Component Optimization</h3>
+                <p class="card-teaser">Optimized core AEM component structures to streamline content authoring and enforce global design system rules across multi-region properties.</p>
+                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
+                <div class="card-details">
+                    <div class="detail-item"><strong>Challenge:</strong> Authoring friction and layout inconsistencies across complex template variations.</div>
+                    <div class="detail-item"><strong>Solution:</strong> Standardized dialog models, modularized nested components, and implemented automated authoring guardrails.</div>
+                    <div class="detail-item"><strong>Impact:</strong> Reduced component authoring lead time and improved multi-market page assembly efficiency.</div>
                 </div>
             </div>
-        </section>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-white/10 bg-velvet py-12 px-6 text-center text-xs text-gray-500 space-y-4">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-left">
-                <span class="font-semibold text-white text-sm block">Deepak Kondappa</span>
-                <span class="text-gray-400">Digital Transformation & Systems Architecture</span>
+            <!-- Project 2 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-tag">Workflow Automation & Scripting</div>
+                <h3>Content Supply Chain Automation</h3>
+                <p class="card-teaser">Engineered custom operational scripts and automated validation pipelines to eliminate redundant manual publishing steps.</p>
+                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
+                <div class="card-details">
+                    <div class="detail-item"><strong>Challenge:</strong> High manual overhead in asset validation and cross-environment deployment tracking.</div>
+                    <div class="detail-item"><strong>Solution:</strong> Deployed automated asset metadata verification scripts and streamlined publishing triggers.</div>
+                    <div class="detail-item"><strong>Impact:</strong> Reclaimed significant operational hours weekly and minimized human error in production launches.</div>
+                </div>
             </div>
-            <div class="flex items-center gap-6">
-                <a href="https://github.com/Deepak-2026hb33016" target="_blank" rel="noopener" class="hover:text-appleBlue transition-colors">GitHub Repository</a>
-                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="hover:text-appleBlue transition-colors">LinkedIn Profile</a>
+
+            <!-- Project 3 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-tag">Asset Lifecycle & Governance</div>
+                <h3>Enterprise Digital Asset Lifecycle System</h3>
+                <p class="card-teaser">Structured technical governance models for global digital assets to streamline searchability, rights compliance, and regional distribution.</p>
+                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
+                <div class="card-details">
+                    <div class="detail-item"><strong>Challenge:</strong> Fragmented asset taxonomy leading to duplicate uploads and delayed localization.</div>
+                    <div class="detail-item"><strong>Solution:</strong> Standardized DAM metadata schemas and automated lifecycle expiration workflows.</div>
+                    <div class="detail-item"><strong>Impact:</strong> Unified asset taxonomy across cross-functional teams and accelerated asset retrieval speed.</div>
+                </div>
+            </div>
+
+            <!-- Project 4 (25% MBA Context) -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-tag">Digital Transformation (MBA Project)</div>
+                <h3>Process Optimization & Strategy Blueprint</h3>
+                <p class="card-teaser">Applied first-principles MBA frameworks to model AS-IS process gaps and formulate enterprise cloud & system migration strategies.</p>
+                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
+                <div class="card-details">
+                    <div class="detail-item"><strong>Focus:</strong> Bridging operational front-line execution with C-suite digital transformation roadmaps.</div>
+                    <div class="detail-item"><strong>Methodology:</strong> Structural logic, value-stream mapping, and ROI-backed tech stack evaluation.</div>
+                </div>
             </div>
         </div>
-        <p>© 2026 Deepak Kondappa. Published via <a href="https://deepakkondappa.codes" class="text-appleBlue font-mono">deepakkondappa.codes</a></p>
-    </footer>
 
-    <!-- Expandable Deep-Dive Drawer Modal -->
-    <div id="drawerModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="apple-card max-w-2xl w-full rounded-3xl p-8 space-y-6 relative max-h-[85vh] overflow-y-auto">
-            <button onclick="closeDrawer()" class="absolute top-6 right-6 text-gray-400 hover:text-white p-2 text-xl">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 id="drawerTitle" class="text-2xl font-bold text-white"></h3>
-            <div id="drawerBody" class="space-y-4 text-sm text-gray-300"></div>
-            <div class="pt-6 border-t border-white/10 flex justify-end">
-                <button onclick="closeDrawer()" class="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white hover:text-velvet text-white text-xs font-semibold transition-all">
-                    Close Specification
-                </button>
+        <!-- The Frontline Voice / Thought Leadership (25%) -->
+        <h2 class="section-heading">The Frontline Voice: Thought Leadership & Strategy</h2>
+        
+        <div class="insights-section">
+            <div class="insight-card">
+                <div class="insight-title">The "AI Dump & Pray" Trap vs. Structured Governance</div>
+                <div class="insight-desc">Why adding AI to an unorganized content supply chain only multiplies chaos—and how structural metadata hygiene fixes it first.</div>
+            </div>
+            <div class="insight-card">
+                <div class="insight-title">The Omnichannel Illusion</div>
+                <div class="insight-desc">Most enterprise teams don't have a content strategy problem; they have an asset authoring and component fragmentation problem.</div>
             </div>
         </div>
+
+        <footer>
+            <p>© 2026 Deepak Kondappa • Hosted on GitHub Pages via <a href="https://deepakkondappa.codes" style="color: var(--amber); text-decoration: none;">deepakkondappa.codes</a></p>
+        </footer>
     </div>
 
-    <!-- JavaScript Micro-Interactions & Physics -->
     <script>
-        // 1. Mouse Follower Aura Glow
-        const cursorGlow = document.getElementById('cursor-glow');
-        window.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-
-        // 2. Dynamic Stats Counter Animation on Page Load
-        function animateCounter(id, target, prefix = '', suffix = '', isDecimal = false) {
-            let current = 0;
-            const step = target / 40;
-            const timer = setInterval(() => {
-                current += step;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                const formatted = isDecimal ? current.toFixed(1) : Math.round(current);
-                document.getElementById(id).innerText = prefix + formatted + suffix;
-            }, 30);
+        // Toggle Expandable Cards
+        function toggleCard(card) {
+            const isExpanded = card.classList.contains('expanded');
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('expanded'));
+            if (!isExpanded) {
+                card.classList.add('expanded');
+            }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            animateCounter('counter1', 40, '', '%');
-            animateCounter('counter2', 120, '', '+');
-            animateCounter('counter3', 350, '$', 'K');
-            animateCounter('counter4', 0.2, '', 's', true);
-        });
+        // Canvas Interactive Architecture Diagram
+        const canvas = document.getElementById('architectureCanvas');
+        const ctx = canvas.getContext('2d');
+        let visState = 'asis';
 
-        // 3. Interactive Architecture Canvas Data
-        const archData = {
-            asis: {
-                leadTime: "14 Days",
-                friction: "9 Bottlenecks",
-                audit: "Unindexed Email",
-                throughput: "12% Capacity",
-                nodes: [
-                    { icon: "fa-envelope-open-text", title: "1. Manual Email", desc: "Unstructured inbox requests", color: "text-red-400", border: "border-red-500/30" },
-                    { icon: "fa-user-clock", title: "2. Manager Delay", desc: "4-day sign-off backlog", color: "text-red-400", border: "border-red-500/30" },
-                    { icon: "fa-file-excel", title: "3. Excel Log", desc: "Manual transcription", color: "text-red-400", border: "border-red-500/30" },
-                    { icon: "fa-server", title: "4. Legacy Entry", desc: "Redundant manual input", color: "text-red-400", border: "border-red-500/30" }
-                ]
-            },
-            tobe: {
-                leadTime: "2.5 Hours",
-                friction: "0 Friction",
-                audit: "100% Immutable Log",
-                throughput: "99.8% Capacity",
-                nodes: [
-                    { icon: "fa-mobile-alt", title: "1. Low-Code Portal", desc: "Schema validation at point of entry", color: "text-appleEmerald", border: "border-appleEmerald/30" },
-                    { icon: "fa-bolt", title: "2. Rules Gate", desc: "Sub-second auto approval rules", color: "text-appleEmerald", border: "border-appleEmerald/30" },
-                    { icon: "fa-plug", title: "3. Direct API", desc: "Automated REST payload sync", color: "text-appleEmerald", border: "border-appleEmerald/30" },
-                    { icon: "fa-shield-alt", title: "4. Cloud Audit Log", desc: "Real-time compliance record", color: "text-appleEmerald", border: "border-appleEmerald/30" }
-                ]
-            }
-        };
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            drawVisualizer();
+        }
 
-        function toggleArchitecture(state) {
-            const btnAsIs = document.getElementById('modeAsIsBtn');
-            const btnToBe = document.getElementById('modeToBeBtn');
-            const data = archData[state];
+        function setVisState(state) {
+            visState = state;
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            drawVisualizer();
+        }
 
-            if (state === 'asis') {
-                btnAsIs.className = "px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 bg-red-500/20 text-red-400 border border-red-500/30";
-                btnToBe.className = "px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 text-gray-400 hover:text-white";
+        function drawVisualizer() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const w = canvas.width;
+            const h = canvas.height;
+
+            if (visState === 'asis') {
+                // AS-IS Bottleneck flow
+                drawNode(w * 0.2, h * 0.5, "Asset Creation", "#7c9082");
+                drawNode(w * 0.5, h * 0.3, "Manual Audit (Friction)", "#e53c3c");
+                drawNode(w * 0.5, h * 0.7, "Email Sign-off", "#e53c3c");
+                drawNode(w * 0.8, h * 0.5, "Delayed Publish", "#9ca3af");
+
+                drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.3, true);
+                drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.7, true);
+                drawConnection(w * 0.5, h * 0.3, w * 0.8, h * 0.5, true);
+                drawConnection(w * 0.5, h * 0.7, w * 0.8, h * 0.5, true);
             } else {
-                btnToBe.className = "px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 bg-appleEmerald/20 text-appleEmerald border border-appleEmerald/30";
-                btnAsIs.className = "px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 text-gray-400 hover:text-white";
+                // TO-BE Automated flow
+                drawNode(w * 0.2, h * 0.5, "AEM Authoring", "#7c9082");
+                drawNode(w * 0.5, h * 0.5, "Automated Script Validation", "#e5a93c");
+                drawNode(w * 0.8, h * 0.5, "Instant Global Publish", "#7c9082");
+
+                drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.5, false);
+                drawConnection(w * 0.5, h * 0.5, w * 0.8, h * 0.5, false);
             }
-
-            document.getElementById('diagLeadTime').innerText = data.leadTime;
-            document.getElementById('diagFriction').innerText = data.friction;
-            document.getElementById('diagAudit').innerText = data.audit;
-            document.getElementById('diagThroughput').innerText = data.throughput;
-
-            const container = document.getElementById('nodeContainer');
-            container.innerHTML = '';
-            data.nodes.forEach(node => {
-                const card = document.createElement('div');
-                card.className = `p-5 rounded-2xl bg-charcoal/90 border ${node.border} space-y-2 text-left backdrop-blur-md`;
-                card.innerHTML = `
-                    <div class="flex items-center justify-between">
-                        <i class="fas ${node.icon} ${node.color} text-lg"></i>
-                        <span class="w-2 h-2 rounded-full ${state === 'tobe' ? 'bg-appleEmerald' : 'bg-red-400'}"></span>
-                    </div>
-                    <h4 class="text-white font-bold text-sm pt-2">${node.title}</h4>
-                    <p class="text-gray-400 text-xs">${node.desc}</p>
-                `;
-                container.appendChild(card);
-            });
         }
 
-        // Initialize Architecture Canvas
-        toggleArchitecture('asis');
+        function drawNode(x, y, label, color) {
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
 
-        // 4. Visual ROI Impact Calculator
-        function updateImpactCalc() {
-            const headcount = parseInt(document.getElementById('sliderHeadcount').value);
-            const hours = parseInt(document.getElementById('sliderHours').value);
-
-            document.getElementById('sliderHeadcountVal').innerText = headcount + " People";
-            document.getElementById('sliderHoursVal').innerText = hours + " Hours";
-
-            const annualSavings = headcount * hours * 52 * 0.75 * 45; // $45/hr blended rate
-            document.getElementById('calcSavingsOutput').innerText = "$" + Math.round(annualSavings).toLocaleString();
+            ctx.font = "12px sans-serif";
+            ctx.fillStyle = "#ffffff";
+            ctx.textAlign = "center";
+            ctx.fillText(label, x, y + 26);
         }
 
-        updateImpactCalc();
-
-        // 5. Drawer Modal Deep Dive Data
-        const bentoData = {
-            bento1: {
-                title: "Vendor Governance Intake Portal Architecture",
-                body: `
-                    <p><strong>Problem Context:</strong> Email-based procurement requests led to unindexed communication threads, missing approval documents, and compliance audit gaps.</p>
-                    <p><strong>Engineered Solution:</strong> Architected a rapid low-code portal using Mendix and Microsoft Dataverse APIs. Form fields enforce JSON schema validation before submission.</p>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li>Sub-second API payload delivery directly to ERP backend.</li>
-                        <li>Role-based field visibility ensuring regulatory data governance.</li>
-                        <li>Reduces manual entry errors by 95%.</li>
-                    </ul>
-                `
-            },
-            bento2: {
-                title: "AS-IS vs. TO-BE Process Blueprint",
-                body: `
-                    <p><strong>First-Principles Mapping:</strong> Value stream mapping applied to complex organizational decision cycles prior to software deployment.</p>
-                    <p>Eliminated 9 unnecessary sign-off checkpoints and mapped automated decision gates, cutting total lead time from 14 days to under 3 hours.</p>
-                `
-            },
-            bento3: {
-                title: "Executive Supply Chain Dashboard Specs",
-                body: `
-                    <p><strong>Analytics Layer:</strong> High-contrast Tableau data model consolidating inventory metrics across disparate SQL databases.</p>
-                    <p>Provides early warning alerts for inventory stockouts 3 weeks in advance.</p>
-                `
-            },
-            bento4: {
-                title: "Legacy Monolith Refactoring Blueprint",
-                body: `
-                    <p><strong>Cloud Migration Framework:</strong> Phased microservices strategy implementing containerized Docker services, zero-downtime replication, and automated CI/CD pipelines via GitHub Actions.</p>
-                `
-            }
-        };
-
-        function openDrawer(id) {
-            const data = bentoData[id];
-            document.getElementById('drawerTitle').innerText = data.title;
-            document.getElementById('drawerBody').innerHTML = data.body;
-            document.getElementById('drawerModal').classList.remove('hidden');
+        function drawConnection(x1, y1, x2, y2, isDashed) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = isDashed ? "rgba(229, 60, 60, 0.4)" : "rgba(229, 169, 60, 0.6)";
+            ctx.lineWidth = 2;
+            if (isDashed) ctx.setLineDash([4, 4]);
+            else ctx.setLineDash([]);
+            ctx.stroke();
         }
 
-        function closeDrawer() {
-            document.getElementById('drawerModal').classList.add('hidden');
-        }
+        window.addEventListener('resize', resizeCanvas);
+        setTimeout(resizeCanvas, 100);
     </script>
 </body>
 </html>
