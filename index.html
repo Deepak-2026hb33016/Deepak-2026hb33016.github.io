@@ -6,16 +6,16 @@
     <title>Deepak Kondappa | Senior Web Producer & MarTech Architect</title>
     <style>
         :root {
-            --bg-color: #0f1115;
-            --card-bg: rgba(26, 29, 36, 0.75);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-main: #d1d5db;
+            --bg-dark: #0a0b0e;
+            --panel-bg: rgba(22, 25, 32, 0.85);
+            --panel-border: rgba(255, 255, 255, 0.08);
             --text-title: #ffffff;
+            --text-body: #d1d5db;
             --text-muted: #9ca3af;
             --amber: #e5a93c;
             --amber-glow: rgba(229, 169, 60, 0.15);
             --sage: #7c9082;
-            --slate: #1e232d;
+            --slate-card: #14171f;
         }
 
         * {
@@ -26,47 +26,62 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(124, 144, 130, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(229, 169, 60, 0.04) 0%, transparent 45%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-            color: var(--text-main);
+                radial-gradient(circle at 10% 20%, rgba(124, 144, 130, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.04) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+            color: var(--text-body);
             line-height: 1.6;
-            padding: 0 20px;
+            scroll-behavior: smooth;
         }
 
-        .container {
-            max-width: 1040px;
+        /* Container & Navigation */
+        .wrapper {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 0 100px;
+            padding: 0 24px;
         }
 
-        /* Nav & Brand */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 40px;
-            border-bottom: 1px solid var(--card-border);
-            margin-bottom: 50px;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--panel-border);
         }
 
-        .brand-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-title);
+        .nav-brand {
+            font-size: 1.15rem;
+            font-weight: 800;
             letter-spacing: -0.5px;
+            color: var(--text-title);
         }
 
-        .brand-subtitle {
-            font-size: 0.8rem;
+        .nav-title {
+            font-size: 0.75rem;
             color: var(--sage);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
         }
 
-        .cta-btn {
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: var(--amber); }
+
+        .btn-cta {
             background: transparent;
             color: var(--amber);
             border: 1px solid var(--amber);
@@ -78,71 +93,194 @@
             transition: all 0.3s ease;
         }
 
-        .cta-btn:hover {
+        .btn-cta:hover {
             background: var(--amber);
-            color: var(--bg-color);
+            color: var(--bg-dark);
             box-shadow: 0 0 15px var(--amber-glow);
         }
 
-        /* Hero Header */
-        .hero {
-            margin-bottom: 60px;
+        /* Full-Bleed Hero Section */
+        .hero-section {
+            padding: 90px 0 70px;
+            border-bottom: 1px solid var(--panel-border);
         }
 
-        .badge-bar {
+        .hero-badge-group {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
         }
 
         .badge {
             background: rgba(124, 144, 130, 0.12);
             color: var(--sage);
-            border: 1px solid rgba(124, 144, 130, 0.2);
+            border: 1px solid rgba(124, 144, 130, 0.25);
             padding: 4px 12px;
             border-radius: 4px;
-            font-size: 0.78rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .badge.mba {
             background: rgba(229, 169, 60, 0.1);
             color: var(--amber);
-            border-color: rgba(229, 169, 60, 0.2);
+            border-color: rgba(229, 169, 60, 0.25);
         }
 
-        h1 {
-            font-size: 2.6rem;
+        .hero-headline {
+            font-size: 3rem;
             color: var(--text-title);
-            font-weight: 700;
-            letter-spacing: -0.8px;
-            line-height: 1.25;
-            margin-bottom: 20px;
-            max-width: 900px;
+            font-weight: 800;
+            line-height: 1.18;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+            max-width: 950px;
         }
 
         .hero-lead {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 820px;
-            margin-bottom: 30px;
-            font-weight: 400;
+            margin-bottom: 40px;
+            line-height: 1.7;
         }
 
-        /* Interactive Canvas Visualizer Section */
-        .visualizer-section {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Editorial Section Styling */
+        .section-block {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--text-title);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Role-Based Expertise Pillars */
+        .pillar-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .pillar-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .pillar-card:hover {
+            border-color: rgba(229, 169, 60, 0.4);
+        }
+
+        .pillar-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pillar-category {
+            font-size: 0.8rem;
+            color: var(--sage);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .pillar-title {
+            font-size: 1.5rem;
+            color: var(--text-title);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .pillar-summary {
+            font-size: 1.05rem;
+            color: var(--text-body);
+            margin-bottom: 20px;
+        }
+
+        .pillar-expand-btn {
+            background: none;
+            border: none;
+            color: var(--amber);
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .pillar-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+            border-top: 1px dashed var(--panel-border);
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .pillar-card.expanded .pillar-details {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .detail-row {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .detail-row strong {
+            color: var(--text-title);
+        }
+
+        /* Interactive Architecture Visualizer */
+        .canvas-container {
+            background: var(--slate-card);
+            border: 1px solid var(--panel-border);
             border-radius: 12px;
             padding: 30px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 60px;
+            margin-top: 20px;
         }
 
-        .vis-header {
+        .canvas-toolbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -151,177 +289,115 @@
             gap: 15px;
         }
 
-        .vis-title {
-            color: var(--text-title);
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
         .toggle-group {
             display: flex;
-            background: var(--bg-color);
+            background: var(--bg-dark);
             padding: 4px;
             border-radius: 6px;
-            border: 1px solid var(--card-border);
+            border: 1px solid var(--panel-border);
         }
 
         .toggle-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .toggle-btn.active {
-            background: var(--slate);
+            background: rgba(229, 169, 60, 0.15);
             color: var(--amber);
         }
 
         canvas {
             width: 100%;
-            height: 220px;
+            height: 240px;
             background: #08090c;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Grid & Cards Section */
-        .section-heading {
-            font-size: 1.4rem;
-            color: var(--text-title);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-heading::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--card-border);
-        }
-
-        .work-grid {
+        /* Thought Leadership Editorial Feed */
+        .insights-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 25px;
-            margin-bottom: 70px;
         }
 
         @media (max-width: 600px) {
-            .work-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 10px;
-            padding: 28px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            border-color: rgba(229, 169, 60, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-tag {
-            font-size: 0.75rem;
-            color: var(--amber);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .card h3 {
-            color: var(--text-title);
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-        }
-
-        .card-teaser {
-            color: var(--text-main);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-
-        .click-hint {
-            color: var(--sage);
-            font-size: 0.82rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .card-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease;
-            opacity: 0;
-            border-top: 1px dashed var(--card-border);
-            margin-top: 0;
-            padding-top: 0;
-        }
-
-        .card.expanded .card-details {
-            max-height: 300px;
-            opacity: 1;
-            margin-top: 15px;
-            padding-top: 15px;
-        }
-
-        .detail-item {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .detail-item strong {
-            color: var(--text-title);
-        }
-
-        /* Thought Leadership Carousel/Feed */
-        .insights-section {
-            margin-bottom: 70px;
+            .insights-grid { grid-template-columns: 1fr; }
+            .hero-headline { font-size: 2.2rem; }
         }
 
         .insight-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-left: 3px solid var(--amber);
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-left: 4px solid var(--amber);
             border-radius: 8px;
-            padding: 22px;
-            margin-bottom: 15px;
+            padding: 30px;
         }
 
-        .insight-title {
+        .insight-card h3 {
             color: var(--text-title);
-            font-weight: 600;
-            font-size: 1.05rem;
-            margin-bottom: 6px;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
         }
 
-        .insight-desc {
+        .insight-card p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Executive Contact Terminal */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 700px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--sage);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .form-input, .form-textarea {
+            background: var(--slate-card);
+            border: 1px solid var(--panel-border);
+            border-radius: 6px;
+            padding: 14px;
+            color: var(--text-title);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--amber);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
         }
 
         footer {
-            border-top: 1px solid var(--card-border);
-            padding-top: 30px;
+            padding: 40px 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -330,127 +406,173 @@
 </head>
 <body>
 
-    <div class="container">
-        <!-- Navigation -->
+    <div class="wrapper">
+        <!-- Navigation Bar -->
         <nav>
             <div>
-                <div class="brand-title">DEEPAK KONDAPPA</div>
-                <div class="brand-subtitle">Senior Web Producer & Workflow Architect</div>
+                <div class="nav-brand">DEEPAK KONDAPPA</div>
+                <div class="nav-title">Senior Web Producer & MarTech Architect</div>
             </div>
-            <a href="https://www.linkedin.com" target="_blank" class="cta-btn">LinkedIn Profile ↗</a>
+            <div class="nav-links">
+                <a href="#expertise" class="nav-link">Expertise</a>
+                <a href="#architecture" class="nav-link">Architecture</a>
+                <a href="#insights" class="nav-link">Insights</a>
+                <a href="#contact" class="btn-cta">Direct Contact</a>
+            </div>
         </nav>
 
-        <!-- Hero Header -->
-        <header class="hero">
-            <div class="badge-bar">
-                <span class="badge">AEM & Content Operations Lead</span>
-                <span class="badge">MarTech Architecture</span>
+        <!-- Editorial Hero Section -->
+        <section class="hero-section">
+            <div class="hero-badge-group">
+                <span class="badge">AEM & Content Systems Lead</span>
+                <span class="badge">Workflow Automation</span>
                 <span class="badge mba">BITS Pilani MBA Candidate</span>
             </div>
-            <h1>Architecting scalable web experiences, automating content supply chains, and driving enterprise MarTech efficiency.</h1>
+            <h1 class="hero-headline">Architecting scalable web experiences, automating content supply chains, and driving enterprise MarTech efficiency.</h1>
             <p class="hero-lead">
-                Specializing in enterprise component design, workflow automation, and asset lifecycle management within Adobe Experience Manager (AEM) environments. Combining hands-on web production expertise with structural MBA strategy.
+                Bridging front-line execution with structural business logic. Leading enterprise digital production across Adobe Experience Manager (AEM) ecosystems, custom publishing scripts, and content supply chain governance.
             </p>
-        </header>
-
-        <!-- Interactive Architecture Visualizer -->
-        <section class="visualizer-section">
-            <div class="vis-header">
-                <div class="vis-title">System Architecture: Manual Bottleneck vs. Automated Component Flow</div>
-                <div class="toggle-group">
-                    <button class="toggle-btn active" onclick="setVisState('asis')">AS-IS Pipeline</button>
-                    <button class="toggle-btn" onclick="setVisState('tobe')">TO-BE Automated Flow</button>
-                </div>
+            <div class="hero-actions">
+                <a href="#architecture" class="btn-cta">Inspect Architecture Canvas ↓</a>
+                <a href="https://www.linkedin.com" target="_blank" class="nav-link" style="padding-top: 8px;">LinkedIn Profile ↗</a>
             </div>
-            <canvas id="architectureCanvas"></canvas>
         </section>
 
-        <!-- Production Work (75% Focus) -->
-        <h2 class="section-heading">Core Enterprise Engineering & MarTech Work</h2>
-        
-        <div class="work-grid">
-            <!-- Project 1 -->
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-tag">AEM & Component Architecture</div>
-                <h3>Enterprise AEM Component Optimization</h3>
-                <p class="card-teaser">Optimized core AEM component structures to streamline content authoring and enforce global design system rules across multi-region properties.</p>
-                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
-                <div class="card-details">
-                    <div class="detail-item"><strong>Challenge:</strong> Authoring friction and layout inconsistencies across complex template variations.</div>
-                    <div class="detail-item"><strong>Solution:</strong> Standardized dialog models, modularized nested components, and implemented automated authoring guardrails.</div>
-                    <div class="detail-item"><strong>Impact:</strong> Reduced component authoring lead time and improved multi-market page assembly efficiency.</div>
-                </div>
+        <!-- Core Expertise Pillars -->
+        <section id="expertise" class="section-block">
+            <div class="section-header">
+                <div class="section-tag">Core Pillars</div>
+                <h2 class="section-title">Enterprise Capability Pillars</h2>
             </div>
 
-            <!-- Project 2 -->
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-tag">Workflow Automation & Scripting</div>
-                <h3>Content Supply Chain Automation</h3>
-                <p class="card-teaser">Engineered custom operational scripts and automated validation pipelines to eliminate redundant manual publishing steps.</p>
-                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
-                <div class="card-details">
-                    <div class="detail-item"><strong>Challenge:</strong> High manual overhead in asset validation and cross-environment deployment tracking.</div>
-                    <div class="detail-item"><strong>Solution:</strong> Deployed automated asset metadata verification scripts and streamlined publishing triggers.</div>
-                    <div class="detail-item"><strong>Impact:</strong> Reclaimed significant operational hours weekly and minimized human error in production launches.</div>
+            <div class="pillar-stack">
+                <!-- Pillar 1 -->
+                <div class="pillar-card" onclick="togglePillar(this)">
+                    <div class="pillar-meta">
+                        <span class="pillar-category">Systems & Component Architecture</span>
+                        <span class="badge">75% Focus</span>
+                    </div>
+                    <h3 class="pillar-title">Adobe Experience Manager (AEM) Architecture</h3>
+                    <p class="pillar-summary">Standardizing modular component design, authoring dialog models, and multi-region content templates to enforce design system logic and eliminate publishing friction.</p>
+                    <button class="pillar-expand-btn">Inspect System Specs ↓</button>
+                    <div class="pillar-details">
+                        <div class="detail-row"><strong>Core Focus:</strong> AEM component modeling, authoring guardrails, and template governance.</div>
+                        <div class="detail-row"><strong>Operational Friction Removed:</strong> Reduced layout inconsistencies across regional markets and eliminated redundant authoring steps.</div>
+                        <div class="detail-row"><strong>Impact:</strong> Accelerated page launch velocity and unified multi-brand digital asset management.</div>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card" onclick="togglePillar(this)">
+                    <div class="pillar-meta">
+                        <span class="pillar-category">Process Automation & Engineering</span>
+                        <span class="badge">75% Focus</span>
+                    </div>
+                    <h3 class="pillar-title">Content Supply Chain & Workflow Automation</h3>
+                    <p class="pillar-summary">Deploying custom scripts and automated verification pipelines to replace manual sign-off overhead, asset validation delays, and cross-environment tracking bottlenecks.</p>
+                    <button class="pillar-expand-btn">Inspect System Specs ↓</button>
+                    <div class="pillar-details">
+                        <div class="detail-row"><strong>Core Focus:</strong> Automated metadata validation, script execution, and publish trigger orchestration.</div>
+                        <div class="detail-row"><strong>Operational Friction Removed:</strong> Reclaimed manual audit hours and prevented human error during enterprise deployments.</div>
+                        <div class="detail-row"><strong>Impact:</strong> Streamlined asset lifecycle progression from design handoff to production deployment.</div>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card" onclick="togglePillar(this)">
+                    <div class="pillar-meta">
+                        <span class="pillar-category">Strategy & Management</span>
+                        <span class="badge mba">25% MBA Focus</span>
+                    </div>
+                    <h3 class="pillar-title">Digital Transformation & Process Optimization</h3>
+                    <p class="pillar-summary">Applying BITS Pilani MBA first-principles frameworks to re-engineer legacy operational workflows, model AS-IS process gaps, and align technical architecture with business KPIs.</p>
+                    <button class="pillar-expand-btn">Inspect System Specs ↓</button>
+                    <div class="pillar-details">
+                        <div class="detail-row"><strong>Core Focus:</strong> Value-stream mapping, legacy process re-engineering, and strategic MarTech alignment.</div>
+                        <div class="detail-row"><strong>Methodology:</strong> "The Frontline Voice"—valuing pragmatic execution and structural logic over rigid corporate dogma.</div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Project 3 -->
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-tag">Asset Lifecycle & Governance</div>
-                <h3>Enterprise Digital Asset Lifecycle System</h3>
-                <p class="card-teaser">Structured technical governance models for global digital assets to streamline searchability, rights compliance, and regional distribution.</p>
-                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
-                <div class="card-details">
-                    <div class="detail-item"><strong>Challenge:</strong> Fragmented asset taxonomy leading to duplicate uploads and delayed localization.</div>
-                    <div class="detail-item"><strong>Solution:</strong> Standardized DAM metadata schemas and automated lifecycle expiration workflows.</div>
-                    <div class="detail-item"><strong>Impact:</strong> Unified asset taxonomy across cross-functional teams and accelerated asset retrieval speed.</div>
+        <!-- Interactive Architecture Section -->
+        <section id="architecture" class="section-block">
+            <div class="section-header">
+                <div class="section-tag">Live Demonstration</div>
+                <h2 class="section-title">AS-IS Bottleneck vs. TO-BE Automated Flow</h2>
+            </div>
+
+            <div class="canvas-container">
+                <div class="canvas-toolbar">
+                    <span style="color: var(--text-title); font-weight: 600; font-size: 0.95rem;">Interactive System State Visualizer</span>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active" onclick="setVisState('asis')">AS-IS Pipeline</button>
+                        <button class="toggle-btn" onclick="setVisState('tobe')">TO-BE Automated Flow</button>
+                    </div>
+                </div>
+                <canvas id="architectureCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Thought Leadership Feed -->
+        <section id="insights" class="section-block">
+            <div class="section-header">
+                <div class="section-tag">The Frontline Voice</div>
+                <h2 class="section-title">Thought Leadership & System Strategy</h2>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h3>The "AI Dump & Pray" Trap vs. Structured Inputs</h3>
+                    <p>Why integrating AI tools into an unorganized content supply chain only accelerates operational chaos. True speed requires clean asset taxonomy and component governance first.</p>
+                </div>
+                <div class="insight-card">
+                    <h3>The Omnichannel Illusion</h3>
+                    <p>Enterprise teams rarely have a content strategy gap; they face an authoring friction gap. Standardizing AEM dialog models solves multi-channel delivery at the source.</p>
                 </div>
             </div>
+        </section>
 
-            <!-- Project 4 (25% MBA Context) -->
-            <div class="card" onclick="toggleCard(this)">
-                <div class="card-tag">Digital Transformation (MBA Project)</div>
-                <h3>Process Optimization & Strategy Blueprint</h3>
-                <p class="card-teaser">Applied first-principles MBA frameworks to model AS-IS process gaps and formulate enterprise cloud & system migration strategies.</p>
-                <div class="click-hint"><span>Tap to inspect technical architecture</span> ↓</div>
-                <div class="card-details">
-                    <div class="detail-item"><strong>Focus:</strong> Bridging operational front-line execution with C-suite digital transformation roadmaps.</div>
-                    <div class="detail-item"><strong>Methodology:</strong> Structural logic, value-stream mapping, and ROI-backed tech stack evaluation.</div>
+        <!-- Executive Contact Form -->
+        <section id="contact" class="section-block">
+            <div class="section-header">
+                <div class="section-tag">Direct Inquiry</div>
+                <h2 class="section-title">Initiate Strategy & Project Discussions</h2>
+            </div>
+
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
+                <div class="form-group">
+                    <label>Your Name / Organization</label>
+                    <input type="text" class="form-input" placeholder="e.g., Jane Doe | Enterprise Operations" required>
                 </div>
-            </div>
-        </div>
-
-        <!-- The Frontline Voice / Thought Leadership (25%) -->
-        <h2 class="section-heading">The Frontline Voice: Thought Leadership & Strategy</h2>
-        
-        <div class="insights-section">
-            <div class="insight-card">
-                <div class="insight-title">The "AI Dump & Pray" Trap vs. Structured Governance</div>
-                <div class="insight-desc">Why adding AI to an unorganized content supply chain only multiplies chaos—and how structural metadata hygiene fixes it first.</div>
-            </div>
-            <div class="insight-card">
-                <div class="insight-title">The Omnichannel Illusion</div>
-                <div class="insight-desc">Most enterprise teams don't have a content strategy problem; they have an asset authoring and component fragmentation problem.</div>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-input" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Inquiry Details</label>
+                    <textarea class="form-textarea" placeholder="Discuss MarTech architecture, AEM production lead roles, or consulting inquiries..." required></textarea>
+                </div>
+                <button type="submit" class="btn-cta" style="align-self: flex-start; padding: 12px 28px; cursor: pointer;">Send Direct Inquiry ↗</button>
+            </form>
+        </section>
 
         <footer>
-            <p>© 2026 Deepak Kondappa • Hosted on GitHub Pages via <a href="https://deepakkondappa.codes" style="color: var(--amber); text-decoration: none;">deepakkondappa.codes</a></p>
+            <p>© 2026 Deepak Kondappa • Published via GitHub Pages at <a href="https://deepakkondappa.codes" style="color: var(--amber); text-decoration: none;">deepakkondappa.codes</a></p>
         </footer>
     </div>
 
     <script>
-        // Toggle Expandable Cards
-        function toggleCard(card) {
+        // Pillar Expand / Collapse Accordion
+        function togglePillar(card) {
             const isExpanded = card.classList.contains('expanded');
-            document.querySelectorAll('.card').forEach(c => c.classList.remove('expanded'));
+            document.querySelectorAll('.pillar-card').forEach(c => c.classList.remove('expanded'));
             if (!isExpanded) {
                 card.classList.add('expanded');
             }
         }
 
-        // Canvas Interactive Architecture Diagram
+        // Canvas Architecture Simulator
         const canvas = document.getElementById('architectureCanvas');
         const ctx = canvas.getContext('2d');
         let visState = 'asis';
@@ -474,21 +596,21 @@
             const h = canvas.height;
 
             if (visState === 'asis') {
-                // AS-IS Bottleneck flow
+                // AS-IS Bottleneck state
                 drawNode(w * 0.2, h * 0.5, "Asset Creation", "#7c9082");
                 drawNode(w * 0.5, h * 0.3, "Manual Audit (Friction)", "#e53c3c");
-                drawNode(w * 0.5, h * 0.7, "Email Sign-off", "#e53c3c");
-                drawNode(w * 0.8, h * 0.5, "Delayed Publish", "#9ca3af");
+                drawNode(w * 0.5, h * 0.7, "Email Sign-off Delay", "#e53c3c");
+                drawNode(w * 0.8, h * 0.5, "Delayed Launch", "#9ca3af");
 
                 drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.3, true);
                 drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.7, true);
                 drawConnection(w * 0.5, h * 0.3, w * 0.8, h * 0.5, true);
                 drawConnection(w * 0.5, h * 0.7, w * 0.8, h * 0.5, true);
             } else {
-                // TO-BE Automated flow
+                // TO-BE Automated state
                 drawNode(w * 0.2, h * 0.5, "AEM Authoring", "#7c9082");
                 drawNode(w * 0.5, h * 0.5, "Automated Script Validation", "#e5a93c");
-                drawNode(w * 0.8, h * 0.5, "Instant Global Publish", "#7c9082");
+                drawNode(w * 0.8, h * 0.5, "Instant Global Deployment", "#7c9082");
 
                 drawConnection(w * 0.2, h * 0.5, w * 0.5, h * 0.5, false);
                 drawConnection(w * 0.5, h * 0.5, w * 0.8, h * 0.5, false);
@@ -501,7 +623,7 @@
             ctx.fillStyle = color;
             ctx.fill();
 
-            ctx.font = "12px sans-serif";
+            ctx.font = "12px -apple-system, sans-serif";
             ctx.fillStyle = "#ffffff";
             ctx.textAlign = "center";
             ctx.fillText(label, x, y + 26);
