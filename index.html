@@ -6,16 +6,16 @@
     <title>Deepak Kondappa | Senior Web Producer & MarTech Architect</title>
     <style>
         :root {
-            --bg-dark: #07080a;
-            --panel-bg: rgba(18, 21, 28, 0.7);
+            --bg-dark: #07080b;
+            --panel-bg: rgba(18, 21, 28, 0.65);
             --panel-border: rgba(255, 255, 255, 0.08);
             --text-title: #ffffff;
             --text-body: #d1d5db;
-            --text-muted: #9ca3af;
+            --text-muted: #8c93a0;
             --amber: #e5a93c;
-            --amber-glow: rgba(229, 169, 60, 0.25);
+            --amber-glow: rgba(229, 169, 60, 0.3);
             --sage: #7c9082;
-            --slate-card: rgba(20, 24, 33, 0.85);
+            --slate-card: #12151c;
         }
 
         * {
@@ -23,6 +23,7 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            cursor: none; /* Custom kinetic cursor */
         }
 
         body {
@@ -33,7 +34,51 @@
             scroll-behavior: smooth;
         }
 
-        /* Hero Fluid Background Canvas */
+        /* 1. Custom Kinetic Magnetic Cursor */
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--amber);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+
+        #cursor-follower {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(229, 169, 60, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.18s ease-out, width 0.3s, height 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--bg-dark);
+            text-transform: uppercase;
+        }
+
+        #cursor-follower.hovered {
+            width: 80px;
+            height: 80px;
+            background: var(--amber);
+            border-color: var(--amber);
+        }
+
+        /* 2. Floating Canvas Background */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -44,20 +89,20 @@
             pointer-events: none;
         }
 
-        /* Container & Navigation */
         .wrapper {
-            max-width: 1100px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 28px;
             position: relative;
             z-index: 1;
         }
 
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 0;
+            padding: 32px 0;
             border-bottom: 1px solid var(--panel-border);
             backdrop-filter: blur(12px);
             position: sticky;
@@ -66,30 +111,31 @@
         }
 
         .nav-brand {
-            font-size: 1.15rem;
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 900;
             letter-spacing: -0.5px;
             color: var(--text-title);
         }
 
         .nav-title {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--sage);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
+            letter-spacing: 1.8px;
+            font-weight: 700;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             align-items: center;
         }
 
         .nav-link {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+            font-weight: 500;
             transition: color 0.2s;
         }
 
@@ -99,212 +145,202 @@
             background: transparent;
             color: var(--amber);
             border: 1px solid var(--amber);
-            padding: 8px 18px;
-            border-radius: 6px;
+            padding: 9px 20px;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .btn-cta:hover {
             background: var(--amber);
             color: var(--bg-dark);
-            box-shadow: 0 0 20px var(--amber-glow);
+            box-shadow: 0 0 25px var(--amber-glow);
         }
 
-        /* Full-Bleed Editorial Hero */
-        .hero-section {
-            padding: 100px 0 80px;
+        /* 3. Kinetic Horizontal Marquee Banner */
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            background: rgba(229, 169, 60, 0.05);
+            border-top: 1px solid var(--panel-border);
             border-bottom: 1px solid var(--panel-border);
+            padding: 14px 0;
+            margin: 40px 0;
         }
 
-        .hero-badge-group {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 22s linear infinite;
         }
 
-        .badge {
-            background: rgba(124, 144, 130, 0.12);
-            color: var(--sage);
-            border: 1px solid rgba(124, 144, 130, 0.25);
-            padding: 5px 14px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
+        .marquee-item {
+            display: inline-block;
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--text-title);
+            margin-right: 40px;
         }
 
-        .badge.mba {
-            background: rgba(229, 169, 60, 0.1);
+        .marquee-item span {
             color: var(--amber);
-            border-color: rgba(229, 169, 60, 0.25);
+            margin-right: 40px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0 60px;
+            position: relative;
+        }
+
+        .hero-index {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--sage);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
         }
 
         .hero-headline {
-            font-size: 3.2rem;
+            font-size: 3.8rem;
             color: var(--text-title);
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -1.2px;
-            margin-bottom: 25px;
-            max-width: 980px;
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -1.8px;
+            margin-bottom: 28px;
+            max-width: 1000px;
         }
 
-        /* Dynamic Carousel Text */
-        .role-carousel {
+        .hero-headline span.highlight {
             color: var(--amber);
-            display: inline-block;
-            border-bottom: 2px solid var(--amber);
-            padding-bottom: 2px;
-            transition: opacity 0.3s ease;
+            background: linear-gradient(120deg, rgba(229, 169, 60, 0.2), transparent);
+            padding: 0 8px;
+            border-radius: 4px;
         }
 
         .hero-lead {
             font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 850px;
+            max-width: 820px;
             margin-bottom: 40px;
             line-height: 1.7;
         }
 
-        .hero-actions {
-            display: flex;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-
-        /* Scroll Animation Target */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Editorial Section Styling */
+        /* 4. Kinetic Floating Cards */
         .section-block {
             padding: 90px 0;
             border-bottom: 1px solid var(--panel-border);
         }
 
         .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
             margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .section-tag {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--amber);
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-weight: 800;
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: var(--text-title);
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
         }
 
-        /* Spotlight & 3D Tilt Cards */
-        .pillar-stack {
+        .section-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* AchtVision Style Floating Card Stack */
+        .card-stack {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 32px;
         }
 
-        .pillar-card {
+        .kinetic-card {
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
-            border-radius: 14px;
-            padding: 38px;
-            backdrop-filter: blur(15px);
-            transition: border-color 0.3s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
             transform-style: preserve-3d;
         }
 
-        /* Spotlight Glow Effect */
-        .pillar-card::before {
+        .kinetic-card::after {
             content: '';
             position: absolute;
-            top: var(--mouse-y, -100px);
-            left: var(--mouse-x, -100px);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(229, 169, 60, 0.12) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            transition: opacity 0.3s;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--amber);
             opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .pillar-card:hover::before {
+        .kinetic-card:hover {
+            border-color: rgba(229, 169, 60, 0.4);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+        }
+
+        .kinetic-card:hover::after {
             opacity: 1;
         }
 
-        .pillar-card:hover {
-            border-color: rgba(229, 169, 60, 0.4);
-            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
-        }
-
-        .pillar-meta {
+        .card-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
+            margin-bottom: 18px;
         }
 
-        .pillar-category {
-            font-size: 0.8rem;
+        .card-num {
+            font-size: 0.85rem;
+            font-weight: 800;
             color: var(--sage);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
         }
 
-        .pillar-title {
-            font-size: 1.6rem;
+        .card-title {
+            font-size: 1.8rem;
             color: var(--text-title);
-            font-weight: 700;
-            margin-bottom: 12px;
+            font-weight: 800;
+            margin-bottom: 14px;
         }
 
-        .pillar-summary {
+        .card-summary {
             font-size: 1.08rem;
             color: var(--text-body);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+            max-width: 880px;
         }
 
-        .pillar-expand-btn {
-            background: none;
-            border: none;
-            color: var(--amber);
-            font-size: 0.88rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .pillar-details {
+        .card-details {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, opacity 0.3s ease;
@@ -314,11 +350,11 @@
             padding-top: 0;
         }
 
-        .pillar-card.expanded .pillar-details {
+        .kinetic-card.expanded .card-details {
             max-height: 400px;
             opacity: 1;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 22px;
+            padding-top: 22px;
         }
 
         .detail-row {
@@ -327,24 +363,22 @@
             color: var(--text-muted);
         }
 
-        .detail-row strong {
-            color: var(--text-title);
-        }
+        .detail-row strong { color: var(--text-title); }
 
-        /* Interactive Multi-State Visualizer */
+        /* Multi-State Interactive Canvas Engine */
         .canvas-container {
             background: var(--slate-card);
             border: 1px solid var(--panel-border);
-            border-radius: 14px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(12px);
         }
 
         .canvas-toolbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -353,7 +387,7 @@
             display: flex;
             background: var(--bg-dark);
             padding: 4px;
-            border-radius: 6px;
+            border-radius: 30px;
             border: 1px solid var(--panel-border);
         }
 
@@ -361,89 +395,41 @@
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
             transition: all 0.2s;
         }
 
         .toggle-btn.active {
-            background: rgba(229, 169, 60, 0.15);
-            color: var(--amber);
+            background: var(--amber);
+            color: var(--bg-dark);
         }
 
         #architectureCanvas {
             width: 100%;
-            height: 260px;
+            height: 280px;
             background: #050608;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Thought Leadership Feed */
-        .insights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 25px;
-        }
-
-        @media (max-width: 600px) {
-            .insights-grid { grid-template-columns: 1fr; }
-            .hero-headline { font-size: 2.3rem; }
-        }
-
-        .insight-card {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-left: 4px solid var(--amber);
             border-radius: 10px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .insight-card h3 {
-            color: var(--text-title);
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-        }
-
-        .insight-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* Contact Terminal */
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            max-width: 700px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-size: 0.85rem;
-            color: var(--sage);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+            gap: 22px;
+            max-width: 720px;
         }
 
         .form-input, .form-textarea {
             background: var(--slate-card);
             border: 1px solid var(--panel-border);
-            border-radius: 6px;
-            padding: 14px;
+            border-radius: 8px;
+            padding: 16px;
             color: var(--text-title);
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             outline: none;
             transition: border-color 0.2s;
         }
@@ -452,22 +438,24 @@
             border-color: var(--amber);
         }
 
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
+        .form-textarea { min-height: 130px; resize: vertical; }
 
         footer {
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.88rem;
+            border-top: 1px solid var(--panel-border);
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient 60fps Particle Canvas -->
+    <!-- Kinetic Custom Cursor Followers -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- Floating Background Engine -->
     <canvas id="bgCanvas"></canvas>
 
     <div class="wrapper">
@@ -478,79 +466,82 @@
                 <div class="nav-title">Senior Web Producer & MarTech Architect</div>
             </div>
             <div class="nav-links">
-                <a href="#expertise" class="nav-link">Expertise</a>
-                <a href="#architecture" class="nav-link">Architecture</a>
-                <a href="#insights" class="nav-link">Insights</a>
-                <a href="#contact" class="btn-cta">Direct Contact</a>
+                <a href="#expertise" class="nav-link interactive">Expertise</a>
+                <a href="#architecture" class="nav-link interactive">Architecture</a>
+                <a href="#insights" class="nav-link interactive">Insights</a>
+                <a href="#contact" class="btn-cta interactive">Direct Contact</a>
             </div>
         </nav>
 
-        <!-- Hero Section with Dynamic Carousel -->
-        <section class="hero-section reveal">
-            <div class="hero-badge-group">
-                <span class="badge">AEM & Content Systems Lead</span>
-                <span class="badge">Workflow Automation</span>
-                <span class="badge mba">BITS Pilani MBA Candidate</span>
+        <!-- Kinetic Marquee Banner -->
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <div class="marquee-item">AEM Architecture <span>•</span> Content Supply Chain <span>•</span> Workflow Automation <span>•</span> BITS Pilani MBA Strategy <span>•</span> Systems Engineering <span>•</span> Digital Transformation <span>•</span></div>
+                <div class="marquee-item">AEM Architecture <span>•</span> Content Supply Chain <span>•</span> Workflow Automation <span>•</span> BITS Pilani MBA Strategy <span>•</span> Systems Engineering <span>•</span> Digital Transformation <span>•</span></div>
             </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-index">(01) — EXECUTIVE IDENTITY</div>
             <h1 class="hero-headline">
-                Architecting <span class="role-carousel" id="carouselText">MarTech Systems</span>, automating content supply chains, and driving enterprise efficiency.
+                Architecting <span class="highlight">AEM Systems</span>, automating content supply chains, & driving enterprise efficiency.
             </h1>
             <p class="hero-lead">
-                Bridging front-line execution with structural business logic. Leading enterprise digital production across Adobe Experience Manager (AEM) ecosystems, custom publishing scripts, and content supply chain governance.
+                Bridging front-line execution with structural business logic. Leading enterprise digital production across Adobe Experience Manager ecosystems, custom publishing scripts, and content supply chain governance.
             </p>
-            <div class="hero-actions">
-                <a href="#architecture" class="btn-cta">Inspect Live Architecture Engine ↓</a>
-                <a href="https://www.linkedin.com" target="_blank" class="nav-link" style="padding-top: 8px;">LinkedIn Profile ↗</a>
+            <div>
+                <a href="#architecture" class="btn-cta interactive">Inspect Interactive Engine ↓</a>
             </div>
         </section>
 
-        <!-- Expertise Pillars with Spotlight & 3D Tilt -->
-        <section id="expertise" class="section-block reveal">
+        <!-- Capability Pillars Section -->
+        <section id="expertise" class="section-block">
             <div class="section-header">
-                <div class="section-tag">Core Pillars</div>
-                <h2 class="section-title">Enterprise Capability Pillars</h2>
+                <div>
+                    <div class="section-tag">Core Expertise</div>
+                    <h2 class="section-title">Enterprise Capability Pillars</h2>
+                </div>
+                <div class="section-num">(02)</div>
             </div>
 
-            <div class="pillar-stack">
-                <div class="pillar-card" onclick="togglePillar(this)">
-                    <div class="pillar-meta">
-                        <span class="pillar-category">Systems & Component Architecture</span>
-                        <span class="badge">75% Focus</span>
+            <div class="card-stack">
+                <div class="kinetic-card interactive" onclick="toggleCard(this)">
+                    <div class="card-meta">
+                        <span class="card-num">PILLAR // 01</span>
+                        <span style="color: var(--amber); font-weight: 700; font-size: 0.8rem;">75% EXECUTION FOCUS</span>
                     </div>
-                    <h3 class="pillar-title">Adobe Experience Manager (AEM) Architecture</h3>
-                    <p class="pillar-summary">Standardizing modular component design, authoring dialog models, and multi-region content templates to enforce design system logic and eliminate publishing friction.</p>
-                    <button class="pillar-expand-btn">Inspect System Specs ↓</button>
-                    <div class="pillar-details">
+                    <h3 class="card-title">Adobe Experience Manager (AEM) Architecture</h3>
+                    <p class="card-summary">Standardizing modular component design, authoring dialog models, and multi-region content templates to enforce design system logic and eliminate publishing friction.</p>
+                    <div class="card-details">
                         <div class="detail-row"><strong>Core Focus:</strong> AEM component modeling, authoring guardrails, and template governance.</div>
                         <div class="detail-row"><strong>Operational Friction Removed:</strong> Reduced layout inconsistencies across regional markets and eliminated redundant authoring steps.</div>
                         <div class="detail-row"><strong>Impact:</strong> Accelerated page launch velocity and unified multi-brand digital asset management.</div>
                     </div>
                 </div>
 
-                <div class="pillar-card" onclick="togglePillar(this)">
-                    <div class="pillar-meta">
-                        <span class="pillar-category">Process Automation & Engineering</span>
-                        <span class="badge">75% Focus</span>
+                <div class="kinetic-card interactive" onclick="toggleCard(this)">
+                    <div class="card-meta">
+                        <span class="card-num">PILLAR // 02</span>
+                        <span style="color: var(--amber); font-weight: 700; font-size: 0.8rem;">75% EXECUTION FOCUS</span>
                     </div>
-                    <h3 class="pillar-title">Content Supply Chain & Workflow Automation</h3>
-                    <p class="pillar-summary">Deploying custom scripts and automated verification pipelines to replace manual sign-off overhead, asset validation delays, and cross-environment tracking bottlenecks.</p>
-                    <button class="pillar-expand-btn">Inspect System Specs ↓</button>
-                    <div class="pillar-details">
+                    <h3 class="card-title">Content Supply Chain & Workflow Automation</h3>
+                    <p class="card-summary">Deploying custom scripts and automated verification pipelines to replace manual sign-off overhead, asset validation delays, and cross-environment tracking bottlenecks.</p>
+                    <div class="card-details">
                         <div class="detail-row"><strong>Core Focus:</strong> Automated metadata validation, script execution, and publish trigger orchestration.</div>
                         <div class="detail-row"><strong>Operational Friction Removed:</strong> Reclaimed manual audit hours and prevented human error during enterprise deployments.</div>
                         <div class="detail-row"><strong>Impact:</strong> Streamlined asset lifecycle progression from design handoff to production deployment.</div>
                     </div>
                 </div>
 
-                <div class="pillar-card" onclick="togglePillar(this)">
-                    <div class="pillar-meta">
-                        <span class="pillar-category">Strategy & Management</span>
-                        <span class="badge mba">25% MBA Focus</span>
+                <div class="kinetic-card interactive" onclick="toggleCard(this)">
+                    <div class="card-meta">
+                        <span class="card-num">PILLAR // 03</span>
+                        <span style="color: var(--sage); font-weight: 700; font-size: 0.8rem;">25% STRATEGY FOCUS</span>
                     </div>
-                    <h3 class="pillar-title">Digital Transformation & Process Optimization</h3>
-                    <p class="pillar-summary">Applying BITS Pilani MBA first-principles frameworks to re-engineer legacy operational workflows, model AS-IS process gaps, and align technical architecture with business KPIs.</p>
-                    <button class="pillar-expand-btn">Inspect System Specs ↓</button>
-                    <div class="pillar-details">
+                    <h3 class="card-title">Digital Transformation & Process Optimization</h3>
+                    <p class="card-summary">Applying BITS Pilani MBA first-principles frameworks to re-engineer legacy operational workflows, model AS-IS process gaps, and align technical architecture with business KPIs.</p>
+                    <div class="card-details">
                         <div class="detail-row"><strong>Core Focus:</strong> Value-stream mapping, legacy process re-engineering, and strategic MarTech alignment.</div>
                         <div class="detail-row"><strong>Methodology:</strong> "The Frontline Voice"—valuing pragmatic execution and structural logic over rigid corporate dogma.</div>
                     </div>
@@ -558,65 +549,43 @@
             </div>
         </section>
 
-        <!-- Interactive Real-Time Node Canvas -->
-        <section id="architecture" class="section-block reveal">
+        <!-- Multi-State Architecture Visualizer -->
+        <section id="architecture" class="section-block">
             <div class="section-header">
-                <div class="section-tag">Live Engine</div>
-                <h2 class="section-title">AS-IS Bottleneck vs. TO-BE Automated Flow</h2>
+                <div>
+                    <div class="section-tag">Interactive Sandbox</div>
+                    <h2 class="section-title">AS-IS Bottleneck vs. TO-BE Automated Flow</h2>
+                </div>
+                <div class="section-num">(03)</div>
             </div>
 
             <div class="canvas-container">
                 <div class="canvas-toolbar">
-                    <span style="color: var(--text-title); font-weight: 600; font-size: 0.95rem;" id="visStateLabel">Current State: AS-IS Bottleneck Pipeline</span>
+                    <span style="color: var(--text-title); font-weight: 700; font-size: 0.95rem;" id="visStateLabel">State: AS-IS Bottleneck Pipeline</span>
                     <div class="toggle-group">
-                        <button class="toggle-btn active" onclick="setVisState('asis')">AS-IS Pipeline</button>
-                        <button class="toggle-btn" onclick="setVisState('tobe')">TO-BE Automated Flow</button>
+                        <button class="toggle-btn active interactive" onclick="setVisState('asis')">AS-IS Pipeline</button>
+                        <button class="toggle-btn interactive" onclick="setVisState('tobe')">TO-BE Automated Flow</button>
                     </div>
                 </div>
                 <canvas id="architectureCanvas"></canvas>
             </div>
         </section>
 
-        <!-- Thought Leadership Feed -->
-        <section id="insights" class="section-block reveal">
+        <!-- Direct Contact Section -->
+        <section id="contact" class="section-block">
             <div class="section-header">
-                <div class="section-tag">The Frontline Voice</div>
-                <h2 class="section-title">Thought Leadership & System Strategy</h2>
-            </div>
-
-            <div class="insights-grid">
-                <div class="insight-card">
-                    <h3>The "AI Dump & Pray" Trap vs. Structured Inputs</h3>
-                    <p>Why integrating AI tools into an unorganized content supply chain only accelerates operational chaos. True speed requires clean asset taxonomy and component governance first.</p>
+                <div>
+                    <div class="section-tag">Direct Inquiry</div>
+                    <h2 class="section-title">Initiate Strategy & Project Discussions</h2>
                 </div>
-                <div class="insight-card">
-                    <h3>The Omnichannel Illusion</h3>
-                    <p>Enterprise teams rarely have a content strategy gap; they face an authoring friction gap. Standardizing AEM dialog models solves multi-channel delivery at the source.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Form -->
-        <section id="contact" class="section-block reveal">
-            <div class="section-header">
-                <div class="section-tag">Direct Inquiry</div>
-                <h2 class="section-title">Initiate Strategy & Project Discussions</h2>
+                <div class="section-num">(04)</div>
             </div>
 
             <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
-                <div class="form-group">
-                    <label>Your Name / Organization</label>
-                    <input type="text" class="form-input" placeholder="e.g., Jane Doe | Enterprise Operations" required>
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" class="form-input" placeholder="name@company.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Inquiry Details</label>
-                    <textarea class="form-textarea" placeholder="Discuss MarTech architecture, AEM production lead roles, or consulting inquiries..." required></textarea>
-                </div>
-                <button type="submit" class="btn-cta" style="align-self: flex-start; padding: 12px 28px; cursor: pointer;">Send Direct Inquiry ↗</button>
+                <input type="text" class="form-input interactive" placeholder="Your Name / Organization" required>
+                <input type="email" class="form-input interactive" placeholder="Email Address" required>
+                <textarea class="form-textarea interactive" placeholder="Discuss MarTech architecture, AEM production lead roles, or consulting inquiries..." required></textarea>
+                <button type="submit" class="btn-cta interactive" style="align-self: flex-start; padding: 12px 30px;">Send Direct Inquiry ↗</button>
             </form>
         </section>
 
@@ -626,7 +595,29 @@
     </div>
 
     <script>
-        // 1. Ambient Background Particles
+        // 1. Kinetic Magnetic Cursor Follower Engine
+        const dot = document.getElementById('cursor-dot');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            follower.style.left = `${e.clientX}px`;
+            follower.style.top = `${e.clientY}px`;
+        });
+
+        document.querySelectorAll('.interactive').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                follower.classList.add('hovered');
+                follower.textContent = 'VIEW';
+            });
+            el.addEventListener('mouseleave', () => {
+                follower.classList.remove('hovered');
+                follower.textContent = '';
+            });
+        });
+
+        // 2. Ambient Canvas Particles
         const bgCanvas = document.getElementById('bgCanvas');
         const bgCtx = bgCanvas.getContext('2d');
         let particles = [];
@@ -635,14 +626,14 @@
             bgCanvas.width = window.innerWidth;
             bgCanvas.height = window.innerHeight;
             particles = [];
-            for (let i = 0; i < 35; i++) {
+            for (let i = 0; i < 40; i++) {
                 particles.push({
                     x: Math.random() * bgCanvas.width,
                     y: Math.random() * bgCanvas.height,
                     radius: Math.random() * 2 + 1,
-                    vx: (Math.random() - 0.5) * 0.3,
-                    vy: (Math.random() - 0.5) * 0.3,
-                    alpha: Math.random() * 0.3 + 0.1
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: (Math.random() - 0.5) * 0.35,
+                    alpha: Math.random() * 0.35 + 0.1
                 });
             }
         }
@@ -669,53 +660,16 @@
         initBgCanvas();
         animateBg();
 
-        // 2. Dynamic Text Carousel
-        const roles = ["MarTech Systems", "AEM Component Architectures", "Content Supply Chains", "BITS Pilani MBA Strategies"];
-        let roleIdx = 0;
-        const carouselEl = document.getElementById('carouselText');
-
-        setInterval(() => {
-            carouselEl.style.opacity = '0';
-            setTimeout(() => {
-                roleIdx = (roleIdx + 1) % roles.length;
-                carouselEl.textContent = roles[roleIdx];
-                carouselEl.style.opacity = '1';
-            }, 300);
-        }, 3200);
-
-        // 3. Spotlight & 3D Tilt for Cards
-        document.querySelectorAll('.pillar-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 25;
-                const rotateY = (centerX - x) / 25;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-            });
-        });
-
-        // 4. Accordion Toggle
-        function togglePillar(card) {
+        // 3. Card Expand Accordion
+        function toggleCard(card) {
             const isExpanded = card.classList.contains('expanded');
-            document.querySelectorAll('.pillar-card').forEach(c => c.classList.remove('expanded'));
+            document.querySelectorAll('.kinetic-card').forEach(c => c.classList.remove('expanded'));
             if (!isExpanded) {
                 card.classList.add('expanded');
             }
         }
 
-        // 5. Real-Time Node Packet Canvas Animation
+        // 4. Interactive Node Canvas State Machine
         const canvas = document.getElementById('architectureCanvas');
         const ctx = canvas.getContext('2d');
         let visState = 'asis';
@@ -733,8 +687,8 @@
 
             const label = document.getElementById('visStateLabel');
             label.textContent = state === 'asis' 
-                ? 'Current State: AS-IS Bottleneck Pipeline (Manual Delays)' 
-                : 'Current State: TO-BE Automated Flow (Sub-Second Deployment)';
+                ? 'State: AS-IS Bottleneck Pipeline (Manual Delays)' 
+                : 'State: TO-BE Automated Flow (Sub-Second Deployment)';
         }
 
         function drawVisualizer() {
@@ -742,7 +696,7 @@
             const w = canvas.width;
             const h = canvas.height;
 
-            packetPos = (packetPos + 0.008) % 1;
+            packetPos = (packetPos + 0.009) % 1;
 
             if (visState === 'asis') {
                 const n1 = { x: w * 0.2, y: h * 0.5 };
@@ -771,7 +725,7 @@
                 drawPacket(n2, n3, packetPos);
 
                 drawNode(n1.x, n1.y, "AEM Authoring", "#7c9082");
-                drawNode(n2.x, n2.y, "Automated Script Validation", "#e5a93c");
+                drawNode(n2.x, n2.y, "Automated Validation", "#e5a93c");
                 drawNode(n3.x, n3.y, "Instant Global Deployment", "#7c9082");
             }
 
@@ -817,17 +771,6 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
         drawVisualizer();
-
-        // 6. Scroll Reveal Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
