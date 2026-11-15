@@ -4,26 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deepak Kondappa | Senior Web Producer & MarTech Architect</title>
+    <meta name="description" content="Senior Web Producer, MarTech Specialist, and Workflow Architect. Specializing in AEM systems, content supply chain automation, feasibility estimators, air-gapped compliance QC, and enterprise page crawlers.">
+    <meta name="author" content="Deepak Kondappa">
+    <link rel="canonical" href="https://deepakkondappa.codes/">
+
+    <!-- Custom Inline SVG Favicon (Charcoal + Warm Amber DK Monogram & Node) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d1017'/%3E%3Crect x='2' y='2' width='60' height='60' rx='14' fill='none' stroke='%23e5a93c' stroke-opacity='0.45' stroke-width='2'/%3E%3Ccircle cx='50' cy='14' r='4' fill='%23e5a93c'/%3E%3Cpath d='M36 14 H50' stroke='%23e5a93c' stroke-opacity='0.5' stroke-width='2'/%3E%3Ctext x='31' y='41' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='900' font-size='25' letter-spacing='-1' fill='%23ffffff'%3ED%3Ctspan fill='%23e5a93c'%3EK%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+
+    <!-- Open Graph / Social Visibility -->
+    <meta property="og:title" content="Deepak Kondappa | Senior Web Producer & MarTech Architect">
+    <meta property="og:description" content="Architecting AEM systems, automating content supply chains, and engineering compliance-grade MarTech automation suites.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deepakkondappa.codes/">
+
+    <!-- Schema.org Structured Metadata -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Deepak Kondappa",
+      "url": "https://deepakkondappa.codes",
+      "sameAs": [
+        "https://www.linkedin.com/in/deepak-kondappa-a2825717b"
+      ],
+      "jobTitle": "Senior Web Producer & MarTech Architect",
+      "alumniOf": [
+        { "@type": "EducationalOrganization", "name": "BITS Pilani" },
+        { "@type": "EducationalOrganization", "name": "Visvesvaraya Technological University" }
+      ],
+      "knowsAbout": ["Adobe Experience Manager", "MarTech Architecture", "Content Supply Chain", "Workflow Automation", "Regulated Quality Control Tooling"]
+    }
+    </script>
+
     <style>
         :root {
             --bg-dark: #07080b;
-            --panel-bg: rgba(18, 21, 28, 0.65);
+            --panel-bg: rgba(18, 21, 28, 0.72);
             --panel-border: rgba(255, 255, 255, 0.08);
             --text-title: #ffffff;
             --text-body: #d1d5db;
             --text-muted: #8c93a0;
             --amber: #e5a93c;
+            --amber-dim: rgba(229, 169, 60, 0.14);
             --amber-glow: rgba(229, 169, 60, 0.3);
             --sage: #7c9082;
+            --sage-dim: rgba(124, 144, 130, 0.14);
+            --danger: #ef4444;
+            --danger-dim: rgba(239, 68, 68, 0.14);
             --slate-card: #12151c;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            cursor: none; /* Custom kinetic cursor */
+            font-family: var(--font-sans);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-dark);
         }
 
         body {
@@ -31,51 +73,75 @@
             color: var(--text-body);
             line-height: 1.6;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            position: relative;
+            cursor: default;
         }
 
-        /* 1. Custom Kinetic Magnetic Cursor */
-        #cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--amber);
-            border-radius: 50%;
+        a, button, .interactive, .kinetic-card, .sandbox-tab, .comp-btn, .source-radio, input[type="range"] {
+            cursor: pointer;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            cursor: text;
+        }
+
+        /* Subtle Organic Stone Grain Texture */
+        .grain-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out;
+            z-index: 9000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
         }
 
-        #cursor-follower {
-            width: 44px;
-            height: 44px;
-            border: 1px solid rgba(229, 169, 60, 0.5);
-            border-radius: 50%;
+        /* 1. Non-Obstructive Ambient Light Overlay Cursor */
+        #cursor-light-overlay {
             position: fixed;
             top: 0;
             left: 0;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.18s ease-out, width 0.3s, height 0.3s, background 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--bg-dark);
-            text-transform: uppercase;
+            transform: translate3d(-500px, -500px, 0);
+            background: radial-gradient(
+                circle at center,
+                rgba(229, 169, 60, 0.16) 0%,
+                rgba(229, 169, 60, 0.11) 24%,
+                rgba(124, 144, 130, 0.04) 52%,
+                rgba(229, 169, 60, 0) 74%
+            );
+            mix-blend-mode: screen;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        background 0.35s ease,
+                        opacity 0.3s ease;
+            will-change: transform, width, height;
+            opacity: 0;
         }
 
-        #cursor-follower.hovered {
-            width: 80px;
-            height: 80px;
-            background: var(--amber);
-            border-color: var(--amber);
+        #cursor-light-overlay.visible {
+            opacity: 1;
+        }
+
+        #cursor-light-overlay.focused {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(
+                circle at center,
+                rgba(229, 169, 60, 0.22) 0%,
+                rgba(229, 169, 60, 0.15) 28%,
+                rgba(124, 144, 130, 0.05) 56%,
+                rgba(229, 169, 60, 0) 76%
+            );
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            #cursor-light-overlay { display: none !important; }
         }
 
         /* 2. Floating Canvas Background */
@@ -85,7 +151,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
+            z-index: 0;
             pointer-events: none;
         }
 
@@ -94,7 +160,7 @@
             margin: 0 auto;
             padding: 0 28px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         /* Navigation */
@@ -102,27 +168,59 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 32px 0;
+            padding: 18px 0;
             border-bottom: 1px solid var(--panel-border);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            background: rgba(7, 8, 11, 0.85);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .nav-brand {
-            font-size: 1.2rem;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: var(--text-title);
+        .nav-inner {
+            max-width: 1180px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .nav-title {
-            font-size: 0.72rem;
-            color: var(--sage);
-            text-transform: uppercase;
-            letter-spacing: 1.8px;
+        .nav-monogram {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .monogram-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #0d1017;
+            border: 1px solid rgba(229, 169, 60, 0.45);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.95rem;
+            letter-spacing: -0.5px;
+            color: var(--text-title);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .monogram-badge span {
+            color: var(--amber);
+        }
+
+        .monogram-domain {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
             font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.4px;
         }
 
         .nav-links {
@@ -135,17 +233,64 @@
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.88rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.2s;
+            padding: 6px 4px;
         }
 
         .nav-link:hover { color: var(--amber); }
 
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--panel-border);
+            color: var(--text-title);
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .mobile-drawer {
+            display: none;
+            position: fixed;
+            top: 79px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 12, 17, 0.97);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--panel-border);
+            padding: 20px 28px 28px;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 99;
+        }
+
+        .mobile-drawer.open {
+            display: flex;
+        }
+
+        .mobile-drawer a {
+            color: var(--text-title);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
         .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             background: transparent;
             color: var(--amber);
             border: 1px solid var(--amber);
-            padding: 9px 20px;
+            padding: 10px 22px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 0.82rem;
@@ -161,84 +306,144 @@
             box-shadow: 0 0 25px var(--amber-glow);
         }
 
-        /* 3. Kinetic Horizontal Marquee Banner */
-        .marquee-wrapper {
-            overflow: hidden;
-            white-space: nowrap;
-            background: rgba(229, 169, 60, 0.05);
-            border-top: 1px solid var(--panel-border);
-            border-bottom: 1px solid var(--panel-border);
-            padding: 14px 0;
-            margin: 40px 0;
+        .btn-cta-solid {
+            background: var(--amber);
+            color: var(--bg-dark);
+            border: 1px solid var(--amber);
         }
 
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 22s linear infinite;
+        .btn-cta-solid:hover {
+            background: #f0b84d;
+            box-shadow: 0 0 28px var(--amber-glow);
         }
 
-        .marquee-item {
-            display: inline-block;
-            font-size: 0.88rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-title);
-            margin-right: 40px;
-        }
-
-        .marquee-item span {
-            color: var(--amber);
-            margin-right: 40px;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Hero Section */
+        /* Hero Section (01) */
         .hero-section {
-            padding: 80px 0 60px;
+            padding: 84px 0 88px;
+            border-bottom: 1px solid var(--panel-border);
             position: relative;
         }
 
+        .hero-editorial-single {
+            max-width: 920px;
+        }
+
+        .hero-top-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
         .hero-index {
-            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
             font-weight: 800;
             color: var(--sage);
-            margin-bottom: 20px;
             letter-spacing: 2px;
         }
 
+        .identity-plate {
+            margin-bottom: 26px;
+            padding-left: 16px;
+            border-left: 3px solid var(--amber);
+        }
+
+        .identity-name {
+            font-size: clamp(1.3rem, 2.3vw, 1.65rem);
+            font-weight: 900;
+            color: var(--text-title);
+            letter-spacing: -0.3px;
+            line-height: 1.25;
+        }
+
+        .identity-name span {
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        .identity-role {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 5px;
+        }
+
+        .ratio-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .ratio-pill {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .ratio-pill.exec {
+            background: var(--amber-dim);
+            color: var(--amber);
+            border: 1px solid rgba(229, 169, 60, 0.25);
+        }
+
+        .ratio-pill.mba {
+            background: var(--sage-dim);
+            color: var(--sage);
+            border: 1px solid rgba(124, 144, 130, 0.25);
+        }
+
         .hero-headline {
-            font-size: 3.8rem;
+            font-size: clamp(2.1rem, 4.3vw, 3.35rem);
             color: var(--text-title);
             font-weight: 900;
-            line-height: 1.08;
-            letter-spacing: -1.8px;
-            margin-bottom: 28px;
-            max-width: 1000px;
+            line-height: 1.13;
+            letter-spacing: -1.4px;
+            margin-bottom: 22px;
         }
 
         .hero-headline span.highlight {
             color: var(--amber);
-            background: linear-gradient(120deg, rgba(229, 169, 60, 0.2), transparent);
-            padding: 0 8px;
-            border-radius: 4px;
+            background: linear-gradient(120deg, rgba(229, 169, 60, 0.2), rgba(229, 169, 60, 0.03));
+            padding: 2px 12px;
+            border-radius: 6px;
+            border-bottom: 2px solid var(--amber);
+            display: inline-block;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .hero-headline span.highlight.topic-exit {
+            opacity: 0;
+            transform: translateY(8px);
         }
 
         .hero-lead {
-            font-size: 1.25rem;
+            font-size: 1.12rem;
             color: var(--text-muted);
-            max-width: 820px;
-            margin-bottom: 40px;
-            line-height: 1.7;
+            max-width: 780px;
+            margin-bottom: 36px;
+            line-height: 1.75;
         }
 
-        /* 4. Kinetic Floating Cards */
+        .hero-cta-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* Editorial Section Base */
         .section-block {
-            padding: 90px 0;
+            padding: 88px 0;
             border-bottom: 1px solid var(--panel-border);
         }
 
@@ -246,7 +451,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 50px;
+            margin-bottom: 46px;
             flex-wrap: wrap;
             gap: 20px;
         }
@@ -257,35 +462,555 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 800;
+            margin-bottom: 6px;
         }
 
         .section-title {
-            font-size: 2.4rem;
+            font-size: 2.35rem;
             color: var(--text-title);
             font-weight: 800;
             letter-spacing: -0.8px;
+            line-height: 1.15;
         }
 
         .section-num {
-            font-size: 1.8rem;
+            font-family: var(--font-mono);
+            font-size: 1.9rem;
             font-weight: 800;
             color: rgba(255, 255, 255, 0.15);
         }
 
-        /* AchtVision Style Floating Card Stack */
+        /* 4. Live Interactive Tool Sandbox (02) */
+        .sandbox-container {
+            background: var(--slate-card);
+            border: 1px solid var(--panel-border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.8);
+        }
+
+        .sandbox-tabs {
+            display: flex;
+            background: #0a0c10;
+            border-bottom: 1px solid var(--panel-border);
+            overflow-x: auto;
+        }
+
+        .sandbox-tab {
+            flex: 1;
+            min-width: 240px;
+            background: transparent;
+            border: none;
+            border-right: 1px solid var(--panel-border);
+            padding: 20px 24px;
+            text-align: left;
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .sandbox-tab:last-child { border-right: none; }
+
+        .sandbox-tab:hover {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-title);
+        }
+
+        .sandbox-tab.active {
+            background: var(--slate-card);
+            color: var(--text-title);
+        }
+
+        .sandbox-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--amber);
+        }
+
+        .tab-index {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--amber);
+            font-weight: 800;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .tab-title {
+            font-size: 0.96rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .sandbox-body {
+            padding: 34px;
+        }
+
+        .sandbox-panel {
+            display: none;
+            animation: panelFade 0.35s ease;
+        }
+
+        .sandbox-panel.active {
+            display: block;
+        }
+
+        @keyframes panelFade {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tab 1: Feasibility & Authoring Effort Estimator */
+        .estimator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 28px;
+        }
+
+        .sim-card {
+            background: rgba(7, 8, 11, 0.75);
+            border: 1px solid var(--panel-border);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-title);
+            margin-bottom: 8px;
+        }
+
+        .slider-val {
+            font-family: var(--font-mono);
+            color: var(--amber);
+            font-weight: 800;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--amber);
+            box-shadow: 0 0 12px var(--amber-glow);
+        }
+
+        .complexity-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .comp-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--panel-border);
+            color: var(--text-muted);
+            padding: 10px 8px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .comp-btn.active {
+            background: var(--amber-dim);
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        .feasibility-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .score-badge-ring {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            border: 3px solid var(--sage);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: rgba(124, 144, 130, 0.08);
+        }
+
+        .score-pct {
+            font-family: var(--font-mono);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-title);
+            line-height: 1;
+        }
+
+        .score-lbl {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            color: var(--sage);
+            font-weight: 800;
+            margin-top: 3px;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .hour-tile {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        .hour-tile.highlight {
+            background: var(--amber-dim);
+            border-color: rgba(229, 169, 60, 0.45);
+        }
+
+        .hour-num {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-title);
+            display: block;
+        }
+
+        .hour-tile.highlight .hour-num { color: var(--amber); }
+
+        .hour-caption {
+            font-size: 0.66rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .sow-terminal {
+            background: #050608;
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+            color: #a3e635;
+            white-space: pre-wrap;
+            line-height: 1.55;
+        }
+
+        /* Tab 2: Air-Gapped Compliance Text & PDF Compare Engine */
+        .compare-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .source-radios {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .source-radio {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--panel-border);
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-body);
+            transition: all 0.2s;
+        }
+
+        .source-radio input[type="radio"] {
+            accent-color: var(--amber);
+        }
+
+        .source-radio.active {
+            border-color: var(--amber);
+            background: var(--amber-dim);
+            color: var(--text-title);
+        }
+
+        .compliance-lock {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--sage);
+            background: var(--sage-dim);
+            border: 1px solid rgba(124, 144, 130, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .diff-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .diff-box {
+            background: #07080b;
+            border: 1px solid var(--panel-border);
+            border-radius: 10px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .diff-box-head {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .diff-input {
+            width: 100%;
+            min-height: 92px;
+            background: #0b0d12;
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text-title);
+            font-size: 0.88rem;
+            line-height: 1.55;
+            resize: vertical;
+        }
+
+        .diff-input:focus {
+            outline: none;
+            border-color: var(--amber);
+        }
+
+        .diff-render {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-body);
+            background: #050608;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 14px;
+        }
+
+        .tok-del {
+            background: rgba(239, 68, 68, 0.24);
+            color: #fca5a5;
+            text-decoration: line-through;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+
+        .tok-ins {
+            background: rgba(124, 144, 130, 0.28);
+            color: #bbf7d0;
+            padding: 1px 5px;
+            border-radius: 4px;
+            border-bottom: 1px solid var(--sage);
+        }
+
+        /* Tab 3: Enterprise Page Health & Anomaly Crawler */
+        .crawler-bar {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .crawler-url {
+            flex: 1;
+            min-width: 260px;
+            background: #07080b;
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: var(--font-mono);
+            font-size: 0.84rem;
+            color: var(--text-title);
+        }
+
+        .telemetry-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .tele-card {
+            background: #07080b;
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 12px 14px;
+        }
+
+        .tele-val {
+            font-family: var(--font-mono);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-title);
+            display: block;
+        }
+
+        .tele-lbl {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .crawl-log {
+            background: #050608;
+            border: 1px solid var(--panel-border);
+            border-radius: 10px;
+            padding: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .crawl-item {
+            display: grid;
+            grid-template-columns: 95px 1fr 100px 210px;
+            gap: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            align-items: center;
+        }
+
+        .crawl-item:last-child { border-bottom: none; }
+
+        .tag-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .tag-ok { background: var(--sage-dim); color: #86efac; }
+        .tag-warn { background: var(--amber-dim); color: var(--amber); }
+        .tag-err { background: var(--danger-dim); color: #fca5a5; }
+
+        .incident-footer {
+            margin-top: 18px;
+            padding: 16px 20px;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.28);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        /* Interactive AS-IS vs TO-BE Architecture Visualizer */
+        .arch-visualizer-box {
+            background: var(--slate-card);
+            border: 1px solid var(--panel-border);
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 36px;
+            box-shadow: 0 20px 44px -15px rgba(0, 0, 0, 0.75);
+        }
+
+        .arch-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .arch-toggle-group {
+            display: inline-flex;
+            background: #07080b;
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid var(--panel-border);
+        }
+
+        .arch-toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 24px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+
+        .arch-toggle-btn.active {
+            background: var(--amber);
+            color: var(--bg-dark);
+        }
+
+        #architectureCanvas {
+            width: 100%;
+            height: 240px;
+            background: #050608;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: block;
+        }
+
+        /* 5. Kinetic Floating Cards (03) */
         .card-stack {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 28px;
         }
 
         .kinetic-card {
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
             border-radius: 16px;
-            padding: 40px;
+            padding: 36px;
             backdrop-filter: blur(16px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
@@ -304,9 +1029,9 @@
         }
 
         .kinetic-card:hover {
-            border-color: rgba(229, 169, 60, 0.4);
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+            border-color: rgba(229, 169, 60, 0.42);
+            transform: translateY(-4px) scale(1.005);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75);
         }
 
         .kinetic-card:hover::after {
@@ -317,27 +1042,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .card-num {
-            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
             font-weight: 800;
             color: var(--sage);
         }
 
         .card-title {
-            font-size: 1.8rem;
+            font-size: 1.65rem;
             color: var(--text-title);
             font-weight: 800;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .card-summary {
-            font-size: 1.08rem;
+            font-size: 1.04rem;
             color: var(--text-body);
-            margin-bottom: 22px;
-            max-width: 880px;
+            margin-bottom: 14px;
+            max-width: 900px;
+        }
+
+        .card-expand-cue {
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+            color: var(--amber);
+            font-weight: 700;
         }
 
         .card-details {
@@ -351,75 +1086,63 @@
         }
 
         .kinetic-card.expanded .card-details {
-            max-height: 400px;
+            max-height: 460px;
             opacity: 1;
-            margin-top: 22px;
-            padding-top: 22px;
+            margin-top: 20px;
+            padding-top: 20px;
         }
 
         .detail-row {
-            margin-bottom: 12px;
-            font-size: 0.95rem;
+            margin-bottom: 10px;
+            font-size: 0.94rem;
             color: var(--text-muted);
         }
 
         .detail-row strong { color: var(--text-title); }
 
-        /* Multi-State Interactive Canvas Engine */
-        .canvas-container {
-            background: var(--slate-card);
+        /* Thought Leadership Grid (04) */
+        .voice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .voice-card {
+            background: var(--panel-bg);
             border: 1px solid var(--panel-border);
-            border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(12px);
-        }
-
-        .canvas-toolbar {
+            border-top: 3px solid var(--amber);
+            border-radius: 14px;
+            padding: 30px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 22px;
-            flex-wrap: wrap;
-            gap: 15px;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .toggle-group {
-            display: flex;
-            background: var(--bg-dark);
-            padding: 4px;
-            border-radius: 30px;
-            border: 1px solid var(--panel-border);
-        }
-
-        .toggle-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.82rem;
+        .voice-tag {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--sage);
+            text-transform: uppercase;
             font-weight: 700;
-            transition: all 0.2s;
         }
 
-        .toggle-btn.active {
-            background: var(--amber);
-            color: var(--bg-dark);
+        .voice-card h3 {
+            font-size: 1.24rem;
+            color: var(--text-title);
+            font-weight: 800;
         }
 
-        #architectureCanvas {
-            width: 100%;
-            height: 280px;
-            background: #050608;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .voice-card p {
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            line-height: 1.65;
         }
 
-        /* Contact Terminal */
+        /* Contact Terminal (05) */
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 22px;
+            gap: 20px;
             max-width: 720px;
         }
 
@@ -429,195 +1152,649 @@
             border-radius: 8px;
             padding: 16px;
             color: var(--text-title);
-            font-size: 0.98rem;
+            font-size: 0.96rem;
             outline: none;
             transition: border-color 0.2s;
+            width: 100%;
         }
 
         .form-input:focus, .form-textarea:focus {
             border-color: var(--amber);
         }
 
-        .form-textarea { min-height: 130px; resize: vertical; }
+        .form-textarea { min-height: 135px; resize: vertical; }
+
+        .form-select {
+            background: var(--slate-card);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 16px;
+            color: var(--text-title);
+            font-size: 0.96rem;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            border-color: var(--amber);
+        }
+
+        .inquiry-status-box {
+            display: none;
+            padding: 16px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .inquiry-status-box.success {
+            display: block;
+            background: var(--sage-dim);
+            border: 1px solid rgba(124, 144, 130, 0.45);
+            color: #d1fae5;
+        }
+
+        .inquiry-status-box.fallback {
+            display: block;
+            background: var(--amber-dim);
+            border: 1px solid rgba(229, 169, 60, 0.45);
+            color: var(--text-title);
+        }
+
+        .spinner-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(7, 8, 11, 0.3);
+            border-top-color: var(--bg-dark);
+            border-radius: 50%;
+            animation: spinLoader 0.7s linear infinite;
+        }
+
+        @keyframes spinLoader {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Non-blocking Toast Banner */
+        #toast-banner {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            background: #12161f;
+            border: 1px solid var(--amber);
+            color: var(--text-title);
+            padding: 15px 22px;
+            border-radius: 12px;
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.8);
+            z-index: 9500;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(150%);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #toast-banner.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
 
         footer {
-            padding: 50px 0;
+            padding: 46px 0;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.88rem;
-            border-top: 1px solid var(--panel-border);
+            font-size: 0.86rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 960px) {
+            .estimator-layout, .diff-columns, .voice-grid {
+                grid-template-columns: 1fr;
+            }
+            .telemetry-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wrapper, .nav-inner {
+                padding: 0 18px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: inline-flex;
+            }
+            .hero-section {
+                padding: 46px 0 56px;
+            }
+            .section-block {
+                padding: 60px 0;
+            }
+            .section-title {
+                font-size: 1.75rem;
+            }
+            .sandbox-body {
+                padding: 20px 16px;
+            }
+            .kinetic-card {
+                padding: 24px 20px;
+            }
+            .hours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .crawl-item {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding: 12px 8px;
+            }
+            .btn-cta {
+                padding: 11px 18px;
+                font-size: 0.78rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Kinetic Custom Cursor Followers -->
-    <div id="cursor-dot"></div>
-    <div id="cursor-follower"></div>
+    <!-- Organic Stone Grain Texture -->
+    <div class="grain-overlay"></div>
 
-    <!-- Floating Background Engine -->
+    <!-- Non-Obstructive Ambient Light Cursor Overlay -->
+    <div id="cursor-light-overlay" aria-hidden="true"></div>
+
+    <!-- Ambient 60fps Particle Canvas -->
     <canvas id="bgCanvas"></canvas>
 
-    <div class="wrapper">
-        <!-- Navigation -->
-        <nav>
-            <div>
-                <div class="nav-brand">DEEPAK KONDAPPA</div>
-                <div class="nav-title">Senior Web Producer & MarTech Architect</div>
-            </div>
+    <!-- Sticky Navigation (Ultra-Minimal Monogram + Mobile Menu) -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#top" class="nav-monogram interactive" aria-label="Deepak Kondappa Home">
+                <span class="monogram-badge">D<span>K</span></span>
+                <span class="monogram-domain">deepakkondappa.codes</span>
+            </a>
             <div class="nav-links">
-                <a href="#expertise" class="nav-link interactive">Expertise</a>
-                <a href="#architecture" class="nav-link interactive">Architecture</a>
-                <a href="#insights" class="nav-link interactive">Insights</a>
+                <a href="#sandbox" class="nav-link interactive">Tool Sandbox</a>
+                <a href="#pillars" class="nav-link interactive">Capabilities</a>
+                <a href="#voice" class="nav-link interactive">Frontline Voice</a>
                 <a href="#contact" class="btn-cta interactive">Direct Contact</a>
             </div>
-        </nav>
-
-        <!-- Kinetic Marquee Banner -->
-        <div class="marquee-wrapper">
-            <div class="marquee-content">
-                <div class="marquee-item">AEM Architecture <span>•</span> Content Supply Chain <span>•</span> Workflow Automation <span>•</span> BITS Pilani MBA Strategy <span>•</span> Systems Engineering <span>•</span> Digital Transformation <span>•</span></div>
-                <div class="marquee-item">AEM Architecture <span>•</span> Content Supply Chain <span>•</span> Workflow Automation <span>•</span> BITS Pilani MBA Strategy <span>•</span> Systems Engineering <span>•</span> Digital Transformation <span>•</span></div>
-            </div>
+            <button type="button" class="mobile-menu-btn interactive" id="mobileMenuBtn" aria-label="Toggle Navigation Menu" onclick="toggleMobileMenu()">☰</button>
         </div>
+    </nav>
 
-        <!-- Hero Section -->
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <a href="#sandbox" onclick="closeMobileMenu()">02 // Live Tool Sandbox</a>
+        <a href="#pillars" onclick="closeMobileMenu()">03 // Capabilities &amp; Automation</a>
+        <a href="#voice" onclick="closeMobileMenu()">04 // Frontline Voice</a>
+        <a href="https://www.linkedin.com/in/deepak-kondappa-a2825717b" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">LinkedIn Profile ↗</a>
+        <a href="#contact" onclick="closeMobileMenu()" style="color: var(--amber); border-bottom: none;">05 // Initiate Direct Inquiry ↗</a>
+    </div>
+
+    <div class="wrapper" id="top">
+        <!-- (01) FULL-WIDTH SINGLE-COLUMN EDITORIAL HERO -->
         <section class="hero-section">
-            <div class="hero-index">(01) — EXECUTIVE IDENTITY</div>
-            <h1 class="hero-headline">
-                Architecting <span class="highlight">AEM Systems</span>, automating content supply chains, & driving enterprise efficiency.
-            </h1>
-            <p class="hero-lead">
-                Bridging front-line execution with structural business logic. Leading enterprise digital production across Adobe Experience Manager ecosystems, custom publishing scripts, and content supply chain governance.
-            </p>
-            <div>
-                <a href="#architecture" class="btn-cta interactive">Inspect Interactive Engine ↓</a>
+            <div class="hero-editorial-single">
+                <div class="hero-top-meta">
+                    <div class="hero-index">(01) — EXECUTIVE IDENTITY</div>
+                    <div class="ratio-badges">
+                        <span class="ratio-pill exec">Enterprise Systems &amp; MarTech</span>
+                        <span class="ratio-pill mba">BITS Pilani MBA</span>
+                    </div>
+                </div>
+
+                <div class="identity-plate">
+                    <div class="identity-name">DEEPAK KONDAPPA <span>— Senior Web Producer &amp; MarTech Architect</span></div>
+                    <div class="identity-role">AEM Ecosystems • Workflow Automation • Regulated Compliance Tooling</div>
+                </div>
+
+                <h1 class="hero-headline">
+                    Engineering <span class="highlight" id="dynamicHeroTopic">Enterprise Web Ecosystems</span>, automating content workflows, &amp; scaling digital delivery.
+                </h1>
+
+                <p class="hero-lead">
+                    Senior Web Producer and Subject Matter Expert with a Mechanical Engineering background and active BITS Pilani MBA training. I lead enterprise digital production across Adobe Experience Manager ecosystems—replacing manual authoring friction and third-party compliance gaps with proprietary automation tools.
+                </p>
+
+                <div class="hero-cta-row">
+                    <a href="#sandbox" class="btn-cta btn-cta-solid interactive">Launch Interactive Tool Suite ↓</a>
+                    <a href="#pillars" class="btn-cta interactive">Explore Architecture →</a>
+                    <a href="https://www.linkedin.com/in/deepak-kondappa-a2825717b" target="_blank" rel="noopener noreferrer" class="nav-link interactive">LinkedIn ↗</a>
+                </div>
             </div>
         </section>
 
-        <!-- Capability Pillars Section -->
-        <section id="expertise" class="section-block">
+        <!-- (02) LIVE INTERACTIVE TOOL SANDBOX -->
+        <section id="sandbox" class="section-block">
             <div class="section-header">
                 <div>
-                    <div class="section-tag">Core Expertise</div>
-                    <h2 class="section-title">Enterprise Capability Pillars</h2>
+                    <div class="section-tag">Interactive Engineering Proof</div>
+                    <h2 class="section-title">Live Proprietary Tool Sandbox</h2>
                 </div>
                 <div class="section-num">(02)</div>
             </div>
 
-            <div class="card-stack">
-                <div class="kinetic-card interactive" onclick="toggleCard(this)">
-                    <div class="card-meta">
-                        <span class="card-num">PILLAR // 01</span>
-                        <span style="color: var(--amber); font-weight: 700; font-size: 0.8rem;">75% EXECUTION FOCUS</span>
-                    </div>
-                    <h3 class="card-title">Adobe Experience Manager (AEM) Architecture</h3>
-                    <p class="card-summary">Standardizing modular component design, authoring dialog models, and multi-region content templates to enforce design system logic and eliminate publishing friction.</p>
-                    <div class="card-details">
-                        <div class="detail-row"><strong>Core Focus:</strong> AEM component modeling, authoring guardrails, and template governance.</div>
-                        <div class="detail-row"><strong>Operational Friction Removed:</strong> Reduced layout inconsistencies across regional markets and eliminated redundant authoring steps.</div>
-                        <div class="detail-row"><strong>Impact:</strong> Accelerated page launch velocity and unified multi-brand digital asset management.</div>
-                    </div>
+            <div class="sandbox-container">
+                <div class="sandbox-tabs">
+                    <button class="sandbox-tab active interactive" id="tab-btn-estimator" onclick="switchToolTab('estimator')">
+                        <span class="tab-index">TOOL 01 // INTAKE &amp; SOW</span>
+                        <span class="tab-title">Automated Feasibility &amp; Effort Estimator</span>
+                    </button>
+                    <button class="sandbox-tab interactive" id="tab-btn-compare" onclick="switchToolTab('compare')">
+                        <span class="tab-index">TOOL 02 // REGULATED QC</span>
+                        <span class="tab-title">Air-Gapped Compliance Text &amp; PDF Compare</span>
+                    </button>
+                    <button class="sandbox-tab interactive" id="tab-btn-crawler" onclick="switchToolTab('crawler')">
+                        <span class="tab-index">TOOL 03 // MONITORING</span>
+                        <span class="tab-title">Enterprise Page Health &amp; Anomaly Crawler</span>
+                    </button>
                 </div>
 
-                <div class="kinetic-card interactive" onclick="toggleCard(this)">
-                    <div class="card-meta">
-                        <span class="card-num">PILLAR // 02</span>
-                        <span style="color: var(--amber); font-weight: 700; font-size: 0.8rem;">75% EXECUTION FOCUS</span>
-                    </div>
-                    <h3 class="card-title">Content Supply Chain & Workflow Automation</h3>
-                    <p class="card-summary">Deploying custom scripts and automated verification pipelines to replace manual sign-off overhead, asset validation delays, and cross-environment tracking bottlenecks.</p>
-                    <div class="card-details">
-                        <div class="detail-row"><strong>Core Focus:</strong> Automated metadata validation, script execution, and publish trigger orchestration.</div>
-                        <div class="detail-row"><strong>Operational Friction Removed:</strong> Reclaimed manual audit hours and prevented human error during enterprise deployments.</div>
-                        <div class="detail-row"><strong>Impact:</strong> Streamlined asset lifecycle progression from design handoff to production deployment.</div>
-                    </div>
-                </div>
+                <div class="sandbox-body">
+                    <!-- TAB 1: Automated Feasibility & Authoring Effort Estimator -->
+                    <div class="sandbox-panel active" id="panel-estimator">
+                        <div class="estimator-layout">
+                            <div class="sim-card">
+                                <div>
+                                    <div class="slider-header">
+                                        <span>Pages in Production Scope</span>
+                                        <span class="slider-val" id="valPages">10 Pages</span>
+                                    </div>
+                                    <input type="range" id="inpPages" min="1" max="30" value="10" class="interactive" oninput="calculateFeasibility()">
+                                </div>
 
-                <div class="kinetic-card interactive" onclick="toggleCard(this)">
-                    <div class="card-meta">
-                        <span class="card-num">PILLAR // 03</span>
-                        <span style="color: var(--sage); font-weight: 700; font-size: 0.8rem;">25% STRATEGY FOCUS</span>
+                                <div>
+                                    <div class="slider-header">
+                                        <span>Core AEM vs. Custom Component Match</span>
+                                        <span class="slider-val" id="valMatch">85% Core AEM</span>
+                                    </div>
+                                    <input type="range" id="inpMatch" min="30" max="100" value="85" class="interactive" oninput="calculateFeasibility()">
+                                </div>
+
+                                <div>
+                                    <div class="slider-header">
+                                        <span>Design Revisions &amp; Localization Rounds</span>
+                                        <span class="slider-val" id="valRevisions">2 Rounds</span>
+                                    </div>
+                                    <input type="range" id="inpRevisions" min="1" max="6" value="2" class="interactive" oninput="calculateFeasibility()">
+                                </div>
+
+                                <div>
+                                    <div class="slider-header">
+                                        <span>Page Complexity Tier</span>
+                                    </div>
+                                    <div class="complexity-group">
+                                        <button type="button" class="comp-btn interactive" onclick="setComplexityTier(1.0, 'Standard Template', this)">Standard</button>
+                                        <button type="button" class="comp-btn active interactive" onclick="setComplexityTier(1.3, 'Modular Multi-Region', this)">Modular</button>
+                                        <button type="button" class="comp-btn interactive" onclick="setComplexityTier(1.75, 'High-Custom Interactive', this)">Complex</button>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                    <button type="button" class="btn-cta btn-cta-solid interactive" onclick="copySowSummary()">Copy SOW Summary</button>
+                                    <button type="button" class="btn-cta interactive" onclick="downloadSowFile()">Download SOW (.txt)</button>
+                                </div>
+                            </div>
+
+                            <div class="sim-card">
+                                <div class="feasibility-header">
+                                    <div>
+                                        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--amber); font-weight: 800; text-transform: uppercase;">Visual Design-to-CMS Feasibility</div>
+                                        <div id="verdictTitle" style="font-size: 1.15rem; font-weight: 800; color: var(--text-title); margin-top: 2px;">HIGH FEASIBILITY — Approved for Standard Intake</div>
+                                        <div id="verdictDesc" style="font-size: 0.84rem; color: var(--text-muted); margin-top: 2px;">85% of wireframe blocks map directly to existing enterprise AEM components.</div>
+                                    </div>
+                                    <div class="score-badge-ring" id="feasibilityRing">
+                                        <span class="score-pct" id="feasibilityPct">85%</span>
+                                        <span class="score-lbl">Score</span>
+                                    </div>
+                                </div>
+
+                                <div class="hours-grid">
+                                    <div class="hour-tile">
+                                        <span class="hour-num" id="outAuthoring">42h</span>
+                                        <span class="hour-caption">Authoring / Dev</span>
+                                    </div>
+                                    <div class="hour-tile">
+                                        <span class="hour-num" id="outFeedback">9h</span>
+                                        <span class="hour-caption">Design Feedback</span>
+                                    </div>
+                                    <div class="hour-tile">
+                                        <span class="hour-num" id="outQc">12h</span>
+                                        <span class="hour-caption">Compliance QC</span>
+                                    </div>
+                                    <div class="hour-tile highlight">
+                                        <span class="hour-num" id="outTotal">63h</span>
+                                        <span class="hour-caption">Total SOW Hours</span>
+                                    </div>
+                                </div>
+
+                                <div class="sow-terminal" id="sowSummaryBox"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="card-title">Digital Transformation & Process Optimization</h3>
-                    <p class="card-summary">Applying BITS Pilani MBA first-principles frameworks to re-engineer legacy operational workflows, model AS-IS process gaps, and align technical architecture with business KPIs.</p>
-                    <div class="card-details">
-                        <div class="detail-row"><strong>Core Focus:</strong> Value-stream mapping, legacy process re-engineering, and strategic MarTech alignment.</div>
-                        <div class="detail-row"><strong>Methodology:</strong> "The Frontline Voice"—valuing pragmatic execution and structural logic over rigid corporate dogma.</div>
+
+                    <!-- TAB 2: Air-Gapped Compliance Text & PDF Compare Engine -->
+                    <div class="sandbox-panel" id="panel-compare">
+                        <div class="compare-bar">
+                            <div class="source-radios" id="compareSourceGroup">
+                                <label class="source-radio active interactive">
+                                    <input type="radio" name="qcSource" value="auto" checked onchange="selectCompareSource('auto')">
+                                    <span>Auto-Detect Loaded Sources</span>
+                                </label>
+                                <label class="source-radio interactive">
+                                    <input type="radio" name="qcSource" value="pdf-comments" onchange="selectCompareSource('pdf-comments')">
+                                    <span>PDF + Annotations/Comments</span>
+                                </label>
+                                <label class="source-radio interactive">
+                                    <input type="radio" name="qcSource" value="word-doc" onchange="selectCompareSource('word-doc')">
+                                    <span>Word Doc (.docx)</span>
+                                </label>
+                                <label class="source-radio interactive">
+                                    <input type="radio" name="qcSource" value="page-dom" onchange="selectCompareSource('page-dom')">
+                                    <span>Live Page DOM</span>
+                                </label>
+                            </div>
+                            <span class="compliance-lock">🔒 Zero 3rd-Party Extensions • Air-Gapped Local Engine</span>
+                        </div>
+
+                        <div class="diff-columns">
+                            <div class="diff-box">
+                                <div class="diff-box-head">
+                                    <span id="compareLeftHeader">APPROVED BASELINE (PDF + ANNOTATIONS)</span>
+                                    <span style="color: var(--amber);">EDITABLE INPUT</span>
+                                </div>
+                                <textarea id="compareLeftInput" class="diff-input interactive" oninput="runTextDiff()"></textarea>
+                                <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">BASELINE TOKEN STREAM</div>
+                                <div class="diff-render" id="compareLeftRender"></div>
+                            </div>
+
+                            <div class="diff-box">
+                                <div class="diff-box-head">
+                                    <span id="compareRightHeader">TARGET STAGING PAGE DOM</span>
+                                    <span id="compareStatusTag" style="color: #fca5a5;">DISCREPANCIES DETECTED</span>
+                                </div>
+                                <textarea id="compareRightInput" class="diff-input interactive" oninput="runTextDiff()"></textarea>
+                                <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">REAL-TIME CHARACTER / WORD DIFF</div>
+                                <div class="diff-render" id="compareRightRender"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: Enterprise Page Health & Anomaly Crawler -->
+                    <div class="sandbox-panel" id="panel-crawler">
+                        <div class="crawler-bar">
+                            <input type="text" id="crawlerEndpoint" class="crawler-url interactive" value="https://enterprise-web.example/en-global/product-hub" aria-label="Target URL">
+                            <button type="button" class="btn-cta btn-cta-solid interactive" onclick="executePageCrawl()">Run Live DOM &amp; Uptime Scan</button>
+                        </div>
+
+                        <div class="telemetry-strip">
+                            <div class="tele-card">
+                                <span class="tele-val" id="teleUptime" style="color: #86efac;">99.4%</span>
+                                <span class="tele-lbl">24h Uptime Telemetry</span>
+                            </div>
+                            <div class="tele-card">
+                                <span class="tele-val" id="teleLatency">184 ms</span>
+                                <span class="tele-lbl">Median TTFB Latency</span>
+                            </div>
+                            <div class="tele-card">
+                                <span class="tele-val" id="teleNodes">42 Nodes</span>
+                                <span class="tele-lbl">AEM Components Audited</span>
+                            </div>
+                            <div class="tele-card">
+                                <span class="tele-val" id="teleFlags" style="color: #fca5a5;">2 Anomalies</span>
+                                <span class="tele-lbl">Irregular Behaviors</span>
+                            </div>
+                        </div>
+
+                        <div class="crawl-log">
+                            <div class="crawl-item" style="color: var(--text-muted); font-size: 0.72rem; border-bottom: 1px solid var(--panel-border);">
+                                <span>STATUS</span>
+                                <span>DOM NODE / ASSET ENDPOINT</span>
+                                <span>RESPONSE</span>
+                                <span>DIAGNOSTIC FINDING</span>
+                            </div>
+                            <div id="crawlRowsContainer"></div>
+                        </div>
+
+                        <div class="incident-footer">
+                            <div>
+                                <div style="font-size: 0.86rem; font-weight: 800; color: #fca5a5;" id="incidentHeadline">Incident Report Ready — 2 Irregularities Logged with Timestamps</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);" id="incidentSubtext">Flagged 1 transient 503 asset timeout and 1 delayed clientlib hydration spike for stakeholder escalation.</div>
+                            </div>
+                            <button type="button" class="btn-cta interactive" onclick="showToast('Automated stakeholder incident report dispatched with timestamp logs.')">Send Stakeholder Report ↗</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Multi-State Architecture Visualizer -->
-        <section id="architecture" class="section-block">
+        <!-- (03) ENTERPRISE CAPABILITY PILLARS & PROPRIETARY TOOLS -->
+        <section id="pillars" class="section-block">
             <div class="section-header">
                 <div>
-                    <div class="section-tag">Interactive Sandbox</div>
-                    <h2 class="section-title">AS-IS Bottleneck vs. TO-BE Automated Flow</h2>
+                    <div class="section-tag">Core Architecture &amp; Proprietary Systems</div>
+                    <h2 class="section-title">Enterprise Capability Pillars &amp; Automation Suite</h2>
                 </div>
                 <div class="section-num">(03)</div>
             </div>
 
-            <div class="canvas-container">
-                <div class="canvas-toolbar">
-                    <span style="color: var(--text-title); font-weight: 700; font-size: 0.95rem;" id="visStateLabel">State: AS-IS Bottleneck Pipeline</span>
-                    <div class="toggle-group">
-                        <button class="toggle-btn active interactive" onclick="setVisState('asis')">AS-IS Pipeline</button>
-                        <button class="toggle-btn interactive" onclick="setVisState('tobe')">TO-BE Automated Flow</button>
+            <!-- Live AS-IS vs TO-BE Architecture Visualizer -->
+            <div class="arch-visualizer-box">
+                <div class="arch-toolbar">
+                    <div>
+                        <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--amber); font-weight: 800; display: block; text-transform: uppercase;">Supply Chain Topology</span>
+                        <span id="archStateLabel" style="color: var(--text-title); font-weight: 800; font-size: 0.96rem;">State: AS-IS Manual Bottleneck Pipeline</span>
+                    </div>
+                    <div class="arch-toggle-group">
+                        <button type="button" class="arch-toggle-btn active interactive" onclick="setArchState('asis', this)">AS-IS Pipeline</button>
+                        <button type="button" class="arch-toggle-btn interactive" onclick="setArchState('tobe', this)">TO-BE Automated Flow</button>
                     </div>
                 </div>
                 <canvas id="architectureCanvas"></canvas>
             </div>
+
+            <div class="card-stack">
+                <!-- Card 1: Tool 1 -->
+                <div class="kinetic-card interactive" onclick="toggleCard(this)">
+                    <div class="card-meta">
+                        <span class="card-num">SYSTEM // 01 — INTAKE &amp; EFFORT MODELING</span>
+                        <span style="color: var(--amber); font-weight: 700; font-size: 0.8rem;">75% EXECUTION FOCUS</span>
+                    </div>
+                    <h3 class="card-title">Automated Feasibility &amp; Authoring Effort Estimator</h3>
+                    <p class="card-summary">Visually matches incoming design files against available enterprise CMS components to output a Feasibility Score, standardized authoring/dev hours, design feedback buffers, QC hours, and an affiliate-ready Statement of Work (SOW).</p>
+                    <span class="card-expand-cue">Click to inspect architecture &amp; business impact ↓</span>
+                    <div class="card-details">
+                        <div class="detail-row"><strong>Problem Solved:</strong> Eliminated subjective effort guessing during affiliate intake and prevented unfeasible custom designs from stalling mid-sprint.</div>
+                        <div class="detail-row"><strong>System Architecture:</strong> Visual component-matching engine paired with standardized hour matrices across Authoring, Design Feedback, and QC phases.</div>
+                        <div class="detail-row"><strong>Business Impact:</strong> Converts technical feasibility directly into a transparent SOW document for immediate affiliate alignment.</div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Tool 2 -->
+                <div class="kinetic-card interactive" onclick="toggleCard(this)">
+                    <div class="card-meta">
+                        <span class="card-num">SYSTEM // 02 — AIR-GAPPED REGULATED QC</span>
+                        <span style="color: var(--amber); font-weight: 700; font-size: 0.8rem;">75% EXECUTION FOCUS</span>
+                    </div>
+                    <h3 class="card-title">Multi-Source Regulated Text &amp; PDF Compare Engine</h3>
+                    <p class="card-summary">Engineered for strict, high-confidentiality compliance environments where third-party browser extensions are prohibited—comparing PDF body copy, PDF reviewer comments, Word documents, and live page DOM with smart source auto-detection.</p>
+                    <span class="card-expand-cue">Click to inspect architecture &amp; business impact ↓</span>
+                    <div class="card-details">
+                        <div class="detail-row"><strong>Compliance Constraint:</strong> Zero external cloud calls and zero third-party browser extensions permitted due to strict enterprise data governance.</div>
+                        <div class="detail-row"><strong>System Architecture:</strong> Local multi-parser supporting PDF text layers, embedded PDF reviewer comments, Word manuscripts, and live DOM extraction via radio selectors or automatic source detection.</div>
+                        <div class="detail-row"><strong>Business Impact:</strong> Guarantees 100% regulatory copy accuracy across multi-market launches while keeping confidential assets strictly internal.</div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Tool 3 -->
+                <div class="kinetic-card interactive" onclick="toggleCard(this)">
+                    <div class="card-meta">
+                        <span class="card-num">SYSTEM // 03 — CONTINUOUS PAGE TELEMETRY</span>
+                        <span style="color: var(--amber); font-weight: 700; font-size: 0.8rem;">75% EXECUTION FOCUS</span>
+                    </div>
+                    <h3 class="card-title">Automated Enterprise Page Crawler &amp; Anomaly Reporter</h3>
+                    <p class="card-summary">Continuously crawls production web pages to detect irregular component behavior, latency spikes, downtime windows, and runtime errors—compiling timestamped diagnostic reports for responsible stakeholders.</p>
+                    <span class="card-expand-cue">Click to inspect architecture &amp; business impact ↓</span>
+                    <div class="card-details">
+                        <div class="detail-row"><strong>Problem Solved:</strong> Replaced reactive, manual spot-checking with proactive detection of silent front-end regressions and asset outages.</div>
+                        <div class="detail-row"><strong>System Architecture:</strong> Automated DOM and HTTP crawler that logs timestamps, error codes, and behavioral anomalies into structured stakeholder alerts.</div>
+                        <div class="detail-row"><strong>Business Impact:</strong> Dramatically lowered mean-time-to-detection (MTTD) for live production issues across global web properties.</div>
+                    </div>
+                </div>
+
+                <!-- Card 4: BITS Pilani MBA Strategy (25%) -->
+                <div class="kinetic-card interactive" onclick="toggleCard(this)">
+                    <div class="card-meta">
+                        <span class="card-num">SYSTEM // 04 — STRATEGIC GOVERNANCE</span>
+                        <span style="color: var(--sage); font-weight: 700; font-size: 0.8rem;">25% BITS PILANI MBA STRATEGY</span>
+                    </div>
+                    <h3 class="card-title">AEM Content Supply Chain &amp; Process Optimization Framework</h3>
+                    <p class="card-summary">Combining a Mechanical Engineering systems foundation with active BITS Pilani MBA frameworks to re-engineer AS-IS production bottlenecks into modular, metrics-driven AEM workflows.</p>
+                    <span class="card-expand-cue">Click to inspect strategic framework ↓</span>
+                    <div class="card-details">
+                        <div class="detail-row"><strong>Core Focus:</strong> Modular AEM component governance, value-stream mapping, and aligning technical automation with executive KPIs.</div>
+                        <div class="detail-row"><strong>Methodology:</strong> First-principles systems thinking—automating repetitive operational gates so producers focus on high-leverage architecture.</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Direct Contact Section -->
-        <section id="contact" class="section-block">
+        <!-- (04) THE FRONTLINE VOICE THOUGHT LEADERSHIP -->
+        <section id="voice" class="section-block">
             <div class="section-header">
                 <div>
-                    <div class="section-tag">Direct Inquiry</div>
-                    <h2 class="section-title">Initiate Strategy & Project Discussions</h2>
+                    <div class="section-tag">The Frontline Voice</div>
+                    <h2 class="section-title">Thought Leadership &amp; Operational Philosophy</h2>
                 </div>
                 <div class="section-num">(04)</div>
             </div>
 
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
-                <input type="text" class="form-input interactive" placeholder="Your Name / Organization" required>
-                <input type="email" class="form-input interactive" placeholder="Email Address" required>
-                <textarea class="form-textarea interactive" placeholder="Discuss MarTech architecture, AEM production lead roles, or consulting inquiries..." required></textarea>
-                <button type="submit" class="btn-cta interactive" style="align-self: flex-start; padding: 12px 30px;">Send Direct Inquiry ↗</button>
+            <div class="voice-grid">
+                <div class="voice-card kinetic-card interactive">
+                    <span class="voice-tag">01 // Structured Governance</span>
+                    <h3>The AI "Dump &amp; Pray" Trap</h3>
+                    <p>Plugging AI into an unorganized content supply chain only scales chaos. Clean DAM taxonomy, deterministic component rules, and automated compliance gates must come before generative acceleration.</p>
+                </div>
+
+                <div class="voice-card kinetic-card interactive">
+                    <span class="voice-tag">02 // Regulated MarTech</span>
+                    <h3>Compliance Without Friction</h3>
+                    <p>When enterprise security prohibits third-party browser extensions, web production leaders shouldn't fall back on manual eye-balling—they should engineer air-gapped internal tooling.</p>
+                </div>
+
+                <div class="voice-card kinetic-card interactive">
+                    <span class="voice-tag">03 // Delivery Velocity</span>
+                    <h3>Feasibility Before Intake</h3>
+                    <p>Most production delays originate before a single AEM component is authored. Scoring visual design feasibility upfront transforms contentious scope changes into predictable SOWs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- (05) DIRECT CONTACT TERMINAL -->
+        <section id="contact" class="section-block" style="border-bottom: none;">
+            <div class="section-header">
+                <div>
+                    <div class="section-tag">Direct Inquiry</div>
+                    <h2 class="section-title">Initiate Strategy &amp; Project Discussions</h2>
+                </div>
+                <div class="section-num">(05)</div>
+            </div>
+
+            <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+                <input type="hidden" name="_subject" id="hiddenSubject" value="New Portfolio Inquiry — deepakkondappa.codes">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="text" id="contactName" name="name" class="form-input interactive" placeholder="Name / Organization" required>
+                <input type="email" id="contactEmail" name="email" class="form-input interactive" placeholder="Email Address" required>
+                <select id="contactTopic" name="topic" class="form-select interactive" aria-label="Inquiry Category" required>
+                    <option value="MarTech Architecture & AEM Consulting">MarTech Architecture &amp; AEM Consulting</option>
+                    <option value="Senior Web Producer / Leadership Role">Senior Web Producer / Leadership Role</option>
+                    <option value="Workflow & Compliance Automation">Workflow &amp; Compliance Automation</option>
+                    <option value="General Strategy Discussion">General Strategy Discussion</option>
+                </select>
+                <textarea id="contactMsg" name="message" class="form-textarea interactive" placeholder="Discuss AEM architecture, MarTech workflow automation, custom QC tooling, or leadership opportunities..." required></textarea>
+                <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+                    <button type="submit" id="contactSubmitBtn" class="btn-cta btn-cta-solid interactive" style="padding: 12px 30px;">Send Direct Inquiry ↗</button>
+                    <a href="mailto:deepak.kondappa@gmail.com?subject=Portfolio%20Inquiry%20%E2%80%94%20deepakkondappa.codes" class="btn-cta interactive">deepak.kondappa@gmail.com ↗</a>
+                    <a href="https://www.linkedin.com/in/deepak-kondappa-a2825717b" target="_blank" rel="noopener noreferrer" class="btn-cta interactive">Connect on LinkedIn ↗</a>
+                    <button type="button" class="btn-cta interactive" onclick="copyPortfolioUrl()">Copy Portfolio URL</button>
+                </div>
+                <div id="inquiryStatusBox" class="inquiry-status-box" role="status" aria-live="polite"></div>
             </form>
         </section>
 
         <footer>
-            <p>© 2026 Deepak Kondappa • Published via GitHub Pages at <a href="https://deepakkondappa.codes" style="color: var(--amber); text-decoration: none;">deepakkondappa.codes</a></p>
+            <p>© 2026 Deepak Kondappa • Published via GitHub Pages at <a href="https://deepakkondappa.codes" style="color: var(--amber); text-decoration: none;">deepakkondappa.codes</a> • <a href="mailto:deepak.kondappa@gmail.com" style="color: var(--text-title); text-decoration: none;">deepak.kondappa@gmail.com</a> • <a href="https://www.linkedin.com/in/deepak-kondappa-a2825717b" target="_blank" rel="noopener noreferrer" style="color: var(--sage); text-decoration: none;">LinkedIn ↗</a></p>
         </footer>
     </div>
 
+    <!-- Custom Toast Notification -->
+    <div id="toast-banner">
+        <span style="color: var(--amber);">●</span>
+        <span id="toast-text">Ready</span>
+    </div>
+
     <script>
-        // 1. Kinetic Magnetic Cursor Follower Engine
-        const dot = document.getElementById('cursor-dot');
-        const follower = document.getElementById('cursor-follower');
+        /* ==========================================================================
+           1. NON-OBSTRUCTIVE AMBIENT LIGHT CURSOR OVERLAY (SPRING INTERPOLATION)
+           ========================================================================== */
+        const lightOverlay = document.getElementById('cursor-light-overlay');
+        let targetX = -500;
+        let targetY = -500;
+        let currentX = -500;
+        let currentY = -500;
+        let hasPointerMoved = false;
 
         document.addEventListener('mousemove', (e) => {
-            dot.style.left = `${e.clientX}px`;
-            dot.style.top = `${e.clientY}px`;
-            follower.style.left = `${e.clientX}px`;
-            follower.style.top = `${e.clientY}px`;
+            targetX = e.clientX;
+            targetY = e.clientY;
+            if (!hasPointerMoved) {
+                currentX = targetX;
+                currentY = targetY;
+                hasPointerMoved = true;
+                lightOverlay.classList.add('visible');
+            }
         });
 
-        document.querySelectorAll('.interactive').forEach(el => {
+        document.addEventListener('mouseleave', () => {
+            lightOverlay.classList.remove('visible');
+        });
+
+        document.addEventListener('mouseenter', () => {
+            if (hasPointerMoved) {
+                lightOverlay.classList.add('visible');
+            }
+        });
+
+        function animateLightOverlay() {
+            if (hasPointerMoved) {
+                currentX += (targetX - currentX) * 0.16;
+                currentY += (targetY - currentY) * 0.16;
+                const radius = lightOverlay.offsetWidth / 2;
+                lightOverlay.style.transform = `translate3d(${currentX - radius}px, ${currentY - radius}px, 0)`;
+            }
+            requestAnimationFrame(animateLightOverlay);
+        }
+        animateLightOverlay();
+
+        document.querySelectorAll('.interactive, button, a, input, textarea').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                follower.classList.add('hovered');
-                follower.textContent = 'VIEW';
+                lightOverlay.classList.add('focused');
             });
             el.addEventListener('mouseleave', () => {
-                follower.classList.remove('hovered');
-                follower.textContent = '';
+                lightOverlay.classList.remove('focused');
             });
         });
 
-        // 2. Ambient Canvas Particles
+        /* ==========================================================================
+           2. AMBIENT 60FPS CANVAS PARTICLES
+           ========================================================================== */
         const bgCanvas = document.getElementById('bgCanvas');
         const bgCtx = bgCanvas.getContext('2d');
         let particles = [];
@@ -626,11 +1803,12 @@
             bgCanvas.width = window.innerWidth;
             bgCanvas.height = window.innerHeight;
             particles = [];
-            for (let i = 0; i < 40; i++) {
+            const count = Math.min(45, Math.floor(window.innerWidth / 28));
+            for (let i = 0; i < count; i++) {
                 particles.push({
                     x: Math.random() * bgCanvas.width,
                     y: Math.random() * bgCanvas.height,
-                    radius: Math.random() * 2 + 1,
+                    radius: Math.random() * 2 + 0.8,
                     vx: (Math.random() - 0.5) * 0.35,
                     vy: (Math.random() - 0.5) * 0.35,
                     alpha: Math.random() * 0.35 + 0.1
@@ -660,117 +1838,512 @@
         initBgCanvas();
         animateBg();
 
-        // 3. Card Expand Accordion
+        /* ==========================================================================
+           2B. DYNAMIC HERO TOPIC ROTATOR (SMOOTH FADE & SLIDE)
+           ========================================================================== */
+        const heroTopics = [
+            'Enterprise Web Ecosystems',
+            'Content Supply Chains',
+            'MarTech Automation',
+            'Compliance QC Engines',
+            'Digital Transformation'
+        ];
+        let heroTopicIdx = 0;
+        const dynamicTopicEl = document.getElementById('dynamicHeroTopic');
+
+        if (dynamicTopicEl) {
+            setInterval(() => {
+                dynamicTopicEl.classList.add('topic-exit');
+                setTimeout(() => {
+                    heroTopicIdx = (heroTopicIdx + 1) % heroTopics.length;
+                    dynamicTopicEl.textContent = heroTopics[heroTopicIdx];
+                    dynamicTopicEl.classList.remove('topic-exit');
+                }, 360);
+            }, 3100);
+        }
+
+        /* ==========================================================================
+           2C. INTERACTIVE AS-IS VS TO-BE ARCHITECTURE CANVAS
+           ========================================================================== */
+        const archCanvas = document.getElementById('architectureCanvas');
+        const archCtx = archCanvas ? archCanvas.getContext('2d') : null;
+        let archMode = 'asis';
+        let archPacket = 0;
+
+        function resizeArchCanvas() {
+            if (!archCanvas) return;
+            archCanvas.width = archCanvas.offsetWidth;
+            archCanvas.height = archCanvas.offsetHeight;
+        }
+
+        function setArchState(mode, btn) {
+            archMode = mode;
+            document.querySelectorAll('.arch-toggle-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            const lbl = document.getElementById('archStateLabel');
+            if (lbl) {
+                lbl.textContent = mode === 'asis'
+                    ? 'State: AS-IS Manual Bottleneck Pipeline'
+                    : 'State: TO-BE Automated Supply Chain Flow';
+            }
+        }
+
+        function drawArchVisualizer() {
+            if (!archCanvas || !archCtx) return;
+            archCtx.clearRect(0, 0, archCanvas.width, archCanvas.height);
+            const w = archCanvas.width;
+            const h = archCanvas.height;
+            archPacket = (archPacket + 0.008) % 1;
+
+            const drawNode = (x, y, label, color) => {
+                archCtx.beginPath();
+                archCtx.arc(x, y, 9, 0, Math.PI * 2);
+                archCtx.fillStyle = color;
+                archCtx.fill();
+                archCtx.font = '600 12px -apple-system, BlinkMacSystemFont, sans-serif';
+                archCtx.fillStyle = '#ffffff';
+                archCtx.textAlign = 'center';
+                archCtx.fillText(label, x, y + 25);
+            };
+
+            const drawLine = (p1, p2, dashed) => {
+                archCtx.beginPath();
+                archCtx.moveTo(p1.x, p1.y);
+                archCtx.lineTo(p2.x, p2.y);
+                archCtx.strokeStyle = dashed ? 'rgba(239, 68, 68, 0.4)' : 'rgba(229, 169, 60, 0.55)';
+                archCtx.lineWidth = 2;
+                archCtx.setLineDash(dashed ? [5, 5] : []);
+                archCtx.stroke();
+                archCtx.setLineDash([]);
+            };
+
+            const drawPulse = (p1, p2, t) => {
+                const px = p1.x + (p2.x - p1.x) * t;
+                const py = p1.y + (p2.y - p1.y) * t;
+                archCtx.beginPath();
+                archCtx.arc(px, py, 4, 0, Math.PI * 2);
+                archCtx.fillStyle = '#e5a93c';
+                archCtx.shadowColor = '#e5a93c';
+                archCtx.shadowBlur = 10;
+                archCtx.fill();
+                archCtx.shadowBlur = 0;
+            };
+
+            if (archMode === 'asis') {
+                const n1 = { x: w * 0.18, y: h * 0.5 };
+                const n2 = { x: w * 0.5, y: h * 0.28 };
+                const n3 = { x: w * 0.5, y: h * 0.72 };
+                const n4 = { x: w * 0.82, y: h * 0.5 };
+
+                drawLine(n1, n2, true);
+                drawLine(n1, n3, true);
+                drawLine(n2, n4, true);
+                drawLine(n3, n4, true);
+
+                drawNode(n1.x, n1.y, 'Manual Design Intake', '#7c9082');
+                drawNode(n2.x, n2.y, '3rd-Party QC Friction', '#ef4444');
+                drawNode(n3.x, n3.y, 'Redundant Authoring', '#ef4444');
+                drawNode(n4.x, n4.y, 'Delayed Launch', '#8c93a0');
+            } else {
+                const n1 = { x: w * 0.18, y: h * 0.5 };
+                const n2 = { x: w * 0.5, y: h * 0.5 };
+                const n3 = { x: w * 0.82, y: h * 0.5 };
+
+                drawLine(n1, n2, false);
+                drawLine(n2, n3, false);
+                drawPulse(n1, n2, archPacket);
+                drawPulse(n2, n3, archPacket);
+
+                drawNode(n1.x, n1.y, 'Feasibility & SOW Gate', '#7c9082');
+                drawNode(n2.x, n2.y, 'Automated AEM & Air-Gapped QC', '#e5a93c');
+                drawNode(n3.x, n3.y, 'Monitored Global Release', '#7c9082');
+            }
+            requestAnimationFrame(drawArchVisualizer);
+        }
+
+        window.addEventListener('resize', resizeArchCanvas);
+        resizeArchCanvas();
+        drawArchVisualizer();
+
+        /* ==========================================================================
+           3. CARD EXPAND ACCORDION & 3D SPOTLIGHT TILT
+           ========================================================================== */
+        document.querySelectorAll('.kinetic-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / rect.height) * -3;
+                const rotateY = ((x - rect.width / 2) / rect.width) * 3;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
         function toggleCard(card) {
             const isExpanded = card.classList.contains('expanded');
-            document.querySelectorAll('.kinetic-card').forEach(c => c.classList.remove('expanded'));
+            const parent = card.parentElement;
+            if (parent) {
+                parent.querySelectorAll('.kinetic-card').forEach(c => c.classList.remove('expanded'));
+            }
             if (!isExpanded) {
                 card.classList.add('expanded');
             }
         }
 
-        // 4. Interactive Node Canvas State Machine
-        const canvas = document.getElementById('architectureCanvas');
-        const ctx = canvas.getContext('2d');
-        let visState = 'asis';
-        let packetPos = 0;
+        /* ==========================================================================
+           4. LIVE TOOL SANDBOX SWITCHER
+           ========================================================================== */
+        function switchToolTab(tabId) {
+            document.querySelectorAll('.sandbox-tab').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.sandbox-panel').forEach(panel => panel.classList.remove('active'));
 
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
+            document.getElementById(`tab-btn-${tabId}`).classList.add('active');
+            document.getElementById(`panel-${tabId}`).classList.add('active');
         }
 
-        function setVisState(state) {
-            visState = state;
-            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        /* ==========================================================================
+           TOOL 1: AUTOMATED FEASIBILITY & AUTHORING EFFORT ESTIMATOR
+           ========================================================================== */
+        let currentComplexityMult = 1.3;
+        let currentComplexityName = 'Modular Multi-Region';
 
-            const label = document.getElementById('visStateLabel');
-            label.textContent = state === 'asis' 
-                ? 'State: AS-IS Bottleneck Pipeline (Manual Delays)' 
-                : 'State: TO-BE Automated Flow (Sub-Second Deployment)';
+        function setComplexityTier(mult, label, btn) {
+            currentComplexityMult = mult;
+            currentComplexityName = label;
+            document.querySelectorAll('.comp-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            calculateFeasibility();
         }
 
-        function drawVisualizer() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const w = canvas.width;
-            const h = canvas.height;
+        function calculateFeasibility() {
+            const pages = parseInt(document.getElementById('inpPages').value, 10);
+            const match = parseInt(document.getElementById('inpMatch').value, 10);
+            const revisions = parseInt(document.getElementById('inpRevisions').value, 10);
 
-            packetPos = (packetPos + 0.009) % 1;
+            document.getElementById('valPages').textContent = `${pages} ${pages === 1 ? 'Page' : 'Pages'}`;
+            document.getElementById('valMatch').textContent = `${match}% Core AEM`;
+            document.getElementById('valRevisions').textContent = `${revisions} ${revisions === 1 ? 'Round' : 'Rounds'}`;
+            document.getElementById('feasibilityPct').textContent = `${match}%`;
 
-            if (visState === 'asis') {
-                const n1 = { x: w * 0.2, y: h * 0.5 };
-                const n2 = { x: w * 0.5, y: h * 0.3 };
-                const n3 = { x: w * 0.5, y: h * 0.7 };
-                const n4 = { x: w * 0.8, y: h * 0.5 };
+            const customOverhead = 1 + ((100 - match) / 100) * 0.9;
+            const authoringHrs = Math.round(pages * 3.1 * currentComplexityMult * customOverhead);
+            const feedbackHrs = Math.max(2, Math.round(pages * 0.45 * revisions));
+            const qcHrs = Math.max(2, Math.round(pages * 1.1 * (match < 65 ? 1.25 : 1.0)));
+            const totalHrs = authoringHrs + feedbackHrs + qcHrs;
 
-                drawConnection(n1, n2, true);
-                drawConnection(n1, n3, true);
-                drawConnection(n2, n4, true);
-                drawConnection(n3, n4, true);
+            document.getElementById('outAuthoring').textContent = `${authoringHrs}h`;
+            document.getElementById('outFeedback').textContent = `${feedbackHrs}h`;
+            document.getElementById('outQc').textContent = `${qcHrs}h`;
+            document.getElementById('outTotal').textContent = `${totalHrs}h`;
 
-                drawNode(n1.x, n1.y, "Asset Creation", "#7c9082");
-                drawNode(n2.x, n2.y, "Manual Audit (Friction)", "#e53c3c");
-                drawNode(n3.x, n3.y, "Email Sign-off Delay", "#e53c3c");
-                drawNode(n4.x, n4.y, "Delayed Launch", "#9ca3af");
+            const verdictTitle = document.getElementById('verdictTitle');
+            const verdictDesc = document.getElementById('verdictDesc');
+            const ring = document.getElementById('feasibilityRing');
+
+            if (match >= 80) {
+                verdictTitle.textContent = 'HIGH FEASIBILITY — Approved for Standard Intake';
+                verdictDesc.textContent = `${match}% of wireframe blocks map directly to existing enterprise AEM components.`;
+                ring.style.borderColor = '#7c9082';
+            } else if (match >= 55) {
+                verdictTitle.textContent = 'MODERATE FEASIBILITY — Minor Variant Configuration';
+                verdictDesc.textContent = `${100 - match}% design delta requires custom dialog/style overrides prior to authoring.`;
+                ring.style.borderColor = '#e5a93c';
             } else {
-                const n1 = { x: w * 0.2, y: h * 0.5 };
-                const n2 = { x: w * 0.5, y: h * 0.5 };
-                const n3 = { x: w * 0.8, y: h * 0.5 };
-
-                drawConnection(n1, n2, false);
-                drawConnection(n2, n3, false);
-
-                drawPacket(n1, n2, packetPos);
-                drawPacket(n2, n3, packetPos);
-
-                drawNode(n1.x, n1.y, "AEM Authoring", "#7c9082");
-                drawNode(n2.x, n2.y, "Automated Validation", "#e5a93c");
-                drawNode(n3.x, n3.y, "Instant Global Deployment", "#7c9082");
+                verdictTitle.textContent = 'LOW FEASIBILITY — Custom Engineering Escalation';
+                verdictDesc.textContent = `High custom layout divergence (${100 - match}%). Recommend design alignment before SOW lock.`;
+                ring.style.borderColor = '#ef4444';
             }
 
-            requestAnimationFrame(drawVisualizer);
+            const sowText =
+`STATEMENT OF WORK (SOW) — AUTOMATED EFFORT PROJECTION
+------------------------------------------------------------
+Scope: ${pages} Pages | Tier: ${currentComplexityName} | AEM Component Match: ${match}%
+Authoring & Dev Effort : ${authoringHrs} hrs
+Design Feedback (${revisions}x)  : ${feedbackHrs} hrs
+Compliance & Page QC   : ${qcHrs} hrs
+------------------------------------------------------------
+TOTAL STANDARDIZED SOW : ${totalHrs} HOURS`;
+
+            document.getElementById('sowSummaryBox').textContent = sowText;
+        }
+        calculateFeasibility();
+
+        function copySowSummary() {
+            const text = document.getElementById('sowSummaryBox').textContent;
+            safeCopy(text, 'SOW effort summary copied to clipboard.');
         }
 
-        function drawNode(x, y, label, color) {
-            ctx.beginPath();
-            ctx.arc(x, y, 10, 0, Math.PI * 2);
-            ctx.fillStyle = color;
-            ctx.fill();
-
-            ctx.font = "12px -apple-system, sans-serif";
-            ctx.fillStyle = "#ffffff";
-            ctx.textAlign = "center";
-            ctx.fillText(label, x, y + 26);
+        function downloadSowFile() {
+            const text = document.getElementById('sowSummaryBox').textContent;
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'AEM_Feasibility_SOW_Estimate.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('SOW estimate downloaded as AEM_Feasibility_SOW_Estimate.txt');
         }
 
-        function drawConnection(n1, n2, isDashed) {
-            ctx.beginPath();
-            ctx.moveTo(n1.x, n1.y);
-            ctx.lineTo(n2.x, n2.y);
-            ctx.strokeStyle = isDashed ? "rgba(229, 60, 60, 0.35)" : "rgba(229, 169, 60, 0.5)";
-            ctx.lineWidth = 2;
-            if (isDashed) ctx.setLineDash([4, 4]);
-            else ctx.setLineDash([]);
-            ctx.stroke();
+        /* ==========================================================================
+           TOOL 2: AIR-GAPPED COMPLIANCE TEXT & PDF COMPARE ENGINE
+           ========================================================================== */
+        const comparePresets = {
+            'auto': {
+                leftHead: 'AUTO-DETECTED SOURCE: PDF BODY + REVIEWER ANNOTATIONS',
+                rightHead: 'TARGET: LIVE STAGING AEM DOM',
+                leftText: 'Patients initiating therapy must complete baseline hepatic screening within 7 business days prior to administration. [Reviewer Note #14: Update footnote reference to Ref-2026A before regional launch.]',
+                rightText: 'Patients initiating therapy must complete baseline hepatic screening within 14 calendar days prior to administration. [Footnote reference: Ref-2024B]'
+            },
+            'pdf-comments': {
+                leftHead: 'PDF ANNOTATION STREAM (EXTRACTED LOCALLY)',
+                rightHead: 'TARGET: AEM BUTTON & METADATA LAYER',
+                leftText: 'Primary CTA Label: Download Prescribing Information (PDF, 1.4 MB) — Mandatory regulatory disclosure link required above the fold.',
+                rightText: 'Primary CTA Label: Download Prescribing Information — Mandatory regulatory disclosure link required above the fold.'
+            },
+            'word-doc': {
+                leftHead: 'APPROVED DOCX MANUSCRIPT BASELINE',
+                rightHead: 'TARGET: RENDERED PAGE COPY',
+                leftText: 'Document ID: HQ-REG-2026-0942 | Date of Preparation: November 2026. All regional safety notices verified.',
+                rightText: 'Document ID: HQ-REG-2026-0942 | Date of Preparation: September 2026. All regional safety notices verified.'
+            },
+            'page-dom': {
+                leftHead: 'EN-GLOBAL MASTER PAGE DOM',
+                rightHead: 'REGIONAL MARKET CLONE DOM',
+                leftText: 'Indicated as an adjunct to diet and exercise in adults. Not recommended for patients with severe renal impairment (eGFR < 15 mL/min).',
+                rightText: 'Indicated as an adjunct to diet and exercise in adults. Not recommended for patients with severe renal impairment.'
+            }
+        };
+
+        function selectCompareSource(sourceKey) {
+            document.querySelectorAll('#compareSourceGroup .source-radio').forEach(lbl => {
+                const inp = lbl.querySelector('input');
+                lbl.classList.toggle('active', inp && inp.value === sourceKey);
+            });
+
+            const preset = comparePresets[sourceKey] || comparePresets['auto'];
+            document.getElementById('compareLeftHeader').textContent = preset.leftHead;
+            document.getElementById('compareRightHeader').textContent = preset.rightHead;
+            document.getElementById('compareLeftInput').value = preset.leftText;
+            document.getElementById('compareRightInput').value = preset.rightText;
+            runTextDiff();
         }
 
-        function drawPacket(n1, n2, progress) {
-            const px = n1.x + (n2.x - n1.x) * progress;
-            const py = n1.y + (n2.y - n1.y) * progress;
-
-            ctx.beginPath();
-            ctx.arc(px, py, 4, 0, Math.PI * 2);
-            ctx.fillStyle = "#e5a93c";
-            ctx.shadowColor = "#e5a93c";
-            ctx.shadowBlur = 10;
-            ctx.fill();
-            ctx.shadowBlur = 0;
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        drawVisualizer();
+        function runTextDiff() {
+            const leftStr = document.getElementById('compareLeftInput').value;
+            const rightStr = document.getElementById('compareRightInput').value;
+
+            const leftWords = leftStr.split(/\s+/);
+            const rightWords = rightStr.split(/\s+/);
+            const rightSet = new Set(rightWords);
+            const leftSet = new Set(leftWords);
+
+            let diffCount = 0;
+
+            const leftRendered = leftWords.map(w => {
+                if (!w) return '';
+                if (!rightSet.has(w)) {
+                    diffCount++;
+                    return `<span class="tok-ins">${escapeHtml(w)}</span>`;
+                }
+                return escapeHtml(w);
+            }).join(' ');
+
+            const rightRendered = rightWords.map(w => {
+                if (!w) return '';
+                if (!leftSet.has(w)) {
+                    diffCount++;
+                    return `<span class="tok-del">${escapeHtml(w)}</span>`;
+                }
+                return escapeHtml(w);
+            }).join(' ');
+
+            document.getElementById('compareLeftRender').innerHTML = leftRendered || '<em>Empty baseline</em>';
+            document.getElementById('compareRightRender').innerHTML = rightRendered || '<em>Empty target</em>';
+
+            const statusTag = document.getElementById('compareStatusTag');
+            if (diffCount === 0) {
+                statusTag.textContent = '100% PARITY VERIFIED';
+                statusTag.style.color = '#86efac';
+            } else {
+                statusTag.textContent = `${diffCount} TOKEN MISMATCHES FLAGGED`;
+                statusTag.style.color = '#fca5a5';
+            }
+        }
+        selectCompareSource('auto');
+
+        /* ==========================================================================
+           TOOL 3: ENTERPRISE PAGE HEALTH & ANOMALY CRAWLER
+           ========================================================================== */
+        const crawlRuns = [
+            {
+                uptime: '99.4%', latency: '184 ms', nodes: '42 Nodes', flags: '2 Anomalies',
+                headline: 'Incident Report Ready — 2 Irregularities Logged with Timestamps',
+                subtext: 'Flagged 1 transient 503 asset timeout and 1 delayed clientlib hydration spike for stakeholder escalation.',
+                rows: [
+                    { status: '200 OK', cls: 'tag-ok', node: '/content/global/en/hero-stage-v3', time: '112 ms', note: 'DOM & ARIA structure verified' },
+                    { status: '200 OK', cls: 'tag-ok', node: '/dam/assets/prescribing-guide.pdf', time: '148 ms', note: 'Checksum & MIME header valid' },
+                    { status: '503 ERR', cls: 'tag-err', node: '/api/v2/regional-locator-feed', time: '4,120 ms', note: 'Downtime window logged (03:14 UTC)' },
+                    { status: 'WARN', cls: 'tag-warn', node: '/etc.clientlibs/analytics-bridge.js', time: '940 ms', note: 'Irregular hydration delay (>800ms)' }
+                ]
+            },
+            {
+                uptime: '99.8%', latency: '156 ms', nodes: '44 Nodes', flags: '1 Anomaly',
+                headline: 'Incident Report Ready — 1 Broken Asset Reference Flagged',
+                subtext: 'Detected 1 HTTP 404 image fallback trigger on secondary carousel slide; report queued for Lead Producer.',
+                rows: [
+                    { status: '200 OK', cls: 'tag-ok', node: '/content/global/en/hero-stage-v3', time: '98 ms', note: 'Component rendered cleanly' },
+                    { status: '404 ERR', cls: 'tag-err', node: '/dam/banners/campaign-q4-hero.webp', time: '210 ms', note: 'Missing rendition — fallback active' },
+                    { status: '200 OK', cls: 'tag-ok', node: '/api/v2/regional-locator-feed', time: '162 ms', note: 'Service restored & healthy' },
+                    { status: '200 OK', cls: 'tag-ok', node: '/content/global/en/footer-disclosures', time: '114 ms', note: 'Regulatory ID parity confirmed' }
+                ]
+            }
+        ];
+        let crawlIndex = 0;
+
+        function renderCrawlRows(run) {
+            document.getElementById('teleUptime').textContent = run.uptime;
+            document.getElementById('teleLatency').textContent = run.latency;
+            document.getElementById('teleNodes').textContent = run.nodes;
+            document.getElementById('teleFlags').textContent = run.flags;
+            document.getElementById('incidentHeadline').textContent = run.headline;
+            document.getElementById('incidentSubtext').textContent = run.subtext;
+
+            const container = document.getElementById('crawlRowsContainer');
+            container.innerHTML = run.rows.map(r => `
+                <div class="crawl-item">
+                    <span><span class="tag-pill ${r.cls}">${r.status}</span></span>
+                    <span style="color: var(--text-title); word-break: break-all;">${r.node}</span>
+                    <span style="color: var(--text-muted);">${r.time}</span>
+                    <span style="color: var(--text-body); font-size: 0.76rem;">${r.note}</span>
+                </div>
+            `).join('');
+        }
+
+        function executePageCrawl() {
+            crawlIndex = (crawlIndex + 1) % crawlRuns.length;
+            renderCrawlRows(crawlRuns[crawlIndex]);
+            const target = document.getElementById('crawlerEndpoint').value || 'target endpoint';
+            showToast(`Diagnostic crawl completed for ${target}`);
+        }
+        renderCrawlRows(crawlRuns[0]);
+
+        /* ==========================================================================
+           5. CONTACT FORM (FORMSUBMIT AJAX + MAILTO FALLBACK) & HELPERS
+           ========================================================================== */
+        async function handleContactSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            const statusBox = document.getElementById('inquiryStatusBox');
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const topic = document.getElementById('contactTopic').value;
+            const message = document.getElementById('contactMsg').value.trim();
+            const subject = document.getElementById('hiddenSubject').value;
+
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-dot"></span> Dispatching Inquiry...';
+            statusBox.className = 'inquiry-status-box';
+            statusBox.innerHTML = '';
+
+            const mailtoHref = `mailto:deepak.kondappa@gmail.com?subject=${encodeURIComponent(subject + ' [' + topic + ']')}&body=${encodeURIComponent('Name / Organization: ' + name + '\nReply-To: ' + email + '\nCategory: ' + topic + '\n\n' + message)}`;
+
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/deepak.kondappa@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        topic: topic,
+                        message: message,
+                        _subject: subject,
+                        _captcha: 'false',
+                        _template: 'table'
+                    })
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (response.ok && (result.success === 'true' || result.success === true || response.status === 200)) {
+                    statusBox.className = 'inquiry-status-box success';
+                    statusBox.innerHTML = `<strong>Inquiry Dispatched to deepak.kondappa@gmail.com</strong><br>Thank you, ${escapeHtml(name)}. Your message under <em>${escapeHtml(topic)}</em> has been sent. <span style="color: var(--text-muted); font-size: 0.82rem; display: block; margin-top: 4px;">Note: On the very first submission to a new domain, FormSubmit sends a one-time activation link to deepak.kondappa@gmail.com to confirm inbox delivery.</span>`;
+                    showToast(`Inquiry sent to deepak.kondappa@gmail.com`);
+                    form.reset();
+                } else {
+                    throw new Error('Endpoint returned non-OK response');
+                }
+            } catch (err) {
+                statusBox.className = 'inquiry-status-box fallback';
+                statusBox.innerHTML = `<strong>Direct Mail Client Fallback Ready</strong><br>Your browser or network blocked the background relay. Click below to send your formatted inquiry directly to <strong>deepak.kondappa@gmail.com</strong>:<br><a href="${mailtoHref}" class="btn-cta btn-cta-solid" style="margin-top: 10px;">Open Pre-Filled Email to deepak.kondappa@gmail.com ↗</a>`;
+                showToast('Opened direct email fallback to deepak.kondappa@gmail.com');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+            }
+        }
+
+        function copyPortfolioUrl() {
+            safeCopy('https://deepakkondappa.codes', 'Portfolio URL copied to clipboard.');
+        }
+
+        function safeCopy(text, successMsg) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg);
+            } catch (err) {
+                showToast('Unable to access clipboard automatically.');
+            }
+            document.body.removeChild(ta);
+        }
+
+        let toastTimer = null;
+        function showToast(msg) {
+            const banner = document.getElementById('toast-banner');
+            document.getElementById('toast-text').textContent = msg;
+            banner.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                banner.classList.remove('show');
+            }, 3400);
+        }
+
+        /* ==========================================================================
+           6. MOBILE NAVIGATION DRAWER TOGGLE
+           ========================================================================== */
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            const btn = document.getElementById('mobileMenuBtn');
+            const isOpen = drawer.classList.toggle('open');
+            btn.textContent = isOpen ? '✕' : '☰';
+        }
+
+        function closeMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            const btn = document.getElementById('mobileMenuBtn');
+            drawer.classList.remove('open');
+            btn.textContent = '☰';
+        }
     </script>
 </body>
 </html>
