@@ -3638,26 +3638,261 @@ ${budgetLine}`;
         })();
     </script>
 
-    <!-- Insights feed helpers (ES module; existing scripts above are untouched) -->
+<!-- Resilient Insights Feed Module -->
     <script type="module">
-const FEED_BASE =
-  "https://raw.githubusercontent.com/<your-username>/content-studio/main/site-data/insights";
+const FEED_CANDIDATES = [
+  "./site-data/insights",
+  "https://raw.githubusercontent.com/Deepak-2026hb33016/content-studio/main/site-data/insights",
+  "https://raw.githubusercontent.com/Deepak-2026hb33016/content-studio/master/site-data/insights"
+];
 
-// 1. Load all approved/published companion articles
+let activeFeedBase = FEED_CANDIDATES[1];
+const articlesBySlug = new Map();
+
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({
+  "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+}[c]));
+
+const pick = (obj, keys) => {
+  if (!obj || typeof obj !== "object") return "";
+  for (const source of [obj, obj.frontmatter, obj.meta, obj.attributes]) {
+    if (!source || typeof source !== "object") continue;
+    for (const k of keys) {
+      if (source[k] !== undefined && source[k] !== null && source[k] !== "") {
+        return source[k];
+      }
+    }
+  }
+  return "";
+};
+
+function formatInlineMarkdown(text) {
+  return esc(text)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, '<code style="background:var(--bg-input);padding:2px 6px;border-radius:4px;font-size:0.86em;">$1</code>');
+}
+
+function normalizeEntry(rawEntry, idx = 0) {
+  const e = typeof rawEntry === "string" ? { slug: rawEntry } : rawEntry;
+  const file = String(pick(e, ["file", "filename", "path", "url"]));
+  const slug = String(
+    pick(e, ["slug", "id", "key"]) ||
+    file.split("/").pop().replace(/\.json$/i, "") ||
+    `field-note-${idx + 1}`
+  ).trim();
+
+  const statusRaw = pick(e, ["status", "state", "stage"]);
+  const publishedFlag = pick(e, ["published", "isPublished", "is_published"]);
+  const isAllowedStatus =
+    publishedFlag === true ||
+    !statusRaw ||
+    /^(approved|published|live|ready|final|active)$/i.test(String(statusRaw).trim());
+
+  return {
+    slug,
+    title: pick(e, ["title", "headline", "name"]) || slug,
+    summary: pick(e, ["summary", "excerpt", "description", "teaser", "subtitle"]),
+    tag: pick(e, ["tag", "category", "topic", "kicker"]),
+    date: pick(e, ["date", "publishedAt", "published_at", "updatedAt", "createdAt"]),
+    isAllowedStatus,
+    raw: e
+  };
+}
+
+function normalizeList(raw) {
+  const arr = Array.isArray(raw)
+    ? raw
+    : (raw && (raw.items || raw.articles || raw.insights || raw.posts || raw.data)) || [];
+  return arr.map((item, i) => normalizeEntry(item, i)).filter((item) => item.slug && item.isAllowedStatus);
+}
+
+function bodyToHtml(article) {
+  const para = (t) => `<p>${formatInlineMarkdown(t).replace(/\n/g, "<br>")}</p>`;
+  const head = (t) => `<h4 style="color: var(--text-title); font-size: 1.05rem; margin-top: 8px;">${formatInlineMarkdown(t)}</h4>`;
+
+  const fromText = (str) => String(str || "").split(/\n{2,}/).map((blk) => {
+    const trimmed = blk.trim();
+    if (!trimmed) return "";
+    const hMatch = trimmed.match(/^#{1,6}\s+(.*)$/);
+    if (hMatch) return head(hMatch[1]);
+    const lines = trimmed.split("\n");
+    if (lines.every((l) => /^[-*•]\s+/.test(l.trim()))) {
+      return `<ul style="padding-left:20px;display:flex;flex-direction:column;gap:6px;">${
+        lines.map((l) => `<li>${formatInlineMarkdown(l.trim().replace(/^[-*•]\s+/, ""))}</li>`).join("")
+      }</ul>`;
+    }
+    return para(trimmed);
+  }).join("");
+
+  const blocks = pick(article, ["paragraphs", "sections", "blocks", "body", "content", "markdown", "text"]);
+  if (Array.isArray(blocks)) {
+    return blocks.map((blk) => {
+      if (typeof blk === "string") return para(blk);
+      if (!blk || typeof blk !== "object") return "";
+      const type = String(blk.type || "").toLowerCase();
+      if (type === "list" && Array.isArray(blk.items)) {
+        return `<ul style="padding-left:20px;display:flex;flex-direction:column;gap:6px;">${
+          blk.items.map((li) => `<li>${formatInlineMarkdown(li)}</li>`).join("")
+        }</ul>`;
+      }
+      const h = pick(blk, ["heading", "title", "subtitle"]);
+      const inner = pick(blk, ["paragraphs", "body", "text", "content", "value"]);
+      return (h ? head(h) : "") + (Array.isArray(inner) ? inner.map(para).join("") : fromText(inner));
+    }).join("");
+  }
+  return fromText(blocks);
+}
+
 export async function getInsightsList() {
-  const res = await fetch(`${FEED_BASE}/index.json`, { cache: "no-store" });
-  if (!res.ok) return [];
-  return res.json();
+  const bust = `t=${Date.now()}`;
+  let lastError = "Unreachable";
+
+  for (const base of FEED_CANDIDATES) {
+    try {
+      const res = await fetch(`${base}/index.json?${bust}`, { cache: "no-store" });
+      if (res.ok) {
+        activeFeedBase = base;
+        const json = await res.json();
+        return { ok: true, data: json, base };
+      }
+      lastError = `HTTP ${res.status} on ${base}/index.json`;
+    } catch (err) {
+      lastError = err.message || "Network/CORS error";
+    }
+  }
+  return { ok: false, data: [], error: lastError };
 }
 
-// 2. Load a single deep-dive article by slug (e.g., "cms-handoff-lag")
 export async function getInsightBySlug(slug) {
-  const res = await fetch(`${FEED_BASE}/${encodeURIComponent(slug)}.json`, {
-    cache: "no-store",
-  });
-  if (!res.ok) return null;
-  return res.json();
+  const bust = `t=${Date.now()}`;
+  try {
+    const res = await fetch(`${activeFeedBase}/${encodeURIComponent(slug)}.json?${bust}`, { cache: "no-store" });
+    if (res.ok) return await res.json();
+  } catch (err) {
+    console.warn("[insights] slug fetch fallback to index entry:", err);
+  }
+  return articlesBySlug.get(slug) || null;
 }
+
+function updateSyncBadge(text, isLive = false) {
+  const header = document.querySelector("#insights .section-header > div:first-child");
+  if (!header) return;
+  let bar = document.getElementById("insightsSyncBar");
+  if (!bar) {
+    bar = document.createElement("div");
+    bar.id = "insightsSyncBar";
+    bar.style.cssText = "display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;";
+    header.appendChild(bar);
+  }
+  bar.innerHTML = `
+    <span class="pill-badge ${isLive ? "pill-sage" : "pill-accent"}" style="font-size:0.68rem;">${esc(text)}</span>
+    <button type="button" class="btn btn-sm" id="btnManualSyncInsights" style="min-height:32px;padding:4px 12px;font-size:0.7rem;">↻ Sync Feed</button>
+  `;
+  document.getElementById("btnManualSyncInsights")?.addEventListener("click", () => renderInsights(true));
+}
+
+const readerModal = document.getElementById("essayModal");
+const readerTag = document.getElementById("essayModalTag");
+const readerTitle = document.getElementById("essayModalTitle");
+const readerBody = document.getElementById("essayModalBody");
+
+async function openInsight(slug, updateHash = true) {
+  if (!readerModal) return;
+  const cached = articlesBySlug.get(slug);
+  readerTag.textContent = String(pick(cached, ["tag", "category", "topic"]) || "THE FRONTLINE VOICE").toUpperCase();
+  readerTitle.textContent = pick(cached, ["title", "headline", "name"]) || "Loading…";
+  readerBody.innerHTML = "<p style='color:var(--text-muted);'>Fetching field note…</p>";
+
+  if (!readerModal.open) {
+    if (typeof readerModal.showModal === "function") readerModal.showModal();
+    else readerModal.setAttribute("open", "");
+  }
+
+  const fetched = await getInsightBySlug(slug);
+  const article = fetched && typeof fetched === "object" ? { ...(cached || {}), ...fetched } : cached;
+
+  if (!article) {
+    readerTitle.textContent = "Article unavailable";
+    readerBody.innerHTML = "<p>This field note could not be loaded right now. Please try again shortly.</p>";
+    return;
+  }
+
+  const tag = pick(article, ["tag", "category", "topic", "kicker"]);
+  const date = pick(article, ["date", "publishedAt", "published_at"]);
+  const summary = pick(article, ["summary", "excerpt", "description"]);
+  const htmlBody = bodyToHtml(article) || (summary ? `<p>${formatInlineMarkdown(summary)}</p>` : "<p>No body content available yet.</p>");
+
+  readerTag.textContent = String(tag || "THE FRONTLINE VOICE").toUpperCase();
+  readerTitle.textContent = pick(article, ["title", "headline", "name"]) || slug;
+  readerBody.innerHTML =
+    (date ? `<p style="color: var(--text-muted); font-size: 0.8rem;">Published: ${esc(date)}</p>` : "") +
+    htmlBody +
+    `<button type="button" class="btn btn-sm" id="copyInsightLink" style="align-self: flex-start; margin-top: 8px;">Copy link to this note</button>`;
+
+  if (updateHash) history.replaceState(null, "", "#read=" + encodeURIComponent(slug));
+}
+
+async function renderInsights(manual = false) {
+  const grid = document.querySelector("#insights .voice-grid");
+  if (!grid) return;
+  if (manual) updateSyncBadge("Syncing content-studio feed…", false);
+
+  const result = await getInsightsList();
+  if (!result.ok) {
+    console.warn("[insights] Sync failed:", result.error);
+    updateSyncBadge(`Built-in Archive (${result.error})`, false);
+    return;
+  }
+
+  const list = normalizeList(result.data);
+  if (!list.length) {
+    updateSyncBadge("Feed connected (0 published entries in index.json)", false);
+    return;
+  }
+
+  articlesBySlug.clear();
+  list.forEach((item) => articlesBySlug.set(item.slug, item.raw));
+  list.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+
+  grid.innerHTML = list.map((e, i) => `
+    <article class="voice-card">
+      <div>
+        <span class="pill-badge pill-sage">${esc(e.tag || "Field Note " + String(i + 1).padStart(2, "0"))}</span>
+        <h3>${esc(e.title)}</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">${esc(e.summary)}</p>
+      </div>
+      <button type="button" class="btn btn-sm" data-slug="${esc(e.slug)}">Read Field Note →</button>
+    </article>`).join("");
+
+  updateSyncBadge(`Live Feed Synced (${list.length} ${list.length === 1 ? "Note" : "Notes"})`, true);
+}
+
+document.addEventListener("click", (ev) => {
+  const openBtn = ev.target.closest("[data-slug]");
+  if (openBtn) {
+    openInsight(openBtn.dataset.slug);
+    return;
+  }
+  const copyBtn = ev.target.closest("#copyInsightLink");
+  if (copyBtn) {
+    navigator.clipboard?.writeText(location.href).catch(() => {});
+    copyBtn.textContent = "Link copied";
+  }
+});
+
+if (readerModal) {
+  readerModal.addEventListener("close", () => {
+    if (location.hash.startsWith("#read=")) history.replaceState(null, "", "#insights");
+  });
+}
+
+function openFromHash() {
+  const m = location.hash.match(/^#read=(.+)$/);
+  if (m) openInsight(decodeURIComponent(m[1]), false);
+}
+
+window.addEventListener("hashchange", openFromHash);
+renderInsights().then(openFromHash);
     </script>
 </body>
 </html>
