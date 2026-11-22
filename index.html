@@ -3637,5 +3637,27 @@ ${budgetLine}`;
             });
         })();
     </script>
+
+    <!-- Insights feed helpers (ES module; existing scripts above are untouched) -->
+    <script type="module">
+const FEED_BASE =
+  "https://raw.githubusercontent.com/<your-username>/content-studio/main/site-data/insights";
+
+// 1. Load all approved/published companion articles
+export async function getInsightsList() {
+  const res = await fetch(`${FEED_BASE}/index.json`, { cache: "no-store" });
+  if (!res.ok) return [];
+  return res.json();
+}
+
+// 2. Load a single deep-dive article by slug (e.g., "cms-handoff-lag")
+export async function getInsightBySlug(slug) {
+  const res = await fetch(`${FEED_BASE}/${encodeURIComponent(slug)}.json`, {
+    cache: "no-store",
+  });
+  if (!res.ok) return null;
+  return res.json();
+}
+    </script>
 </body>
 </html>
