@@ -1851,6 +1851,7 @@
             <div class="hero-cta-row">
                 <a href="#sandbox" class="btn btn-solid">Explore Live Tool Sandbox ↓</a>
                 <a href="#architecture" class="btn">Inspect Architecture →</a>
+                <button type="button" class="btn btn-sm" id="btnOpenFitBot">Check Role Fit (Voice AI)</button>
                 <a href="https://www.linkedin.com/in/deepak-kondappa-a2825717b" target="_blank" rel="noopener noreferrer" class="nav-link">LinkedIn ↗</a>
                 <a href="https://github.com/Deepak-2026hb33016" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub ↗</a>
             </div>
@@ -2473,6 +2474,64 @@
         </div>
         <input type="search" class="cmd-input" id="cmdSearchInput" placeholder="Type a command (e.g., Estimator, Compare, Theme, LinkedIn)..." aria-label="Filter Commands">
         <div class="cmd-list" id="cmdList"></div>
+    </dialog>
+
+    <!-- Candidate Fit Voice & Text Evaluator Modal -->
+    <dialog class="modal-dialog" id="fitBotModal" aria-labelledby="fitBotModalTitle">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px;">
+            <div>
+                <span class="section-tag" style="margin-bottom: 2px;">CANDIDATE FIT EVALUATOR • VOICE + TEXT</span>
+                <h3 id="fitBotModalTitle" style="font-size: clamp(1.15rem, 2.4vw, 1.4rem); font-weight: 800; color: var(--text-title);">Check If Deepak Fits Your Role</h3>
+            </div>
+            <button type="button" class="icon-btn" id="closeFitBotModal" aria-label="Close Candidate Fit Evaluator">✕</button>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
+            Speak your role requirements (experience level, CMS/MarTech stack, operations scope) or paste a job description below.
+        </p>
+
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+            <button type="button" class="btn btn-sm btn-solid" id="btnMicToggle" aria-pressed="false">🎙️ Start Speaking</button>
+            <button type="button" class="btn btn-sm" id="btnStopSpeech">🔇 Stop Voice Reply</button>
+            <span class="mono" id="micStatusLabel" style="font-size: 0.76rem; color: var(--text-muted); align-self: center;">Ready (Voice or Text)</span>
+        </div>
+
+        <div class="form-field" style="margin-bottom: 12px;">
+            <label for="fitRequirementInput">Role Requirements or Job Description</label>
+            <textarea id="fitRequirementInput" class="form-control" rows="4" placeholder="Example: Looking for someone with AEM and multi-CMS authoring experience, cross-process project management, stakeholder coordination across global markets, and workflow automation..."></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px;">
+            <button type="button" class="btn btn-solid btn-sm" id="btnEvaluateFit">Calculate Match Score</button>
+            <button type="button" class="btn btn-sm" id="btnSampleRole">Load Sample JD</button>
+        </div>
+
+        <div id="fitResultBox" hidden style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 12px;">
+                <div>
+                    <div class="section-tag" style="margin-bottom: 2px;">PROFILE ALIGNMENT</div>
+                    <div id="fitVerdictText" style="font-size: 1.05rem; font-weight: 800; color: var(--text-title);">—</div>
+                    <p id="fitSpokenSummary" style="font-size: 0.9rem; color: var(--text-body); margin-top: 4px;"></p>
+                </div>
+                <div class="conic-ring" id="fitScoreRing" style="--pct: 0; --ring-color: var(--accent);">
+                    <div class="conic-ring-inner">
+                        <span class="ring-pct" id="fitScorePct">0%</span>
+                        <span class="ring-sub">Match</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; margin-top: 12px;">
+                <div style="background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px;">
+                    <strong style="display: block; font-size: 0.8rem; color: var(--ok-text); margin-bottom: 6px;">Matched Strengths</strong>
+                    <ul id="fitMatchedList" style="margin: 0; padding-left: 16px; font-size: 0.84rem; color: var(--text-body); display: flex; flex-direction: column; gap: 4px;"></ul>
+                </div>
+                <div style="background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px;">
+                    <strong style="display: block; font-size: 0.8rem; color: var(--accent); margin-bottom: 6px;">Gaps / Clarifications</strong>
+                    <ul id="fitGapsList" style="margin: 0; padding-left: 16px; font-size: 0.84rem; color: var(--text-body); display: flex; flex-direction: column; gap: 4px;"></ul>
+                </div>
+            </div>
+        </div>
     </dialog>
 
     <!-- Aria-Live Toast Notification -->
@@ -3635,6 +3694,230 @@ ${budgetLine}`;
             document.getElementById('btnPrintResume').addEventListener('click', () => {
                 window.print();
             });
+
+            /* ======================================================================
+               15. CANDIDATE FIT VOICE + TEXT BOT (CLOUDFLARE WORKER + WEB SPEECH)
+               ====================================================================== */
+            const FIT_WORKER_URL = 'https://deepak-fit-bot.2026hb33016.workers.dev';
+
+            const DEEPAK_PROFILE = {
+                name: "Deepak Kondappa",
+                location: "Bengaluru, India",
+                currentFocus: "Senior Web Producer, Web Designer, Content Author & MarTech / Project Operations",
+                education: [
+                    "MBA in Digital Transformation — BITS Pilani (WILP, in progress)",
+                    "B.E. in Mechanical Engineering — Visvesvaraya Technological University"
+                ],
+                coreSkills: [
+                    "Adobe Experience Manager (AEM) & multi-CMS web development and content authoring",
+                    "Cross-process project management, resource management & allocation, and SOW handling",
+                    "Overflow partner coordination, stakeholder management, and international affiliate escalations across 16-18 active countries",
+                    "Quality control (QC), component testing, market/design alignment, and On24 website integrations",
+                    "Building internal automation and AI tools to improve team process efficiency",
+                    "Frontend/web diagnostics and browser-native productivity utilities"
+                ],
+                notableAchievements: [
+                    "Led content authoring across 16-18 active international markets (including TWA and TWS projects) with high affiliate satisfaction",
+                    "Took over and launched a critical international web cluster ('girl cluster')",
+                    "Built internal automation and compliance/QC tooling to cut manual effort"
+                ]
+            };
+
+            const fitBotModal = document.getElementById('fitBotModal');
+            const btnOpenFitBot = document.getElementById('btnOpenFitBot');
+            const closeFitBotModal = document.getElementById('closeFitBotModal');
+            const btnMicToggle = document.getElementById('btnMicToggle');
+            const btnStopSpeech = document.getElementById('btnStopSpeech');
+            const micStatusLabel = document.getElementById('micStatusLabel');
+            const fitRequirementInput = document.getElementById('fitRequirementInput');
+            const btnEvaluateFit = document.getElementById('btnEvaluateFit');
+            const btnSampleRole = document.getElementById('btnSampleRole');
+            const fitResultBox = document.getElementById('fitResultBox');
+
+            const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+            let recognition = null;
+            let isRecording = false;
+
+            function speakSummary(text) {
+                if (!('speechSynthesis' in window) || !text) return;
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.rate = 1.02;
+                utter.pitch = 1.0;
+                window.speechSynthesis.speak(utter);
+            }
+
+            function stopAllVoiceActivity() {
+                if (recognition && isRecording) {
+                    try { recognition.stop(); } catch (e) {}
+                }
+                isRecording = false;
+                if (btnMicToggle) {
+                    btnMicToggle.setAttribute('aria-pressed', 'false');
+                    btnMicToggle.textContent = '🎙️ Start Speaking';
+                }
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                }
+            }
+
+            function openFitBotModal() {
+                if (!fitBotModal) return;
+                if (typeof fitBotModal.showModal === 'function') {
+                    fitBotModal.showModal();
+                } else {
+                    fitBotModal.setAttribute('open', '');
+                }
+            }
+
+            if (btnOpenFitBot) btnOpenFitBot.addEventListener('click', openFitBotModal);
+            if (closeFitBotModal) {
+                closeFitBotModal.addEventListener('click', () => {
+                    stopAllVoiceActivity();
+                    fitBotModal.close();
+                });
+            }
+            if (fitBotModal) {
+                fitBotModal.addEventListener('click', (e) => {
+                    if (e.target === fitBotModal) {
+                        stopAllVoiceActivity();
+                        fitBotModal.close();
+                    }
+                });
+            }
+            if (btnStopSpeech) {
+                btnStopSpeech.addEventListener('click', () => {
+                    stopAllVoiceActivity();
+                    if (micStatusLabel) micStatusLabel.textContent = 'Voice playback stopped';
+                });
+            }
+
+            if (SpeechRecognitionAPI && btnMicToggle) {
+                recognition = new SpeechRecognitionAPI();
+                recognition.lang = 'en-IN';
+                recognition.interimResults = true;
+                recognition.continuous = false;
+
+                recognition.onstart = () => {
+                    isRecording = true;
+                    btnMicToggle.setAttribute('aria-pressed', 'true');
+                    btnMicToggle.textContent = '⏹️ Listening... Tap to Stop';
+                    if (micStatusLabel) micStatusLabel.textContent = 'Listening to your microphone...';
+                };
+
+                recognition.onresult = (event) => {
+                    let transcript = '';
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        transcript += event.results[i][0].transcript;
+                    }
+                    fitRequirementInput.value = transcript;
+                    if (micStatusLabel) micStatusLabel.textContent = 'Captured voice transcript';
+                };
+
+                recognition.onerror = (event) => {
+                    isRecording = false;
+                    btnMicToggle.setAttribute('aria-pressed', 'false');
+                    btnMicToggle.textContent = '🎙️ Start Speaking';
+                    if (micStatusLabel) micStatusLabel.textContent = `Mic issue (${event.error}) — type or paste JD below`;
+                };
+
+                recognition.onend = () => {
+                    isRecording = false;
+                    btnMicToggle.setAttribute('aria-pressed', 'false');
+                    btnMicToggle.textContent = '🎙️ Start Speaking';
+                    if (fitRequirementInput.value.trim().length > 4) {
+                        evaluateCandidateFit();
+                    }
+                };
+
+                btnMicToggle.addEventListener('click', () => {
+                    if (isRecording) {
+                        recognition.stop();
+                    } else {
+                        try {
+                            recognition.start();
+                        } catch (e) {
+                            if (micStatusLabel) micStatusLabel.textContent = 'Unable to start mic — type requirements below';
+                        }
+                    }
+                });
+            } else if (btnMicToggle) {
+                btnMicToggle.disabled = true;
+                btnMicToggle.textContent = '🎙️ Voice Not Supported Here';
+                if (micStatusLabel) micStatusLabel.textContent = 'Browser SpeechRecognition unavailable — type or paste JD below';
+            }
+
+            if (btnSampleRole) {
+                btnSampleRole.addEventListener('click', () => {
+                    fitRequirementInput.value = "We need a Senior Web Producer / Digital Operations Lead experienced with AEM and multiple CMS platforms, component testing, cross-process project and resource management, SOWs, stakeholder coordination across 15+ markets, and workflow/AI automation.";
+                    evaluateCandidateFit();
+                });
+            }
+
+            function renderList(ulEl, items, fallback) {
+                if (!ulEl) return;
+                const list = items && items.length ? items : [fallback];
+                ulEl.innerHTML = list.map(item => `<li>${esc(String(item))}</li>`).join('');
+            }
+
+            async function evaluateCandidateFit() {
+                const requirement = (fitRequirementInput?.value || '').trim();
+                if (!requirement) {
+                    showToast('Please speak or type your role requirements first.');
+                    return;
+                }
+
+                if (FIT_WORKER_URL.includes('YOUR_SUBDOMAIN')) {
+                    showToast('Set your deployed Cloudflare Worker URL in FIT_WORKER_URL first.');
+                    return;
+                }
+
+                const origLabel = btnEvaluateFit.textContent;
+                btnEvaluateFit.disabled = true;
+                btnEvaluateFit.textContent = 'Evaluating...';
+                if (micStatusLabel) micStatusLabel.textContent = 'Analyzing fit against Deepak’s profile...';
+
+                try {
+                    const res = await fetch(FIT_WORKER_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ requirement, profile: DEEPAK_PROFILE })
+                    });
+                    if (!res.ok) throw new Error('Worker request failed');
+                    const result = await res.json();
+
+                    const score = Math.max(0, Math.min(100, Number(result.matchScore) || 0));
+                    const ring = document.getElementById('fitScoreRing');
+                    const ringColor = score >= 75 ? 'var(--sage)' : score >= 50 ? 'var(--accent)' : 'var(--danger)';
+                    ring.style.setProperty('--pct', String(score));
+                    ring.style.setProperty('--ring-color', ringColor);
+                    document.getElementById('fitScorePct').textContent = `${score}%`;
+
+                    document.getElementById('fitVerdictText').textContent = `${score}% Match — ${result.verdict || 'Assessment'}`;
+                    document.getElementById('fitSpokenSummary').textContent = result.spokenSummary || '';
+                    renderList(document.getElementById('fitMatchedList'), result.matchedHighlights, 'Core web production and operational alignment.');
+                    renderList(document.getElementById('fitGapsList'), result.gapsOrConsiderations, 'No major blockers flagged from stated requirements.');
+
+                    fitResultBox.hidden = false;
+                    if (micStatusLabel) micStatusLabel.textContent = 'Fit evaluation complete';
+                    speakSummary(`${score} percent match. ${result.spokenSummary || ''}`);
+                } catch (err) {
+                    showToast('Could not reach the Fit Bot service right now.');
+                    if (micStatusLabel) micStatusLabel.textContent = 'Error contacting Worker endpoint';
+                } finally {
+                    btnEvaluateFit.disabled = false;
+                    btnEvaluateFit.textContent = origLabel;
+                }
+            }
+
+            if (btnEvaluateFit) btnEvaluateFit.addEventListener('click', evaluateCandidateFit);
+
+            commands.push({
+                label: 'Open Candidate Fit Voice & Text Bot',
+                key: 'AI Fit',
+                action: () => openFitBotModal()
+            });
+            renderCommands('');
         })();
     </script>
 
