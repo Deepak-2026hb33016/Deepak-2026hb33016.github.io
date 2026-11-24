@@ -1728,7 +1728,7 @@
         /* ==========================================================================
            12. RESPONSIVE BREAKPOINTS & CLEAN PRINT STYLES
            ========================================================================== */
-        @media (max-width: 860px) {
+        @media (max-width: 1100px) {
             .nav-links {
                 display: none;
             }
@@ -1774,6 +1774,43 @@
                 padding: 20px 0 !important;
                 border-bottom: 1px solid #cbd5e1 !important;
             }
+        }
+
+        /* ==========================================================================
+           13. FINAL HARDENING PASS (THEME, PRINT, TOUCH, A11Y)
+           ========================================================================== */
+        [data-theme="dark"] { color-scheme: dark; }
+        [data-theme="light"] {
+            color-scheme: light;
+            --accent: #8f5c0a;
+            --accent-hover: #6f4608;
+        }
+        main:focus { outline: none; }
+        input[type="range"] { accent-color: var(--accent); }
+        input[type="range"]::-moz-range-thumb {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: var(--accent); border: 2px solid var(--bg-page);
+        }
+        input[type="range"]::-moz-range-track { height: 6px; background: var(--border-strong); border-radius: 4px; }
+        @media (pointer: coarse) {
+            input[type="text"], input[type="email"], input[type="number"],
+            input[type="search"], select, textarea { font-size: 16px !important; }
+        }
+        body:has(dialog[open]) { overflow: hidden; }
+        .accordion-inner { visibility: hidden; transition: visibility 0s linear 0.35s; }
+        .kinetic-card.expanded .accordion-inner { visibility: visible; transition-delay: 0s; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition-duration: 0.01ms !important; }
+        }
+        @media print {
+            :root, [data-theme] {
+                --bg-page: #fff; --bg-card: #fff; --bg-panel: #fff; --bg-input: #fff; --bg-elevated: #fff;
+                --text-title: #000; --text-body: #111; --text-muted: #444; --accent: #8f5c0a;
+                --sage-text: #2f4a38; --border-subtle: #ccc; --border-strong: #999;
+            }
+            .kinetic-card, .timeline-item, .traj-card, .voice-card { break-inside: avoid; box-shadow: none !important; }
+            .accordion-inner { visibility: visible !important; }
         }
     </style>
 </head>
@@ -1826,7 +1863,7 @@
         <a href="#contact" style="color: var(--accent); border-bottom: none;">06 // Direct Inquiry ↗</a>
     </nav>
 
-    <main id="mainContent" class="wrapper">
+    <main id="mainContent" class="wrapper" tabindex="-1">
         <!-- HERO SECTION -->
         <section id="top" class="hero-section">
             <div class="hero-top-meta">
@@ -2145,12 +2182,12 @@
 
                         <div class="file-upload-strip">
                             <div class="upload-slot">
-                                <label for="fileLeft" style="font-weight: 700; color: var(--text-title);">Baseline File (.txt, .md, .html, .json, .csv, .docx, .pdf):</label>
-                                <input type="file" id="fileLeft" accept=".txt,.md,.csv,.html,.xml,.json,.docx,.pdf">
+                                <label for="fileLeft" style="font-weight: 700; color: var(--text-title);">Baseline File (.txt, .md, .html, .json, .csv):</label>
+                                <input type="file" id="fileLeft" accept=".txt,.md,.csv,.html,.xml,.json">
                             </div>
                             <div class="upload-slot">
-                                <label for="fileRight" style="font-weight: 700; color: var(--text-title);">Target File (.txt, .md, .html, .json, .csv, .docx, .pdf):</label>
-                                <input type="file" id="fileRight" accept=".txt,.md,.csv,.html,.xml,.json,.docx,.pdf">
+                                <label for="fileRight" style="font-weight: 700; color: var(--text-title);">Target File (.txt, .md, .html, .json, .csv):</label>
+                                <input type="file" id="fileRight" accept=".txt,.md,.csv,.html,.xml,.json">
                             </div>
                         </div>
 
@@ -2166,7 +2203,7 @@
                                     <span id="leftFileMeta">Fictional Sample</span>
                                 </div>
                                 <textarea id="txtBaseline" class="diff-textarea"></textarea>
-                                <div class="diff-output" id="renderBaseline" aria-live="polite"></div>
+                                <div class="diff-output" id="renderBaseline"></div>
                             </div>
 
                             <div class="diff-pane" id="paneRight">
@@ -2175,7 +2212,7 @@
                                     <span id="rightFileMeta">Staging DOM</span>
                                 </div>
                                 <textarea id="txtTarget" class="diff-textarea"></textarea>
-                                <div class="diff-output" id="renderTarget" aria-live="polite"></div>
+                                <div class="diff-output" id="renderTarget"></div>
                             </div>
                         </div>
                     </div>
@@ -2413,12 +2450,12 @@
 
                 <div class="form-field">
                     <label for="contactName">Your Name / Organization</label>
-                    <input type="text" id="contactName" name="name" class="form-control" placeholder="e.g., Ananya Sharma — Digital Operations Lead" required>
+                    <input type="text" id="contactName" name="name" autocomplete="name" class="form-control" placeholder="e.g., Ananya Sharma — Digital Operations Lead" required>
                 </div>
 
                 <div class="form-field">
                     <label for="contactEmail">Work or Personal Email</label>
-                    <input type="email" id="contactEmail" name="email" class="form-control" placeholder="name@organization.com" required>
+                    <input type="email" id="contactEmail" name="email" autocomplete="email" inputmode="email" class="form-control" placeholder="name@organization.com" required>
                 </div>
 
                 <div class="form-field">
@@ -2489,6 +2526,9 @@
         <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
             Speak your role requirements (experience level, CMS/MarTech stack, operations scope) or paste a job description below.
         </p>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px;">
+            Privacy note: your text (and, if you use the mic, your browser&rsquo;s speech service) is sent to an AI service to compute the score. Please don&rsquo;t include confidential information.
+        </p>
 
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
             <button type="button" class="btn btn-sm btn-solid" id="btnMicToggle" aria-pressed="false">🎙️ Start Speaking</button>
@@ -2498,7 +2538,7 @@
 
         <div class="form-field" style="margin-bottom: 12px;">
             <label for="fitRequirementInput">Role Requirements or Job Description</label>
-            <textarea id="fitRequirementInput" class="form-control" rows="4" placeholder="Example: Looking for someone with AEM and multi-CMS authoring experience, cross-process project management, stakeholder coordination across global markets, and workflow automation..."></textarea>
+            <textarea id="fitRequirementInput" class="form-control" rows="4" maxlength="4000" placeholder="Example: Looking for someone with AEM and multi-CMS authoring experience, cross-process project management, stakeholder coordination across global markets, and workflow automation..."></textarea>
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px;">
@@ -2609,18 +2649,18 @@
             const themeIcon = document.getElementById('themeIcon');
             const metaTheme = document.getElementById('metaThemeColor');
 
-            function applyTheme(theme) {
+            function applyTheme(theme, persist) {
                 document.documentElement.setAttribute('data-theme', theme);
                 themeIcon.textContent = theme === 'light' ? '☾' : '☀';
                 if (metaTheme) metaTheme.setAttribute('content', theme === 'light' ? '#f5f6f8' : '#07080b');
-                try { localStorage.setItem('dk_theme', theme); } catch (e) {}
+                if (persist) { try { localStorage.setItem('dk_theme', theme); } catch (e) {} }
             }
 
             applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
 
             themeToggleBtn.addEventListener('click', () => {
                 const current = document.documentElement.getAttribute('data-theme');
-                applyTheme(current === 'light' ? 'dark' : 'light');
+                applyTheme(current === 'light' ? 'dark' : 'light', true);
             });
 
             /* ======================================================================
@@ -2876,8 +2916,8 @@ ${budgetLine}`;
                 if (hash && hash.startsWith('#est=')) {
                     try {
                         const params = new URLSearchParams(hash.slice(5));
-                        if (params.has('p')) inpPages.value = params.get('p');
-                        if (params.has('r')) inpRevisions.value = params.get('r');
+                        if (params.has('p')) inpPages.value = Math.min(30, Math.max(1, parseInt(params.get('p'), 10) || 8));
+                        if (params.has('r')) inpRevisions.value = Math.min(5, Math.max(1, parseInt(params.get('r'), 10) || 2));
                         if (params.has('b')) {
                             const mask = params.get('b');
                             checklistBoxes.forEach((cb, i) => { cb.checked = mask[i] === '1'; });
@@ -2943,7 +2983,7 @@ ${budgetLine}`;
             };
 
             function tokenizeText(str) {
-                return str.match(/[\w'-]+|[^\w\s]+/g) || [];
+                return str.normalize('NFC').match(/\d+(?:[.,]\d+)+%?|\d+%|[\p{L}\p{M}\p{N}'’-]+|[^\p{L}\p{M}\p{N}\s]/gu) || [];
             }
 
             function computeLcsDiff(aTokens, bTokens) {
@@ -2980,6 +3020,23 @@ ${budgetLine}`;
                 return ops;
             }
 
+            function isBackdropClick(e, dlg) {
+                if (e.target !== dlg) return false;
+                const r = dlg.getBoundingClientRect();
+                return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+            }
+
+            function diffSafe(a, b) {
+                let s = 0;
+                while (s < a.length && s < b.length && a[s] === b[s]) s++;
+                let ea = a.length, eb = b.length;
+                while (ea > s && eb > s && a[ea - 1] === b[eb - 1]) { ea--; eb--; }
+                const A = a.slice(s, ea), B = b.slice(s, eb);
+                if (A.length * B.length > 6e6) return null;
+                const eq = (v) => ({ type: 'eq', val: v });
+                return [...a.slice(0, s).map(eq), ...computeLcsDiff(A, B), ...a.slice(ea).map(eq)];
+            }
+
             function esc(s) {
                 return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
             }
@@ -2987,7 +3044,13 @@ ${budgetLine}`;
             function renderComplianceDiff() {
                 const aToks = tokenizeText(txtBaseline.value);
                 const bToks = tokenizeText(txtTarget.value);
-                const ops = computeLcsDiff(aToks, bToks);
+                const ops = diffSafe(aToks, bToks);
+                if (!ops) {
+                    renderBaseline.innerHTML = '<span style="color: var(--danger-text);">Input too large for in-browser diff. Compare one section at a time.</span>';
+                    renderTarget.innerHTML = '';
+                    document.getElementById('diffSummaryBadge').textContent = 'Input too large';
+                    return [];
+                }
 
                 let delCount = 0;
                 let insCount = 0;
@@ -3000,7 +3063,7 @@ ${budgetLine}`;
 
                 if (currentDiffMode === 'side') {
                     diffWorkspace.classList.remove('single-col');
-                    paneRight.style.display = 'flex';
+                    renderTarget.hidden = false;
                     renderBaseline.innerHTML = ops
                         .filter(op => op.type !== 'ins')
                         .map(op => op.type === 'del' ? `<del class="diff-del">${esc(op.val)}</del>` : esc(op.val))
@@ -3011,7 +3074,7 @@ ${budgetLine}`;
                         .join(' ');
                 } else if (currentDiffMode === 'inline') {
                     diffWorkspace.classList.add('single-col');
-                    paneRight.style.display = 'none';
+                    renderTarget.hidden = true;
                     renderBaseline.innerHTML = ops.map(op => {
                         if (op.type === 'del') return `<del class="diff-del">${esc(op.val)}</del>`;
                         if (op.type === 'ins') return `<ins class="diff-ins">${esc(op.val)}</ins>`;
@@ -3019,7 +3082,7 @@ ${budgetLine}`;
                     }).join(' ');
                 } else {
                     diffWorkspace.classList.add('single-col');
-                    paneRight.style.display = 'none';
+                    renderTarget.hidden = true;
                     const mismatches = ops.filter(op => op.type !== 'eq');
                     renderBaseline.innerHTML = mismatches.length === 0
                         ? '<span style="color: var(--ok-text);">100% Token Parity — Zero Discrepancies Found.</span>'
@@ -3035,8 +3098,9 @@ ${budgetLine}`;
             txtTarget.value = fictionalSamples.clinical.right;
             renderComplianceDiff();
 
-            txtBaseline.addEventListener('input', renderComplianceDiff);
-            txtTarget.addEventListener('input', renderComplianceDiff);
+            const debouncedDiff = (() => { let t; return () => { clearTimeout(t); t = setTimeout(renderComplianceDiff, 150); }; })();
+            txtBaseline.addEventListener('input', debouncedDiff);
+            txtTarget.addEventListener('input', debouncedDiff);
 
             document.querySelectorAll('[data-src-mode]').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -3080,6 +3144,7 @@ ${budgetLine}`;
                 document.getElementById(inputId).addEventListener('change', (e) => {
                     const file = e.target.files && e.target.files[0];
                     if (!file) return;
+                    if (/\.(pdf|docx)$/i.test(file.name)) { showToast('PDF/Word extraction is not available offline yet. Paste the text instead.'); e.target.value = ''; return; }
                     document.getElementById(metaId).textContent = `${file.name} (Local)`;
                     const reader = new FileReader();
 
@@ -3101,7 +3166,9 @@ ${budgetLine}`;
                         reader.readAsArrayBuffer(file);
                     } else {
                         reader.onload = () => {
-                            const text = String(reader.result || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+                            const raw = String(reader.result || '');
+                            const plain = /\.html?$/i.test(file.name) ? (new DOMParser().parseFromString(raw, 'text/html').body.textContent || '') : raw;
+                            const text = plain.replace(/\s+/g, ' ').trim();
                             targetTextarea.value = text;
                             renderComplianceDiff();
                             showToast(`Loaded ${file.name} locally (0 network calls).`);
@@ -3137,8 +3204,8 @@ ${budgetLine}`;
                 const rowsEl = document.getElementById('crawlAuditRows');
                 if (crawlMode === 'live') {
                     const navEntry = performance.getEntriesByType('navigation')[0];
-                    const ttfb = navEntry ? Math.max(1, Math.round(navEntry.responseStart - navEntry.requestStart)) : 12;
-                    const domReady = navEntry ? Math.max(1, Math.round(navEntry.domInteractive)) : 48;
+                    const ttfb = navEntry ? Math.max(1, Math.round(navEntry.responseStart)) : null;
+                    const domReady = navEntry ? Math.max(1, Math.round(navEntry.domInteractive)) : null;
                     const allNodes = document.querySelectorAll('*').length;
 
                     const imgs = Array.from(document.querySelectorAll('img'));
@@ -3168,8 +3235,8 @@ ${budgetLine}`;
                     document.getElementById('crawlLabel3').textContent = 'Live DOM Nodes';
                     document.getElementById('crawlLabel4').textContent = 'DOM / A11y Flags';
 
-                    document.getElementById('crawlMetric1').textContent = `${ttfb} ms`;
-                    document.getElementById('crawlMetric2').textContent = `${domReady} ms`;
+                    document.getElementById('crawlMetric1').textContent = `${ttfb === null ? 'n/a' : ttfb + ' ms'}`;
+                    document.getElementById('crawlMetric2').textContent = `${domReady === null ? 'n/a' : domReady + ' ms'}`;
                     document.getElementById('crawlMetric3').textContent = `${allNodes} Nodes`;
                     document.getElementById('crawlMetric4').textContent = `${totalFlags} Flags`;
 
@@ -3199,8 +3266,8 @@ ${budgetLine}`;
                             status: 'PASS',
                             cls: 'badge-pass',
                             target: 'Navigation Timing API (window.performance)',
-                            metric: `${ttfb} ms TTFB`,
-                            detail: `DOM interactive at ${domReady} ms across ${allNodes} live DOM elements`
+                            metric: `${ttfb === null ? 'n/a' : ttfb + ' ms'} TTFB`,
+                            detail: `DOM interactive at ${domReady === null ? 'n/a' : domReady + ' ms'} across ${allNodes} live DOM elements`
                         }
                     ];
 
@@ -3342,11 +3409,11 @@ ${budgetLine}`;
                     svgNodes.innerHTML = positioned.map((n, idx) => `
                         <g class="svg-node" role="button" tabindex="0" data-node-idx="${idx}" aria-label="${n.title}: ${n.sub}">
                             <rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="12"
-                                  fill="#11141c" stroke="${n.stroke}" stroke-width="2.2" />
+                                  style="fill: var(--bg-card)" stroke="${n.stroke}" stroke-width="2.2" />
                             <text x="${n.x + n.w / 2}" y="${n.y + 33}" text-anchor="middle"
-                                  fill="#ffffff" font-size="15" font-weight="800">${n.title}</text>
+                                  style="fill: var(--text-title)" font-size="15" font-weight="800">${n.title}</text>
                             <text x="${n.x + n.w / 2}" y="${n.y + 56}" text-anchor="middle"
-                                  fill="#949ba9" font-size="12" font-family="monospace">${n.sub}</text>
+                                  style="fill: var(--text-muted)" font-size="12" font-family="monospace">${n.sub}</text>
                         </g>
                     `).join('');
                 } else {
@@ -3388,11 +3455,11 @@ ${budgetLine}`;
                         return `
                             <g class="svg-node" role="button" tabindex="0" data-node-idx="${idx}" aria-label="${n.title}: ${n.sub}">
                                 <rect x="${pos.x}" y="${pos.y}" width="${pos.w}" height="${pos.h}" rx="12"
-                                      fill="#11141c" stroke="${n.stroke}" stroke-width="2.2" />
+                                      style="fill: var(--bg-card)" stroke="${n.stroke}" stroke-width="2.2" />
                                 <text x="${pos.x + pos.w / 2}" y="${pos.y + 34}" text-anchor="middle"
-                                      fill="#ffffff" font-size="13.5" font-weight="800">${n.title}</text>
+                                      style="fill: var(--text-title)" font-size="13.5" font-weight="800">${n.title}</text>
                                 <text x="${pos.x + pos.w / 2}" y="${pos.y + 56}" text-anchor="middle"
-                                      fill="#949ba9" font-size="11.5" font-family="monospace">${n.sub}</text>
+                                      style="fill: var(--text-muted)" font-size="11.5" font-family="monospace">${n.sub}</text>
                             </g>
                         `;
                     }).join('');
@@ -3511,7 +3578,7 @@ ${budgetLine}`;
 
             document.getElementById('closeEssayModal').addEventListener('click', () => essayModal.close());
             essayModal.addEventListener('click', (e) => {
-                if (e.target === essayModal) essayModal.close();
+                if (isBackdropClick(e, essayModal)) essayModal.close();
             });
 
             /* ======================================================================
@@ -3564,7 +3631,7 @@ ${budgetLine}`;
             document.getElementById('cmdTriggerBtn').addEventListener('click', openCmdModal);
             document.getElementById('closeCmdModal').addEventListener('click', () => cmdModal.close());
             cmdModal.addEventListener('click', (e) => {
-                if (e.target === cmdModal) cmdModal.close();
+                if (isBackdropClick(e, cmdModal)) cmdModal.close();
             });
             cmdSearchInput.addEventListener('input', () => renderCommands(cmdSearchInput.value));
 
@@ -3779,7 +3846,7 @@ ${budgetLine}`;
             }
             if (fitBotModal) {
                 fitBotModal.addEventListener('click', (e) => {
-                    if (e.target === fitBotModal) {
+                    if (isBackdropClick(e, fitBotModal)) {
                         stopAllVoiceActivity();
                         fitBotModal.close();
                     }
@@ -3918,6 +3985,21 @@ ${budgetLine}`;
                 action: () => openFitBotModal()
             });
             renderCommands('');
+
+            /* ======================================================================
+               16. FINAL HARDENING (THEME SYNC, VOICE CLEANUP, SHARED-LINK SCROLL)
+               ====================================================================== */
+            if (fitBotModal) fitBotModal.addEventListener('close', stopAllVoiceActivity);
+
+            window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (ev) => {
+                let saved = null;
+                try { saved = localStorage.getItem('dk_theme'); } catch (e) {}
+                if (!saved) applyTheme(ev.matches ? 'light' : 'dark', false);
+            });
+
+            if (location.hash.startsWith('#est=')) {
+                setTimeout(() => { const el = document.getElementById('sandbox'); if (el) el.scrollIntoView(); }, 60);
+            }
         })();
     </script>
 
